@@ -244,7 +244,7 @@
            var pred = [];
            var dist = [];
            if(BFS(pred,dist)==false){
-            alert("selecte nodes are not connected");
+            alert("selected nodes are not connected");
             return;
            }
            var path = [];
@@ -262,6 +262,7 @@
             if(ai == 1000)
               return;
            }
+
            shortest_path_var = path;
            for(var b=0;b<(path.length)-1;b++){
             console.log(path[b]);   //only for debugging
@@ -337,6 +338,7 @@
         function greenify(i){
           document.getElementById(i).style.backgroundColor = "lawngreen";
         }
+       
         function make_path(x,y){
             var a,b,c,d,e,f,g;
             a = Math.floor(x/100); b = x%100;
@@ -382,7 +384,10 @@
          }
          console.log(src+" "+dest);
          shortest_path();
-         red(src);
+                   red(src);
+        
+
+        
          blue(dest);
         }
         var temp_bool = false
@@ -411,7 +416,9 @@
           }
           initial--;
         }
+
       </script>
+       
    </head>
    <body>
       <body onload="myfunction()">
@@ -434,9 +441,12 @@
                         k+")\"></div>");
                }}
             </script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
+     <script src="typeahead.min.js"></script>
          </div>
       </div>
       <div class="user-ia">
+         <input type="text" name="typeahead">
       <table>
         <tr>
          
@@ -518,4 +528,13 @@
  </div>
 </div>
    </body>
+   <script>
+    $(document).ready(function(){
+    $('input.typeahead').typeahead({
+        name: 'typeahead',
+        remote:'search.php?key=%QUERY',
+        limit : 10
+    });
+});
+    </script>
 </html>
