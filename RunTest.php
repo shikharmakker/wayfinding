@@ -1,9 +1,6 @@
+<?php include('Constants.php') ?>
 <?php
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "";
-$database="test";
-$conn = new mysqli($dbhost, $dbuser, $dbpass,$database);
+
 $sql = "SELECT JSON_string FROM test.first_test WHERE name = 'shikharaiims' limit 1";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);

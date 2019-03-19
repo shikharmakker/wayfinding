@@ -1,17 +1,30 @@
 <!DOCTYPE html>
+<?php include('Constants.php') 
+?>
+
+<?php
+session_start();
+include("functions.php");
+if(isset($_SESSION["user_id"])) {
+    if(isLoginSessionExpired()) {
+        header("Location:logout.php?session_expired=1");
+    }
+}
+else
+{
+    $url = "login.php";
+    echo "Login Session is Expired. Please Login Again";
+    header("Location:$url");
+}
+
+?>
 <html>
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
 
       <style>
-      html {
-       font-family: 'Montserrat', 'Raleway', sans-serif;
-      }
-      body {
-       margin: 0px;
-       height: 100vh;
-      }
+     
       .head {
        background-image: linear-gradient(#e67e22, #f39c12, #f1c40f);
        text-align: center;
@@ -166,39 +179,137 @@
           border-radius: 5px;
           width: 80%
          }
+          h2{
+          background-color: #FFE381;
+          padding: 18px;
+          border-radius: 5px;
+          font-size: 18px;
+         }
+         .hide{
+          visibility: hidden;
+          text-decoration: underline;
+         }
+         h2:hover{
+          background-color: #FFE381;
+          padding: 18px;
+          border-radius: 5px;
+          font-size: 18px;
+         }
+
+
+
+         .popup {
+           position: relative;
+           margin-top: 320px;
+           margin-left: 200px;
+           display: inline-block;
+           cursor: pointer;
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+           color: #444444;
+         }
+
+         /* The actual popup */
+         .popup .popuptext {
+           visibility: hidden;
+           width: 360px;
+           background-color: #555;
+           color: #fff;
+           text-align: left;
+           border-radius: 6px;
+           padding: 10px 6px;
+           position: absolute;
+           z-index: 1;
+           bottom: 125%;
+           left: 50%;
+           margin-left: -80px;
+         }
+
+         /* Popup arrow */
+         .popup .popuptext::after {
+           content: "";
+           position: absolute;
+           top: 100%;
+           left: 50%;
+           margin-left: -5px;
+           border-width: 5px;
+           border-style: solid;
+           border-color: #555 transparent transparent transparent;
+         }
+
+         /* Toggle this class - hide and show the popup */
+         .popup .show {
+           visibility: visible;
+           -webkit-animation: fadeIn 1s;
+           animation: fadeIn 1s;
+         }
+
+         /* Add animation (fade in the popup) */
+         @-webkit-keyframes fadeIn {
+           from {opacity: 0;}
+           to {opacity: 1;}
+         }
+
+         @keyframes fadeIn {
+           from {opacity: 0;}
+           to {opacity:1 ;}
+         }
+
+         .popup:hover .popuptext{
+          visibility: visible;
+         }
+
+         .invisibleDiv
+         {
+          width: 100%;
+          z-index: -1;
+          height: 100%;
+         }
 
       </style>
-
+     
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
       <script type="application/javascript" >
       var name_temp;
-      function myfunction(){
+      var brad2;
+      var url_string = window.location.href;
+      var url = new URL(url_string);
 
-        var url_string = window.location.href; //window.location.href
-        var url = new URL(url_string);
-       var brad = url.searchParams.get("RN");
+    //  var version = url.searchParams.get("version");
+      var brad = url.searchParams.get("img");
+            function myfunction(){
+
         name_temp = brad;
                 // window.alert(b);
-                var a="./images/" + brad;
+                var a="./images/" + brad + ".jpg";
                 var elem = document.getElementById("example2");
                 elem.style.background="url('" + a + "')";
                 elem.style.backgroundRepeat="no-repeat";
                 elem.style.backgroundSize="600px 600px";
                 display();
-                      }
+               //  brad2 = url.searchParams.get("username");
+                                       }
+
       <?php
-      $dbhost = "localhost";
-      $dbuser = "root";
-      $dbpass = "";
-      $database="test";
-      $conn = new mysqli($dbhost, $dbuser, $dbpass,$database);
-      $sql = "SELECT JSON_string FROM test.first_test WHERE name = 'shikharaiims' limit 1";
+      $n = $_GET['img'];
+      $version = $_GET['version'];
+     // $p = $_POST['psw'];
+      $sql = "SELECT JSON_string FROM first_test WHERE name = '$n' and version = '$version'limit 1";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
+     
+
       
       ?>
+      var tr;
+      //alert(name_temp);
+    //  var version = 0;
       var chords = [];
-      var tr = '<?php echo $row['JSON_string'] ;?>';
+      tr = '<?php echo $row['JSON_string'] ;?>';
+      
+      
       var obj = JSON.parse(tr); 
       var connected = []; 
       for (var temp = 0; temp < 3600 ; temp++) {
@@ -238,6 +349,7 @@
             name_string[b] = obj.cords[b].name;
             description[b] = obj.cords[b].description;
          }
+
          var edge_index = -1;
          var Node_select = false;
          var Edge_select = false;
@@ -500,7 +612,6 @@
              for(var t = 0; t < connected_nodes[o].length ; t++){
               finalpath(cords[o], connected_nodes[o][t]);
              }
-
            }
          }
          function Print(){
@@ -533,13 +644,14 @@
            }
          }
          function Submit(){
-
+         
            Create_JSON();
            document.getElementById('json').innerHTML = finalJSON;
 
            var name = name_temp.replace('.jpg','');
            //alert("name : " + name);
            document.getElementById('name').innerHTML = name;
+         //alert(finalJSON);
            if(name == ""){
              alert("Please enter a tag");
              return;
@@ -548,16 +660,15 @@
               //alert($("#name").html());
               //alert("w");
               //alert($("#json").html());
-             send();
-             //alert(finalJSON);
-             alert("done");
+              send();             //alert(finalJSON);
+            alert("done");
            }
 
 
          }
          function send(){
            $.post("upload.php",{name: $("#name").html(),JSON_string: $("#json").html()});
-
+          // alert( $("#json").html());
          }
          function Update(){
 
@@ -743,15 +854,24 @@
              display();
            }
          }
+         function undo(){
 
+         }
 
 
       </script>
+
    </head>
    <body>
      <body onload="myfunction()">
       <div class="head">
        <h1><strong>Indoor Navigation</strong></h1>
+       <div class="icon-bar" style="height: 30px;">
+
+<a href = "logout.php" style="float: right; color: Black; margin-left: 20px; margin-right: 30px;">Logout</a>
+
+
+</div>
       <div>
       <!-- <p>Name : <input type="text" id="name"></p> -->
       <p id = "temporary"></p>
@@ -767,25 +887,26 @@
                     +k+")\"></div>");
               }}
            </script>
+
         </div>
       </div>
       <!--      <button type="button" onclick ="finalpath(cords[0],cords[1])" >JOIN</button> -->
       <div class="user-ia">
        <table class="choices">
         <tr>
-         <button class="button" id = "Node" type="button" onclick ="Nodeselect()" >Node</button>
+         <button class="button" id = "Node" type="button" onclick ="Nodeselect()" >Junction</button>
          <p></p>
         </tr>
         <tr>
-         <button class="button" id = "Edge" type="button" onclick ="Edgeselect()" >Edge</button>
+         <button class="button" id = "Edge" type="button" onclick ="Edgeselect()" >Path</button>
          <p></p>
         </tr>
         <tr>
-         <button class="button" id = "Stop" type="button" onclick ="Stop()" >Stop</button>
+         <button class="button" id = "Stop" type="button" onclick ="Stop()" >Stop Action</button>
          <p></p>
         </tr>
         <tr>
-         <button class="button" id = "Delete" type="button" onclick ="Delete()" >Delete</button>
+         <button class="button" id = "Delete" type="button" onclick ="Delete()" >Clear</button>
          <p></p>
         </tr>
         <tr>
@@ -802,7 +923,13 @@
        <p id = "response_description"></p>
        <p id = "buttons"></p>
        <div class="user-iafinal">
-        <button class="button-" id = "Submit" type="button" onclick ="Submit()" >Submit</button>
+        <button class="button-" id = "Submit" type="button" onclick ="myFunction()" >Submit</button>
+      <button id = "undo" onclick = "undo()">Undo</button>
+      <button id = "undo" onclick = "redo()">Redo</button>
+      
+        
+  
+</div>
         <p></p>
          <p>Description:</p>
   <p id="description"><br /><br /></p>
@@ -815,15 +942,7 @@
       <p hidden id = "name"></p>
 
      <div class="instructions">
-      <strong>Instructions:</strong>
-      <p>1. Select 'Node' and click on the grid to select a block.<br />
-      2. While Selecting the node, make sure to select it in a same grid line.
-      3. Select 'Edge', then click on 2 nodes to create an edge connecting those two nodes. <br />
-      4. Click on 'Stop' after creating an edge, or in case you want to deselect a function.<br />
-      5. Select 'Delete' and then click on a node to delete it.<br />
-      6. Select 'Name' and then click on a node to submit a name, tag and/or description.<br/>
-      7. Click any node to read the description.<br>
-      </p>
+      
 
       <div class="color-key" style="font-size: 2vh; font-weight: bold;">
        <table>
@@ -850,8 +969,55 @@
 
       </table>
       </div>
+       <div class="popup" onclick="myFunction()"><button id="instr-button"><h2>Need Help?<span id="hide" class="hide">(Hide)</span></h2>  </button>
+         <span class="popuptext" id="myPopup"><strong>INSTRUCTIONS</strong><p>1. Select 'Node' and click on the grid to select a block.<br />
+         2. While Selecting the node, make sure to select it in a same grid line.<br />
+         3. Select 'Edge', then click on 2 nodes to create an edge connecting those two nodes. <br />
+         4. Click on 'Stop' after creating an edge, or in case you want to deselect a function.<br />
+         5. Select 'Delete' and then click on a node to delete it.<br />
+         6. Select 'Name' and then click on a node to submit a name, tag and/or description.<br/>
+         7. Click any node to read the description.<br />
+         </p></span>
+       </div>
      </div>
+   
+
+
    </body>
+   <?php
+   $user = $_SESSION["username"];
+//print_r($user);
+$sql = "SELECT password FROM admin WHERE username = '$user'";
+$result = mysqli_query($conn, $sql);
+//print_r($result);
+$row = mysqli_fetch_assoc($result);
+$pass = $row['password'];
+?>
+   <script type="text/javascript">
+ function myFunction() {
+  var t =  '<?php echo $pass ;?>';
+var nat = prompt("Confirm your Password");
+while (nat.length == 0 || nat!=t) {
+    nat = prompt("Please write a correct password");
+}
+Submit();
+
+}
+function undo(){
+var r = confirm("Are you sure!");
+if(r==true){
+    var nav = "trial.php?img="+"<?php echo $n?>"+"&version="+"<?php echo 1 ?>" ;
+  window.location.href =nav;}
+
+  //alert(tr);
+}
+function redo(){
+    var nav = "trial.php?img="+"<?php echo $n?>"+"&version="+"<?php echo 0 ?>" ;
+  window.location.href =nav;
+  //alert(tr);
+}
+   </script>
+
 </html>
 
 <!-- tags -> nearby services, multiple strings  -->

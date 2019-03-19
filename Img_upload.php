@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include('Constants.php') ?>
 <html>
 <head>
 	<title></title>
@@ -20,10 +21,7 @@ else
 }
 ?>
 
-<?php
-$con = mysqli_connect("localhost", "root", "");
-mysqli_select_db($con,"test");
-?>
+
 
 
 
@@ -41,7 +39,8 @@ $upload_image=$_FILES['myimage'] ['tmp_name'];
 // $row= $_FILES['myimage']['name'];
 $filename=$_FILES["myimage"]["name"];
 $extension=end(explode(".", $filename));
-$row=$user.$_POST["name"] .".".$extension;
+$row=$_POST["name"] .".".$extension;
+$date = date('y-m-d-h-i-s');
 //move_uploaded_file($_FILES['myimage']['tmp_name'],$row);
 move_uploaded_file($upload_image, "$target_dir/$row");
 
@@ -55,11 +54,24 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
+$x = $_POST["name"];
+$y = $user;
+$version = 0;
+$z = '{"cords":[{"value": 0,"connected_nodes":[],"Tags":[],"name":"","description":""}]}';
+//{"cords":[{"value":4726,"connected_nodes":[3226,4740],"Tags":["Room 21b"],"name":"Node 7","description":"Help Desk Open till midnight"}]}
+//$query = mysqli_query($conn,"insert into first_test(name,username,JSON_string) values ('$x','$y','$z')");
+$query1 = mysqli_query($conn,"insert into maps(name,username,file_name,date) values ('$x','$y','$row','$date')");
+
+//$query2 = mysqli_query($conn,"insert into maps (name,username,file_name,date) values ('$_POST["name"]', '$user','$row','$date')");
+mysqli_commit($conn);
+mysqli_close($conn);
+
 ?>
 <script type="text/javascript">
-	var nav = "trial.php?RN=" + "<?php echo $row ?>" ;
+	var nav = "trial.php?img=" + "<?php echo $_POST["name"] ?>"+"&version="+"<?php echo $version ?>" ;
 	window.location.href =nav;
 </script>
-<p  style="text-align:center">1. <script> document.write('<a href="' + nav + '">Navigation</a>'); </script></p>
+
+<p  style="text-align:center"><script> document.write('<a href="' + nav + '">Navigation</a>'); </script></p>
 </body>
 </html>

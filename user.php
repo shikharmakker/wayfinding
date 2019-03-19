@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include('Constants.php') ?>
 <html>
    <head>
       <meta charset="utf-8"/>
@@ -110,11 +111,7 @@
       ?>
 
       <?php
-      $dbhost = "localhost";
-      $dbuser = "root";
-      $dbpass = "";
-      $database="test";
-      $conn = new mysqli($dbhost, $dbuser, $dbpass,$database);
+     
       
       $sqln = "SELECT JSON_string FROM test.first_test";
       $resultn = mysqli_query($conn, $sqln);
