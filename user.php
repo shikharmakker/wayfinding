@@ -98,12 +98,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script>
       <?php
-      $dbhost = "localhost";
-      $dbuser = "root";
-      $dbpass = "";
-      $database="test";
-      $conn = new mysqli($dbhost, $dbuser, $dbpass,$database);
-      $sql = "SELECT JSON_string FROM test.first_test WHERE name = 'shikharaiims' limit 1";
+      $sql = "SELECT JSON_string FROM test.first_test WHERE name = 'aiims' and version = '0' limit 1";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
 
@@ -113,7 +108,7 @@
       <?php
      
       
-      $sqln = "SELECT JSON_string FROM test.first_test";
+      $sqln = "SELECT JSON_string FROM test.first_test where name = 'aiims' and version = '0'";
       $resultn = mysqli_query($conn, $sqln);
       $rown = mysqli_fetch_assoc($resultn);
       
@@ -443,7 +438,6 @@
          </div>
       </div>
       <div class="user-ia">
-         <input type="text" name="typeahead">
       <table>
         <tr>
          
@@ -525,13 +519,4 @@
  </div>
 </div>
    </body>
-   <script>
-    $(document).ready(function(){
-    $('input.typeahead').typeahead({
-        name: 'typeahead',
-        remote:'search.php?key=%QUERY',
-        limit : 10
-    });
-});
-    </script>
 </html>

@@ -44,11 +44,16 @@ else{
 	$q = $row0['JSON_string'];
 	$r = 1;
 	$z = 0;
+	if(!$sql1){
 	$query1 = mysqli_query($conn,"update first_test set name = '$p', JSON_string = '$q', version = '$r', username = '$user' where name = '$x' and version = '1'");
+	}
+	else{
+	$query = mysqli_query($conn,"insert into first_test(name,JSON_string,version,username) values ('$x', '$y','1','$user')");
+	}
 	$query2 = mysqli_query($conn,"update first_test set name = '$x', JSON_string = '$y', version = '$z', username = '$user' where name = '$x' and version = '0'");
 }
 
-
+//insert into first_test(name,JSON_string) values ('$x', '$y') on duplicate key update JSON_string='$y'
 
 /*else if($row1==null){
 	echo "string1";

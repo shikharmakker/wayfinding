@@ -12,13 +12,7 @@
 <?php
 session_start();
 
-$con = mysqli_connect("localhost","root","");
-if (!$con)
-  {
-  die('Could not connect: ' . mysql_error());
-  }
-  
-mysqli_select_db( $con,"test");
+include('Constants.php');
 
 
 include("functions.php");
@@ -42,7 +36,7 @@ $query = mysqli_query($con,$check);
 
 if(isset($_SESSION["user_id"])) {
 	if(!isLoginSessionExpired()) {
-                header("Location:/aim/welcome.php");
+                header("Location: welcome.php");
         } else {
 		header("Location:logout.php?session_expired=1");
 	}

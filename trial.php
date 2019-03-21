@@ -297,18 +297,26 @@ else
       $version = $_GET['version'];
      // $p = $_POST['psw'];
       $sql = "SELECT JSON_string FROM first_test WHERE name = '$n' and version = '$version'limit 1";
+      $sqlc = mysqli_query($conn,"Select JSON_string from first_test where name = '$n' and version = '1'");
+      $rowc = mysqli_fetch_assoc($sqlc);
+      $a = 0;
+      if(!$rowc){
+        $a = 1;
+      }
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
-     
-
-      
       ?>
       var tr;
       //alert(name_temp);
     //  var version = 0;
       var chords = [];
+
+      var ct =  '<?php echo $a ;?>';
+      alert(ct);
       tr = '<?php echo $row['JSON_string'] ;?>';
-      
+      if(ct == 1){
+        valuedelete(0,chords);
+      }
       
       var obj = JSON.parse(tr); 
       var connected = []; 
@@ -364,12 +372,8 @@ else
          var str2 = '';
          var sel = 0;
          var prev = -1;
+         valuedelete(0,cords);
          function clk(i){
-            //alert("you have selected 2 points");
-            /*<!--document.getElementById("response").innerHTML = resp;-->
-            document.getElementById(i).style.backgroundColor = "red";
-            <!--document.getElementById("test").innerHTML = cords.length;-->
-            cords.push(i);*/
 
             if(find(i,cords)!=-1){
               if(sel == 1){
@@ -466,6 +470,8 @@ else
          }
          function valuedelete(q,w){
            var ind = find(q,w);
+           delct++;
+           if(delct > 1)
            w.splice(ind,1);
          }
          function red(i){
@@ -854,10 +860,7 @@ else
              display();
            }
          }
-         function undo(){
-
-         }
-
+      
 
       </script>
 

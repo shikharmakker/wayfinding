@@ -59,7 +59,8 @@ $y = $user;
 $version = 0;
 $z = '{"cords":[{"value": 0,"connected_nodes":[],"Tags":[],"name":"","description":""}]}';
 //{"cords":[{"value":4726,"connected_nodes":[3226,4740],"Tags":["Room 21b"],"name":"Node 7","description":"Help Desk Open till midnight"}]}
-//$query = mysqli_query($conn,"insert into first_test(name,username,JSON_string) values ('$x','$y','$z')");
+$query = mysqli_query($conn,"insert into first_test(name,username,JSON_string,version) values ('$x','$y','$z','0')");
+//$query2 = mysqli_query($conn,"insert into first_test(name,username,JSON_string,version) values ('$x','$y','$z','1')");
 $query1 = mysqli_query($conn,"insert into maps(name,username,file_name,date) values ('$x','$y','$row','$date')");
 
 //$query2 = mysqli_query($conn,"insert into maps (name,username,file_name,date) values ('$_POST["name"]', '$user','$row','$date')");
