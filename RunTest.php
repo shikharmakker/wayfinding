@@ -1,7 +1,7 @@
 <?php include('Constants.php') ?>
 <?php
 
-$sql = "SELECT JSON_string FROM test.first_test WHERE name = 'shikharaiims' limit 1";
+$sql = "SELECT JSON_string FROM maps_data WHERE name = 'shikharaiims' limit 1";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 $r = json_decode($row['JSON_string'], true);

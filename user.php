@@ -2,27 +2,30 @@
 <?php include('Constants.php') ?>
 <html>
    <head>
-      <meta charset="utf-8"/>
-      <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/index.css" type="text/css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
       <style>
-         html{
-          font-family: 'Montserrat', 'Raleway', sans-serif;
+         body{
+          max-height: 100vh;
          }
-         .head{
-          background-image: linear-gradient(#e67e22, #f39c12, #f1c40f);
-          text-align: center;
-          font-weight: bold;
-          margin: 0px;
-          padding-top: 20px;
-          padding-bottom: 10px;
+         section{
+          height:7rem;
+          font-size: 5rem;
+         }
+         .content{
+          margin: 0.25rem;
          }
          .grid-container {
-          display: inline-grid;
-          grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-          <!--background-color: #2345F4;-->
-          padding: 0px;
-         }
+             display: inline-grid;
+             grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+             <!--background-color: #2345F4;-->
+             padding: 0px;
+             background-repeat: no-repeat;
+             background-size: 600px 600px;
+            }
          .grid-item {
           <!--background-color: rgba(255, 255, 255, 0.8);-->
           border: 0px solid rgba(0, 0, 0, 0.8);
@@ -33,58 +36,112 @@
          }
 
          #example2 {
+          border: solid #00d1b2 2px;
           display: inline-block;
-         
           padding: 0px;
           background-repeat: no-repeat;
           background-size: 600px 600px;
           margin-top: 0px;
           float: left;
-          padding-right: 20px;
+          padding-right: 15px;
          }
-         .user-ia{
+         .ia{
           display: inline-block;
-          background-color: #f1c40f;
-          padding-left: 40px;
-          padding-right: 50px;
-          margin-top: 80px;
-          padding-top: 20px;
-          float: left;
-          border-radius: 10px;
+          margin: 1rem 1.5rem;
+          padding: 0rem auto;
          }
-         .button {
-          border-radius: 5px;
-          width: 70%;
-         }
-         .button:active {
-          font-weight: bolder;
+         #button-logout{
+         background-color: white;
+         color: black;
+         cursor: pointer;
+         color: #4a4a4a;
+         display: block;
+         line-height: 1.5;
+         padding: .5rem .75rem;
+         position: relative;
+        }
+
+         .aid{
+          display: inline-block;
+          float: right;
+          width: 20rem;
          }
 
-         .instructions {
-          display: inline-block;
-          margin-top: 60px;
-          margin-left: 10px;
-          margin-right: 20px;
-          width: 20%
-         }
-         th {
-          background-color: #d35400;
-         }
-         th, td {
-          padding: 10px;
+         .hide{
+          visibility: hidden;
+          text-decoration: underline;
+          font-size: 10px;
          }
 
-         .color-key {
-          display: inline-block;
-          margin-top: 40px;
-          margin-left: 20px;
-          border: 2px solid #d35400;
-          border-radius: 5px;
+         .popup {
+           position: relative;
+           display: inline-block;
+           cursor: pointer;
+           -webkit-user-select: none;
+           -moz-user-select: none;
+           -ms-user-select: none;
+           user-select: none;
+           color: #444444;
          }
+
+         /* The actual popup */
+         .popup .popuptext {
+           visibility: hidden;
+           padding: 0.5rem 0.7rem;
+           background-color: #555;
+           color: #fff;
+           text-align: left;
+           width: 28rem;
+           position: absolute;
+           z-index: 1;
+           top: 2.3rem;
+           right: -80%;
+
+         }
+
+         /* Popup arrow */
+         .popup .popuptext::after {
+           content: "";
+           position: absolute;
+           bottom: 100%;
+           right: 1000%;
+           border-style: solid;
+           border-color: #555 transparent transparent transparent;
+         }
+
+         /* Toggle this class - hide and show the popup */
+         .popup .show {
+           visibility: visible;
+           -webkit-animation: fadeIn 1s;
+           animation: fadeIn 1s;
+         }
+
+         /* Add animation (fade in the popup) */
+         @-webkit-keyframes fadeIn {
+           from {opacity: 0;}
+           to {opacity: 1;}
+         }
+
+         @keyframes fadeIn {
+           from {opacity: 0;}
+           to {opacity:1 ;}
+         }
+
+         .popup:hover .popuptext{
+          visibility: visible;
+         }
+
+         .invisibleDiv
+         {
+          width: 100%;
+          z-index: -1;
+          height: 100%;
+         }
+
       </style>
       <script>
       function myfunction(){
-      b="shikharaiims.jpg";
+      b="dasdddas.jpg";
       // window.alert(b);
       var a="images/" + b;
       var elem = document.getElementById("example2");
@@ -96,22 +153,22 @@
       </script>
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script>
+     <script>
       <?php
-      $sql = "SELECT JSON_string FROM test.first_test WHERE name = 'aiims' and version = '0' limit 1";
+      $sql = "SELECT JSON_string FROM test.first_test WHERE name = 'dasdddas' and version = '0' limit 1";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
 
-     
+
       ?>
 
       <?php
-     
-      
-      $sqln = "SELECT JSON_string FROM test.first_test where name = 'aiims' and version = '0'";
+
+
+      $sqln = "SELECT JSON_string FROM test.first_test where name = 'dasdddas' and version = '0'";
       $resultn = mysqli_query($conn, $sqln);
       $rown = mysqli_fetch_assoc($resultn);
-      
+
       ?>
         var cords = [];
         var connected_nodes = [];
@@ -138,7 +195,7 @@
            // green(obj.cords.value);
                 if(i==obj.cords[c].value){
                   document.getElementById("name").innerHTML=obj.cords[c].name;
-                
+
                 document.getElementById("description").innerHTML=obj.cords[c].description;}
                 yellow(i);
               }
@@ -176,7 +233,7 @@
 
          function yellow(i){
            document.getElementById(i).style.opacity = "1";
-           document.getElementById(i).style.backgroundColor = "yellow";
+           document.getElementById(i).style.backgroundColor = "#ffcb00";
          }
 
       function red(i){
@@ -213,12 +270,12 @@
            red(y);
          }
         function display(){
-           
+
             for (var o = 0; o < chords.length; o++) {
-              
+
              red(chords[o]);
 
-             
+
 
            }
          }
@@ -330,7 +387,7 @@
         function greenify(i){
           document.getElementById(i).style.backgroundColor = "lawngreen";
         }
-       
+
         function make_path(x,y){
             var a,b,c,d,e,f,g;
             a = Math.floor(x/100); b = x%100;
@@ -377,9 +434,9 @@
          console.log(src+" "+dest);
          shortest_path();
                    red(src);
-        
 
-        
+
+
          blue(dest);
         }
         var temp_bool = false
@@ -410,113 +467,159 @@
         }
 
       </script>
-       
+
    </head>
    <body>
       <body onload="myfunction()">
-      <div class="head">
-       <h1><strong>Indoor Navigation</strong></h1>
-       <div class="heading">
-       <p id = "mapping"></p>
-       <h1>USER</h1>
-      </div>
-      </div>
-
-      <p id = "mapping"></p>
-      <div id="example2">
-         <div class="grid-container">
-            <script type="text/javascript">
-               for(var i=0;i<60;i++){
-                  for (var j=0;j<60 ;j++ ) {
-                     var k =100*i + j;
-                     document.write("<div class=\"grid-item\" id = \""+k+"\" onclick =\"clk("+
-                        k+")\"></div>");
-               }}
-            </script>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
-     <script src="typeahead.min.js"></script>
+       <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <span class="navbar-item" style="font-size: x-large;">
+           <strong>InNav</strong>
+           </span>
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+         <div class="navbar-start">
+          <a class="navbar-item">
+           <span class="icon" >
+             <i class="fas fa-home"></i>
+           </span>
+             <span style="display:inline-block; width:0.2rem;"></span>Home
+          </a>
          </div>
-      </div>
-      <div class="user-ia">
-      <table>
-        <tr>
-         
-       <tr>
-        <td>Source:</td>
-       <td>
-      <select name="source" id = "source">
-       <script language="javascript" type="text/javascript">
-          //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
-         var obj = JSON.parse(tr);
-          for(var b=0;b<obj.cords.length;b++){
-              document.write("<option>"+obj.cords[b].name+"</option>");
-          }
-        </script>
-      </select>
-     </td>
-     </tr>
-     <tr>
-      <td>Destination:</td>
-      <td>
-      <select name="destination" id = "destination">
-        <script language="javascript" type="text/javascript">
-          //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
-         var obj = JSON.parse(tr);
-          for(var b=0;b<obj.cords.length;b++){
-              document.write("<option>"+obj.cords[b].name+"</option>");
-          }
-        </script>
-      </select>
-     </td>
-     </table>
-     <br />
+         <div class="navbar-end">
+          <a class="navbar-item">
+           Facing Trouble using INav?
+          </a>
+          <div class="navbar-item">
+           <a class="navbar-item" href="logout.php">
+            Logout<span style="display:inline-block; width:0.2rem;"></span>
+            <i class="fas fa-sign-out-alt"></i>
+           </a>
+          </div>
+         </div>
+        </div>
+       </nav>
+       <section class="hero is-primary">
+         <div class="hero-body">
+           <div class="container">
+             <h1 class="title">
+               <strong>Indoor Navigation Portal</strong>
+             </h1>
+           </div>
+         </div>
+       </section>
+       <div class="content">
+         <div id="example2">
+            <div class="grid-container">
+               <script type="text/javascript">
+                  for(var i=0;i<60;i++){
+                     for (var j=0;j<60 ;j++ ) {
+                        var k =100*i + j;
+                        document.write("<div class=\"grid-item\" id = \""+k+"\" onclick =\"clk("+
+                           k+")\"></div>");
+                  }}
+               </script>
+               <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
+               <script src="typeahead.min.js"></script>
+             </div>
+          </div>
+          <div class="ia">
 
-  <button class="button"id = "submit" type = "button" onclick = "Submit()">Submit</button><br>
-  <p>Way:</p>
-  <p id="display_name"></p>
- <button class="button" id="next" type = "button" onclick="Next()">Next</button><br>
-  <p id="display_next"></p>
-  <button class="button" id="previous" type = "button" onclick="Previous()">Previous</button><br>
-  <p id="display_prev"></p>
-  <p>Name:</p>
-  <p id="name"><br /><br /></p>
-  <p>Description:</p>
-  <p id="description"><br /><br /></p>
 
-  </script>
- </div>
- <div class="instructions">
-  <strong>Instructions:</strong>
-  <p>1. Choose your starting point : 'Source', from the drop down menu.<br />
-  2. Choose your destinantion point : 'Destination', from the drop down menu.<br />
-  3. Click on 'Submit'. You now have your path highlighted in front of you!<br />
-  4. Click on any node to select it and read the description about it.
- </p>
+              Source:
+              <div class="select is-primary is-small">
+              <select name="source" id = "source">
+               <script language="javascript" type="text/javascript">
+                  //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
+                 var obj = JSON.parse(tr);
+                  for(var b=0;b<obj.cords.length;b++){
+                      document.write("<option>"+obj.cords[b].name+"</option>");
+                  }
+                </script>
+               </select>
+              </div>
+              <br /><br />
 
- <div class="color-key">
-  <table>
-   <tr>
-    <th style="text-align: center;"><strong>Colour</strong></th>
-    <th><strong>Key</strong></th>
-   </tr>
-   <tr>
-    <td style="color: #0023F5; font-weight: bold; text-align: center;">Blue</td>
-    <td>Path Nodes</td>
-   </tr>
-   <tr>
-    <td style="color: #EB3223; font-weight: bold; text-align: center;">Red</td>
-    <td>Source Node</td>
-   </tr>
-   <tr>
-    <td style="color: #9EF74D; font-weight: bold; text-align: center;">Green</td>
-    <td>Optimum path</td>
-   </tr>
-   <tr>
-    <td style="color: yellow; font-weight: bold; text-align: center;">Yellow</td>
-    <td>Selected Node</td>
-   </tr>
-  </table>
- </div>
-</div>
+             Destination:
+             <div class="select is-primary is-small">
+             <select name="destination" id = "destination">
+               <script language="javascript" type="text/javascript">
+                 //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
+                var obj = JSON.parse(tr);
+                 for(var b=0;b<obj.cords.length;b++){
+                     document.write("<option>"+obj.cords[b].name+"</option>");
+                 }
+               </script>
+             </select>
+            </div>
+            <br />
+            <br />
+          <a class="button is-success is-fullwidth" id = "submit" type = "button" onclick = "Submit()">Submit</a><br /><br />
+          <p>Way:</p>
+          <p id="display_name"></p>
+          <a class="button is-link" id="next" type = "button" onclick="Next()">Next</a><br />
+          <p id="display_next"></p>
+          <a class="button is-link" id="previous" type = "button" onclick="Previous()">Previous</a><br />
+          <p id="display_prev"></p><br />
+          <p>Name:</p>
+          <p id="name"></p>
+          <p>Description:</p>
+          <p id="description"></p>
+          </script>
+          </div>
+
+        <div class="aid">
+         <div class="color-key" style="font-size: 2vh;">
+          <table class="table is-bordered" { constructor() { } }>
+           <tr>
+            <th style="text-align: center;"><strong style="color: #555;">Colour</strong></th>
+            <th><strong style="color: #555;">Key</strong></th>
+           </tr>
+           <tr>
+            <td style="color: #0023F5; text-align: center;">Blue</td>
+            <td style="color: #777;">Path Nodes</td>
+           </tr>
+           <tr>
+            <td style="color: #EB3223; text-align: center;">Red</td>
+            <td style="color: #777;">Source Node</td>
+           </tr>
+           <tr>
+            <td style="color: #9EF74D; text-align: center;">Green</td>
+            <td style="color: #777;">Optimum path</td>
+           </tr>
+           <tr>
+            <td style="color: #ffcb00; text-align: center;">Yellow</td>
+            <td style="color: #777;">Selected Node</td>
+           </tr>
+          </table><br /><br />
+         </div>
+         <div class="popup" onclick="myFunction()">
+          <a id="instr-button" class="button is-info">Need Help?<span id="hide" class="hide">(Hide)</span></a>
+          <span class="popuptext" class="message is-info" id="myPopup"><strong>INSTRUCTIONS</strong>
+           <p>1. Choose your starting point : 'Source', from the drop down menu.<br />
+           2. Choose your destinantion point : 'Destination', from the drop down menu.<br />
+           3. Click on 'Submit'. You now have your path highlighted in front of you!<br />
+           4. Click on any node to select it and read the description about it.<br />
+          </p>
+          </span>
+         </div>
+
+         <script>
+         // When the user clicks on div, open the popup
+         function myFunction() {
+           var popup = document.getElementById("myPopup");
+           popup.classList.toggle("show");
+           var hide = document.getElementById("hide");
+           hide.classList.toggle("show");
+           pop=1;
+         }
+         </script>
+        </div>
+       </div>
    </body>
 </html>

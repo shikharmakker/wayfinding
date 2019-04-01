@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include('Constants.php') 
+<?php include('Constants.php')
 ?>
 
 <?php
@@ -19,27 +19,30 @@ else
 
 ?>
 <html>
-   <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
 
-      <style>
-     
-      .head {
-       background-image: linear-gradient(#e67e22, #f39c12, #f1c40f);
-       text-align: center;
-       font-weight: bold;
-       margin-top: 0px;
-       padding-top: 10px;
-       padding-bottom: 10px;
-       text-align: center;
-      }
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href="css/index.css" type="text/css" rel="stylesheet">
+ <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+ <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+
+ <style>
+          body{
+           max-height: 100vh;
+          }
+          section{
+           height:7rem;
+           font-size: 5rem;
+          }
+          .content{
+           margin: 0.25rem;
+          }
          .grid-container {
           display: inline-grid;
           grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
           <!--background-color: #2345F4;-->
           padding: 0px;
-
           background-repeat: no-repeat;
           background-size: 600px 600px;
          }
@@ -52,6 +55,7 @@ else
          }
 
          #example2 {
+          border: solid #00d1b2 2px;
           display: inline-block;
           padding: 0px;
           background-repeat: no-repeat;
@@ -59,149 +63,41 @@ else
           margin-top: 0px;
           float: left;
           padding-right: 15px;
-                   }
-         .user-ia {
-          font-family: 'Raleway', sans-serif;
-          font-size: 20px;
+         }
+         .ia{
           display: inline-block;
-          background-color: #f1c40f;
-          margin-top: .8vh;
-          padding-top: .8%;
-          padding-bottom: 1%;
-          border-radius: 10px;
-          float: left;
-          width: 11%;
-          font-size: big;
-          text-align: center;
-          height: 70vh;
-          text-align: center;
+          margin: 1rem 1.5rem;
+          padding: 0rem auto;
          }
-         button {
-          border: 0px;
-         }
-         .choices {
-          margin: 0px;
-         }
-         .button {
-          border-radius: 5px;
-          border: 0px;
-          text-align: center;
-          height: 7.5%;
-          width: 70%;
-          font-size: 16px;
-         }
-         .button:active {
-          font-weight: bolder;
-         }
-         .user-iafinal {
+         .popup{
           display: inline-block;
           float: left;
-          height: 12vh;
-          width: 100%;
-          border-radius: 10px;
-          text-align: center;
-          margin: 0px;
-         }
-         input {
-          padding: .5vh 2%;
-          border-radius: 4px;
-          box-shadow: 0px;
-          border: 2px solid #f39c12;
-          text-align: center;
-          width: 80%;
-          height: 9%;
-          margin: 1%;
-          font-size: 14px;
-         }
-         #Tag_cancel {
-          background-color: #16a085;
-          width: 70%;
-          height: 9%;
-          font-size: 16px;
-          padding: .5vh 2%;
-          color: white;
-          border-radius: 4px;
-          margin: 0px;
-         }
-         #Tag_cancel:active {
-          background-color: #16a085;
-          width: 70%;
-          height: 9%;
-          font-size: 16px;
-          padding: .5vh 2%;
-          color: white;
-          border-radius: 4px;
-          margin: 0px;
-          font-weight: bolder;
-         }
-         .button- {
-          border-radius: 5px;
-          border: 0px;
-          text-align: center;
-          height: 4vh;
-          width: 95%;
-          font-size: 16px;
-         }
-         .button-:active {
-          font-weight: 400;
-          border: solid 2px #27ae60;
-         }
-         #Submit {
-          background-color: #27ae60;
-          color: white;
-          width: 90%;
-          font-size: 18px;
-          font-weight: bold;
-          border: 0px;
-         }
-         .instructions {
-          font-family: 'Raleway', sans-serif;
-          font-size: 17px;
-          font-weight: lighter;
-          display: inline-block;
-          float: right;
-          width: 24%;
-          margin: 0vh;
-          margin-right: 7%;
          }
 
-         th {
-          background-color: #d35400;
-         }
-         th, td {
-          padding: 10px;
-         }
-         .color-key {
+         #button-logout{
+         background-color: white;
+         color: black;
+         cursor: pointer;
+         color: #4a4a4a;
+         display: block;
+         line-height: 1.5;
+         padding: .5rem .75rem;
+         position: relative;
+        }
+
+         .aid{
           display: inline-block;
-          margin-top: 0%;
-          margin-left: 5%;
-          border: 2px solid #d35400;
-          border-radius: 5px;
-          width: 80%
+          float: right;
          }
-          h2{
-          background-color: #FFE381;
-          padding: 18px;
-          border-radius: 5px;
-          font-size: 18px;
-         }
+
          .hide{
           visibility: hidden;
           text-decoration: underline;
+          font-size: 10px;
          }
-         h2:hover{
-          background-color: #FFE381;
-          padding: 18px;
-          border-radius: 5px;
-          font-size: 18px;
-         }
-
-
 
          .popup {
            position: relative;
-           margin-top: 320px;
-           margin-left: 200px;
            display: inline-block;
            cursor: pointer;
            -webkit-user-select: none;
@@ -214,27 +110,24 @@ else
          /* The actual popup */
          .popup .popuptext {
            visibility: hidden;
-           width: 360px;
+           padding: 0.5rem 0.7rem;
            background-color: #555;
            color: #fff;
            text-align: left;
-           border-radius: 6px;
-           padding: 10px 6px;
+           width: 28rem;
            position: absolute;
            z-index: 1;
-           bottom: 125%;
-           left: 50%;
-           margin-left: -80px;
+           top: 2.3rem;
+           right: -80%;
+
          }
 
          /* Popup arrow */
          .popup .popuptext::after {
            content: "";
            position: absolute;
-           top: 100%;
-           left: 50%;
-           margin-left: -5px;
-           border-width: 5px;
+           bottom: 100%;
+           right: 1000%;
            border-style: solid;
            border-color: #555 transparent transparent transparent;
          }
@@ -269,10 +162,10 @@ else
          }
 
       </style>
-     
-      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-      <script type="application/javascript" >
-      var name_temp;
+
+ <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script type="application/javascript">
+ var name_temp;
       var brad2;
       var url_string = window.location.href;
       var url = new URL(url_string);
@@ -296,27 +189,31 @@ else
       $n = $_GET['img'];
       $version = $_GET['version'];
      // $p = $_POST['psw'];
-      $sql = "SELECT JSON_string FROM first_test WHERE name = '$n' and version = '$version'limit 1";
-      $sqlc = mysqli_query($conn,"Select JSON_string from first_test where name = '$n' and version = '1'");
-      $rowc = mysqli_fetch_assoc($sqlc);
+
+      $sql = "SELECT JSON_string FROM maps_data WHERE name = '$n' and version = '$version'";
+      $sqlc1 = mysqli_query($conn,"Select JSON_string from maps_data where name = '$n' and version = '0'");
+      $rowc1 = mysqli_fetch_assoc($sqlc1);
+      $sqlc2 = mysqli_query($conn,"Select JSON_string from maps_data where name = '$n' and version = '1'");
+      $rowc2 = mysqli_fetch_assoc($sqlc2);
+      $j1 = $rowc1['JSON_string'];
+      $j2 = $rowc2['JSON_string'];
       $a = 0;
-      if(!$rowc){
+      if($j1 == $j2){
         $a = 1;
       }
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
       ?>
       var tr;
+      var delall=0;
       //alert(name_temp);
     //  var version = 0;
       var chords = [];
 
       var ct =  '<?php echo $a ;?>';
-      alert(ct);
+      //alert(ct);
       tr = '<?php echo $row['JSON_string'] ;?>';
-      if(ct == 1){
-        valuedelete(0,chords);
-      }
+      
       
       var obj = JSON.parse(tr); 
       var connected = []; 
@@ -329,7 +226,10 @@ else
           connected[b][i] = obj.cords[b].connected_nodes[i];
         }
       }
-
+if(ct == 1){
+       // alert("hello");
+        valuedelete(0,chords);
+      }
 
 
         
@@ -372,7 +272,6 @@ else
          var str2 = '';
          var sel = 0;
          var prev = -1;
-         valuedelete(0,cords);
          function clk(i){
 
             if(find(i,cords)!=-1){
@@ -468,11 +367,15 @@ else
            document.getElementById(i).style.backgroundColor = "lawngreen";
            document.getElementById(i).style.opacity = "1";
          }
+          function orange(i){
+           document.getElementById(i).style.backgroundColor = "orange";
+           document.getElementById(i).style.opacity = "1";
+         }
          function valuedelete(q,w){
            var ind = find(q,w);
-           delct++;
-           if(delct > 1)
+           if(q!=-1){
            w.splice(ind,1);
+         }
          }
          function red(i){
            document.getElementById(i).style.backgroundColor = "red";
@@ -649,6 +552,21 @@ else
              }
            }
          }
+         function check(){
+          var count = 0;
+            for(var b=0;b<cords.length;b++){
+                     if(!name_string[b]){
+                       // alert("empty name");
+                       var t = cords[b];
+                      // alert(t);
+                       orange(t);
+                       count++;
+                     }
+              }
+            //  alert(cords);
+              if(count > 0)
+                return false;
+         }
          function Submit(){
          
            Create_JSON();
@@ -666,8 +584,14 @@ else
               //alert($("#name").html());
               //alert("w");
               //alert($("#json").html());
+              if(check()==false){
+                alert("Please give details for orange colored Junctions before submitting");
+                return;
+              }
               send();             //alert(finalJSON);
             alert("done");
+            var nav = "trial.php?img=" + "<?php echo $n ?>"+"&version=0" ;
+            window.location.href =nav;
            }
 
 
@@ -676,6 +600,7 @@ else
            $.post("upload.php",{name: $("#name").html(),JSON_string: $("#json").html()});
           // alert( $("#json").html());
          }
+
          function Update(){
 
            Create_JSON();
@@ -852,6 +777,7 @@ else
 
              document.getElementById(i).style.opacity = "0.5";
            }
+           check();
           
          }
          function mouseOut(i){
@@ -859,135 +785,181 @@ else
              reset();
              display();
            }
+           check();
          }
-      
-
       </script>
+</head>
 
-   </head>
-   <body>
-     <body onload="myfunction()">
-      <div class="head">
-       <h1><strong>Indoor Navigation</strong></h1>
-       <div class="icon-bar" style="height: 30px;">
-
-<a href = "logout.php" style="float: right; color: Black; margin-left: 20px; margin-right: 30px;">Logout</a>
-
-
-</div>
-      <div>
-      <!-- <p>Name : <input type="text" id="name"></p> -->
-      <p id = "temporary"></p>
+<body>
+ <body onload="myfunction()">
+   <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+  				<span class="navbar-item" style="font-size: x-large;">
+  					<strong>InNav Administration</strong>
+  					</span>
+  				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+  						<span aria-hidden="true"></span>
+  						<span aria-hidden="true"></span>
+  						<span aria-hidden="true"></span>
+  				</a>
+  		</div>
+    <div id="navbarBasicExample" class="navbar-menu">
+     <div class="navbar-start">
+      <a class="navbar-item">
+       <span class="icon" >
+         <i class="fas fa-home"></i>
+       </span>
+         <span style="display:inline-block; width:0.2rem;"></span>Home
+      </a>
+     </div>
+     <div class="navbar-end">
+      <a class="navbar-item">
+       Facing Trouble using INav?
+      </a>
+      <div class="navbar-item">
+       <a class="navbar-item" href="logout.php">
+        Logout<span style="display:inline-block; width:0.2rem;"></span>
+        <i class="fas fa-sign-out-alt"></i>
+       </a>
+      </div>
      </div>
     </div>
-      <div id="example2">
-        <div class="grid-container">
-           <script type="text/javascript">
-              for(var i=0;i<60;i++){
-                 for (var j=0;j<60 ;j++ ) {
-                    var k =100*i + j;
-                    document.write("<div class=\"grid-item\" id = \""+k+"\" onclick =\"clk("+k+")\" onmouseover = \"mouseOver("+k+")\" onmouseout = \"mouseOut("
-                    +k+")\"></div>");
-              }}
-           </script>
-
-        </div>
-      </div>
-      <!--      <button type="button" onclick ="finalpath(cords[0],cords[1])" >JOIN</button> -->
-      <div class="user-ia">
-       <table class="choices">
-        <tr>
-         <button class="button" id = "Node" type="button" onclick ="Nodeselect()" >Junction</button>
-         <p></p>
-        </tr>
-        <tr>
-         <button class="button" id = "Edge" type="button" onclick ="Edgeselect()" >Path</button>
-         <p></p>
-        </tr>
-        <tr>
-         <button class="button" id = "Stop" type="button" onclick ="Stop()" >Stop Action</button>
-         <p></p>
-        </tr>
-        <tr>
-         <button class="button" id = "Delete" type="button" onclick ="Delete()" >Clear</button>
-         <p></p>
-        </tr>
-        <tr>
-         <button class="button" id = "Tags" type="button" onclick ="tagg()" >Name</button>
-        </tr>
-       </table>
-      <!--<button id = "Display" type="button" onclick ="display()" >Display</button>-->
-      <!--<button id = "Debug" type="button" onclick ="debug()" >Debug</button>-->
-      <!--<p id = "response">Clicked at => </p>-->
-      <!--<button id = "Print" type="button" onclick ="Print()" >Print</button>-->
-
-       <p id = "response_name"></p>
-       <p id = "response_tag"></p>
-       <p id = "response_description"></p>
-       <p id = "buttons"></p>
-       <div class="user-iafinal">
-        <button class="button-" id = "Submit" type="button" onclick ="myFunction()" >Submit</button>
-      <button id = "undo" onclick = "undo()">Undo</button>
-      <button id = "undo" onclick = "redo()">Redo</button>
-      
-        
-  
-</div>
-        <p></p>
-         <p>Description:</p>
-  <p id="description"><br /><br /></p>
-       </div>
-      </div>
-
-
-     <!-- <button class="button-" id = "Update" type="button" onclick ="Update()" >Update</button>-->
-      <p hidden id = "json"></p>
-      <p hidden id = "name"></p>
-
-     <div class="instructions">
-      
-
-      <div class="color-key" style="font-size: 2vh; font-weight: bold;">
-       <table>
-       <tr>
-        <th style="text-align: center;"><strong>Colour</strong></th>
-        <th><strong>Key</strong></th>
-       </tr>
-       <tr>
-        <td style="color: red; font-weight: bold; text-align: center;">Red</td>
-        <td>Added Node </td>
-       </tr>
-       <tr>
-        <td style="color: yellow; font-weight: bold; text-align: center;">Yellow</td>
-        <td>Selected Node</td>
-       </tr>
-       <tr>
-        <td style="color: blue; font-weight: bold; text-align: center;">Blue</td>
-        <td>Selected node of an edge</td>
-       </tr>
-       <tr>
-        <td style="color: green; font-weight: bold; text-align: center;">Green</td>
-        <td>Edge line</td>
-       </tr>
-
-      </table>
-      </div>
-       <div class="popup" onclick="myFunction()"><button id="instr-button"><h2>Need Help?<span id="hide" class="hide">(Hide)</span></h2>  </button>
-         <span class="popuptext" id="myPopup"><strong>INSTRUCTIONS</strong><p>1. Select 'Node' and click on the grid to select a block.<br />
-         2. While Selecting the node, make sure to select it in a same grid line.<br />
-         3. Select 'Edge', then click on 2 nodes to create an edge connecting those two nodes. <br />
-         4. Click on 'Stop' after creating an edge, or in case you want to deselect a function.<br />
-         5. Select 'Delete' and then click on a node to delete it.<br />
-         6. Select 'Name' and then click on a node to submit a name, tag and/or description.<br/>
-         7. Click any node to read the description.<br />
-         </p></span>
+   </nav>
+   <section class="hero is-primary">
+     <div class="hero-body">
+       <div class="container">
+         <h1 class="title">
+           <strong>Indoor Navigation Portal</strong>
+         </h1>
+         <div>
+          <!-- <p>Name : <input type="text" id="name"></p> -->
+          <p id="temporary"></p>
+         </div>
        </div>
      </div>
-   
+   </section>
 
+  <div class="content">
+   <div id="example2">
+    <div class="grid-container">
+     <script type="text/javascript">
+      for (var i = 0; i < 60; i++) {
+       for (var j = 0; j < 60; j++) {
+        var k = 100 * i + j;
+        document.write("<div class=\"grid-item\" id = \"" + k + "\" onclick =\"clk(" + k + ")\" onmouseover = \"mouseOver(" + k + ")\" onmouseout = \"mouseOut(" +
+         k + ")\"></div>");
+       }
+      }
+     </script>
 
-   </body>
-   <?php
+    </div>
+   </div>
+
+   <!--      <button type="button" onclick ="finalpath(cords[0],cords[1])" >JOIN</button> -->
+   <div class="ia">
+    <div class="choices">
+     <table>
+      <tr>
+       <a class="button is-text" id="Node" type="button" onclick="Nodeselect()">Junction</a><br />
+      </tr>
+      <tr>
+       <a class="button is-text" id="Edge" type="button" onclick="Edgeselect()">Path</a><br />
+      </tr>
+      <tr>
+       <a class="button is-text" id="Stop" type="button" onclick="Stop()">Stop Action</a><br /><br />
+      </tr>
+      <tr>
+       <a class="button is-warning is-fullwidth" id="Delete" type="button" onclick="Delete()">Clear</a><br />
+      </tr>
+      <tr>
+       <a class="button is-warning is-fullwidth" id="Delete" type="button" onclick="DeleteAll()">ClearAll</a><br />
+      </tr>
+      <tr>
+       <a class="button is-text" id="Tags" type="button" onclick="tagg()">Name</a><br /><br />
+      </tr>
+     </table>
+    </div>
+    <!--<button id = "Display" type="button" onclick ="display()" >Display</button>-->
+    <!--<button id = "Debug" type="button" onclick ="debug()" >Debug</button>-->
+    <!--<p id = "response">Clicked at => </p>-->
+    <!--<button id = "Print" type="button" onclick ="Print()" >Print</button>-->
+
+    <p id="response_name"></p>
+    <p id="response_tag"></p>
+    <p id="response_description"></p>
+    <p id="buttons"></p>
+    <div class="user-iafinal">
+     <a class="button is-success is-fullwidth" id="Submit" type="button" onclick="myFunction()">Submit</a> <br />
+     <a class="button is-link is-rounded is-small" id="undo" onclick="undo()">Undo</a>
+     <a class="button is-danger is-rounded is-small" id="undo" onclick="redo()">Reset</a>
+    </div><br />
+    <p>Description:</p>
+    <p id="description"><br /><br /></p>
+    <p hidden id="json"></p>
+    <p hidden id="name"></p>
+   </div>
+   <!-- <button class="button-" id = "Update" type="button" onclick ="Update()" >Update</button>-->
+   <div class="aid">
+    <div class="color-key" style="font-size: 2vh; font-weight: bold;">
+     <table class="table is-bordered" { constructor() { } }>
+      <tr>
+       <th style="text-align: center;"><strong>Colour</strong></th>
+       <th><strong>Key</strong></th>
+      </tr>
+      <tr>
+       <td style="color: red; font-weight: bold; text-align: center;">Red</td>
+       <td>Added Node </td>
+      </tr>
+      <tr>
+       <td style="color: #ffcb00; font-weight: bold; text-align: center;">Yellow</td>
+       <td>Selected Node</td>
+      </tr>
+      <tr>
+       <td style="color: blue; font-weight: bold; text-align: center;">Blue</td>
+       <td>Selected node of an edge</td>
+      </tr>
+      <tr>
+       <td style="color: green; font-weight: bold; text-align: center;">Green</td>
+       <td>Edge line</td>
+      </tr>
+     </table><br /><br />
+    </div>
+    <div class="popup" onclick="myFunction()">
+     <a id="instr-button" class="button is-info">Need Help?<span id="hide" class="hide">(Hide)</span></a>
+     <span class="popuptext" id="myPopup"><strong>INSTRUCTIONS</strong>
+      <p>1. Select 'Node' and click on the grid to select a block.<br />
+       2. While Selecting the node, make sure to select it in a same grid line.<br />
+       3. Select 'Edge', then click on 2 nodes to create an edge connecting those two nodes. <br />
+       4. Click on 'Stop' after creating an edge, or in case you want to deselect a function.<br />
+       5. Select 'Delete' and then click on a node to delete it.<br />
+       6. Select 'Name' and then click on a node to submit a name, tag and/or description.<br />
+       7. Click any node to read the description.<br />
+      </p>
+     </span>
+    </div>
+    <script>
+    // When the user clicks on div, open the popup
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+      var hide = document.getElementById("hide");
+      hide.classList.toggle("show");
+
+      pop=1;
+    /*  document.getElementById('instructions').onclick = function()
+      {
+       var popup = document.getElementById("myPopup");
+       popup.classList.toggle("show");
+      }
+      */
+    }
+    </script>
+
+   </div>
+
+  </div>
+ </body>
+ <?php
    $user = $_SESSION["username"];
 //print_r($user);
 $sql = "SELECT password FROM admin WHERE username = '$user'";
@@ -995,6 +967,9 @@ $result = mysqli_query($conn, $sql);
 //print_r($result);
 $row = mysqli_fetch_assoc($result);
 $pass = $row['password'];
+
+
+
 ?>
    <script type="text/javascript">
  function myFunction() {
@@ -1006,17 +981,40 @@ while (nat.length == 0 || nat!=t) {
 Submit();
 
 }
+ var v = "<?php echo $version;?>";
+ function DeleteAll(){
+
+         // var r = alert("are you sure ?");
+         // if(r==true){
+          var t =  '<?php echo $pass ;?>';
+var nat = prompt("Confirm your Password");
+while (nat.length == 0 || nat!=t) {
+    nat = prompt("Please write a correct password");
+}
+            var nav = "clear.php?img="+"<?php echo $n?>" ;
+            window.location.href =nav;
+            
+         }
 function undo(){
+
 var r = confirm("Are you sure!");
-if(r==true){
-    var nav = "trial.php?img="+"<?php echo $n?>"+"&version="+"<?php echo 1 ?>" ;
-  window.location.href =nav;}
+if(r==true && v!=2){
+    var nav = "trial.php?img="+"<?php echo $n?>"+"&version="+"<?php echo $version+1 ?>" ;
+    window.location.href =nav;}
+  else{
+      alert("You cannot go back further");
+    }
 
   //alert(tr);
 }
 function redo(){
-    var nav = "trial.php?img="+"<?php echo $n?>"+"&version="+"<?php echo 0 ?>" ;
-  window.location.href =nav;
+  var r = confirm("Are you sure!");
+if(r==true && v!=0){
+    var nav = "trial.php?img="+"<?php echo $n?>"+"&version="+"<?php echo $version-1 ?>" ;
+  window.location.href =nav;}
+  else{
+      alert("You cannot go further");
+    }
   //alert(tr);
 }
    </script>
