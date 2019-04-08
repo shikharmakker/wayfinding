@@ -57,6 +57,7 @@ if(isset($_POST["submit"])) {
 }
 $building = $_POST["building_name"] ;
 $floor = $_POST["floor"];
+
 $x = $_POST["building_name"] . $_POST["floor"];
 $y = $user;
 $version = 0;

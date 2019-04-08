@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<?php include('Constants.php') ?>
+<?php include('Constants.php'); 
+$floor = $_GET['floor'];
+$building = $_GET['building'];
+$x = $building.$floor;
+?>
+
 <html>
    <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +15,7 @@
       <style>
          body{
           max-height: 100vh;
+          font-family: 'Raleway', sans-serif;
          }
          section{
           height:7rem;
@@ -36,19 +42,13 @@
          }
 
          #example2 {
-          border: solid #00d1b2 2px;
-          display: inline-block;
           padding: 0px;
           background-repeat: no-repeat;
           background-size: 600px 600px;
           margin-top: 0px;
           float: left;
-          padding-right: 15px;
-         }
-         .ia{
-          display: inline-block;
-          margin: 1rem 1.5rem;
-          padding: 0rem auto;
+          max-width: 100vw;
+          max-height: 100vh;
          }
          #button-logout{
          background-color: white;
@@ -59,6 +59,9 @@
          line-height: 1.5;
          padding: .5rem .75rem;
          position: relative;
+        }
+        .select{
+         width: 60%;
         }
 
          .aid{
@@ -141,21 +144,23 @@
       </style>
       <script>
       function myfunction(){
-      b="dasdddas.jpg";
+      var z =  '<?php echo $x ;?>';
+      b= z+".jpg";
+      //alert(b);
       // window.alert(b);
       var a="images/" + b;
       var elem = document.getElementById("example2");
       elem.style.background="url('" + a + "')";
       elem.style.backgroundRepeat="no-repeat";
        elem.style.backgroundSize="600px 600px";
-       display();
+      
      }
       </script>
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
      <script>
       <?php
-      $sql = "SELECT JSON_string FROM test.first_test WHERE name = 'dasdddas' and version = '0' limit 1";
+      $sql = "SELECT JSON_string FROM maps_data WHERE name = '$x' and version = '0' limit 1";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
 
@@ -165,7 +170,7 @@
       <?php
 
 
-      $sqln = "SELECT JSON_string FROM test.first_test where name = 'dasdddas' and version = '0'";
+      $sqln = "SELECT JSON_string FROM maps_data where name = '$x' and version = '0'";
       $resultn = mysqli_query($conn, $sqln);
       $rown = mysqli_fetch_assoc($resultn);
 
@@ -196,7 +201,8 @@
                 if(i==obj.cords[c].value){
                   document.getElementById("name").innerHTML=obj.cords[c].name;
 
-                document.getElementById("description").innerHTML=obj.cords[c].description;}
+                document.getElementById("description").innerHTML=obj.cords[c].description;
+                document.getElementById("tags").innerHTML=obj.cords[c].Tags;}
                 yellow(i);
               }
               sel = 1;
@@ -272,11 +278,8 @@
         function display(){
 
             for (var o = 0; o < chords.length; o++) {
-
+            if(chords!= 0)
              red(chords[o]);
-
-
-
            }
          }
         function reset(){
@@ -431,6 +434,7 @@
             if(obj.cords[b].name==dest_tag)
               dest = obj.cords[b].value;
          }
+         document.getElementById("example2").style.opacity = 0.8;
          console.log(src+" "+dest);
          shortest_path();
                    red(src);
@@ -471,69 +475,146 @@
    </head>
    <body>
       <body onload="myfunction()">
-       <nav class="navbar" role="navigation" aria-label="main navigation">
+       <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-          <span class="navbar-item" style="font-size: x-large;">
-           <strong>InNav</strong>
-           </span>
+          <a class="navbar-item" href="">
+           <span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span><span style="font-size: 1.4rem; margin-left: 1vw; margin-right: 1vw; font-weight: 300;">Indoor Navigation Portal</span>
+          </a>
+
           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
+
         <div id="navbarBasicExample" class="navbar-menu">
-         <div class="navbar-start">
-          <a class="navbar-item">
-           <span class="icon" >
-             <i class="fas fa-home"></i>
-           </span>
-             <span style="display:inline-block; width:0.2rem;"></span>Home
-          </a>
-         </div>
-         <div class="navbar-end">
-          <a class="navbar-item">
-           Facing Trouble using INav?
-          </a>
-          <div class="navbar-item">
-           <a class="navbar-item" href="logout.php">
-            Logout<span style="display:inline-block; width:0.2rem;"></span>
-            <i class="fas fa-sign-out-alt"></i>
+          <div class="navbar-start">
+           <a class="navbar-item">
+            How to use
            </a>
+           <a class="navbar-item">
+             About Us
+           </a>
+          </div>
+          </div>
+       </nav>
+
+       <script>
+       document.addEventListener('DOMContentLoaded', () => {
+
+         // Get all "navbar-burger" elements
+         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+         // Check if there are any navbar burgers
+         if ($navbarBurgers.length > 0) {
+
+           // Add a click event on each of them
+           $navbarBurgers.forEach( el => {
+             el.addEventListener('click', () => {
+
+               // Get the target from the "data-target" attribute
+               const target = el.dataset.target;
+               const $target = document.getElementById(target);
+
+               // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+               el.classList.toggle('is-active');
+               $target.classList.toggle('is-active');
+
+             });
+           });
+         }
+
+       });
+       </script>
+
+       <div class="content">
+        <div class="columns">
+         <div class="column is-flex">
+          <div class="level-item">
+           <div class="way">
+            <div>
+             <p>Way:</p>
+             <p id="display_name"></p>
+            </div>
+            <div class="">
+             <a class="button is-link is-rounded" id="next" type = "button" onclick="Next()">Next</a>
+             <a class="button is-link is-rounded" id="previous" type = "button" onclick="Previous()">Previous</a>
+             <p id="display_next"></p>
+             <p id="display_prev"></p>
+            </div>
+            <div class="">
+             <p>Name:</p>
+             <p id="name"></p>
+            </div>
+            <div class="">
+             <p>Description:</p>
+             <p id="description"></p>
+            </div>
+             <div class="">
+             <p>Services:</p>
+             <p id="tags"></p>
+            </div>
+           </div>
+          </div>
+         </div>
+         <div class="column is-three-sixths is-flex">
+          <div id="example2">
+             <div class="grid-container">
+                <script type="text/javascript">
+                   for(var i=0;i<60;i++){
+                      for (var j=0;j<60 ;j++ ) {
+                         var k =100*i + j;
+                         document.write("<div class=\"grid-item\" id = \""+k+"\" onclick =\"clk("+
+                            k+")\"></div>");
+                   }}
+                </script>
+                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
+                <script src="typeahead.min.js"></script>
+              </div>
+           </div>
+
+         </div>
+         <div class="column is-flex">
+          <div class="level-item">
+           <div class="color-key"  style="display: flex; min-width: 15vw;">
+            <table class="table is-bordered" style="color: #555; font-size: 0.8rem;">
+             <tr>
+              <th style="text-align: center; color: #666; font-weight: 450;">Colour</th>
+              <th style="color: #666; font-weight: 450;">Significance</th>
+             </tr>
+             <tr>
+              <td style="color: #0023F5; text-align: center;">Blue</td>
+              <td>Path Nodes</td>
+             </tr>
+             <tr>
+              <td style="color: #EB3223; text-align: center;">Red</td>
+              <td>Source Node</td>
+             </tr>
+             <tr>
+              <td style="color: #9EF74D; text-align: center;">Green</td>
+              <td>Optimum path</td>
+             </tr>
+             <tr>
+              <td style="color: #ffcb00; text-align: center;">Yellow</td>
+              <td>Selected Node</td>
+             </tr>
+            </table><br /><br />
+           </div>
           </div>
          </div>
         </div>
-       </nav>
-       <section class="hero is-primary">
-         <div class="hero-body">
-           <div class="container">
-             <h1 class="title">
-               <strong>Indoor Navigation Portal</strong>
-             </h1>
-           </div>
-         </div>
-       </section>
-       <div class="content">
-         <div id="example2">
-            <div class="grid-container">
-               <script type="text/javascript">
-                  for(var i=0;i<60;i++){
-                     for (var j=0;j<60 ;j++ ) {
-                        var k =100*i + j;
-                        document.write("<div class=\"grid-item\" id = \""+k+"\" onclick =\"clk("+
-                           k+")\"></div>");
-                  }}
-               </script>
-               <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
-               <script src="typeahead.min.js"></script>
-             </div>
-          </div>
-          <div class="ia">
 
 
+        <div class="level-item" style="background-color: #a9e2dd33;">
+         <div class="user-input-wrapper" style="min-width: 58%">
+          <div class="user-input" style="display: block;">
+           <div class="columns">
+            <div class="column">
+             <div class="source">
               Source:
               <div class="select is-primary is-small">
-              <select name="source" id = "source">
+              <select name="source" id = "source" class="select is-fullwidth">
                <script language="javascript" type="text/javascript">
                   //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
                  var obj = JSON.parse(tr);
@@ -543,61 +624,39 @@
                 </script>
                </select>
               </div>
-              <br /><br />
-
-             Destination:
-             <div class="select is-primary is-small">
-             <select name="destination" id = "destination">
+             </div>
+            </div>
+            <div class="column">
+             <div class="destination">
+              Destination:
+              <div class="select is-primary is-small">
+              <select name="destination" id = "destination" class="select is-fullwidth">
                <script language="javascript" type="text/javascript">
-                 //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
-                var obj = JSON.parse(tr);
+                  //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
+                 var obj = JSON.parse(tr);
                  for(var b=0;b<obj.cords.length;b++){
                      document.write("<option>"+obj.cords[b].name+"</option>");
                  }
                </script>
-             </select>
+               </select>
+              </div>
+             </div>
             </div>
-            <br />
-            <br />
-          <a class="button is-success is-fullwidth" id = "submit" type = "button" onclick = "Submit()">Submit</a><br /><br />
-          <p>Way:</p>
-          <p id="display_name"></p>
-          <a class="button is-link" id="next" type = "button" onclick="Next()">Next</a><br />
-          <p id="display_next"></p>
-          <a class="button is-link" id="previous" type = "button" onclick="Previous()">Previous</a><br />
-          <p id="display_prev"></p><br />
-          <p>Name:</p>
-          <p id="name"></p>
-          <p>Description:</p>
-          <p id="description"></p>
-          </script>
-          </div>
+           </div>
 
-        <div class="aid">
-         <div class="color-key" style="font-size: 2vh;">
-          <table class="table is-bordered" { constructor() { } }>
-           <tr>
-            <th style="text-align: center;"><strong style="color: #555;">Colour</strong></th>
-            <th><strong style="color: #555;">Key</strong></th>
-           </tr>
-           <tr>
-            <td style="color: #0023F5; text-align: center;">Blue</td>
-            <td style="color: #777;">Path Nodes</td>
-           </tr>
-           <tr>
-            <td style="color: #EB3223; text-align: center;">Red</td>
-            <td style="color: #777;">Source Node</td>
-           </tr>
-           <tr>
-            <td style="color: #9EF74D; text-align: center;">Green</td>
-            <td style="color: #777;">Optimum path</td>
-           </tr>
-           <tr>
-            <td style="color: #ffcb00; text-align: center;">Yellow</td>
-            <td style="color: #777;">Selected Node</td>
-           </tr>
-          </table><br /><br />
          </div>
+        <div class="level-item">
+         <a class="button is-success is-medium" id = "submit" type = "button" onclick = "Submit()" style="margin-top: 1vh;">Submit</a>
+        </div>
+        </div>
+
+
+
+         </div>
+        </div>
+
+          <!--
+        <div class="aid">
          <div class="popup" onclick="myFunction()">
           <a id="instr-button" class="button is-info">Need Help?<span id="hide" class="hide">(Hide)</span></a>
           <span class="popuptext" class="message is-info" id="myPopup"><strong>INSTRUCTIONS</strong>
@@ -608,7 +667,7 @@
           </p>
           </span>
          </div>
-
+         -->
          <script>
          // When the user clicks on div, open the popup
          function myFunction() {

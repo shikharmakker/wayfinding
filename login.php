@@ -39,6 +39,7 @@ $query = mysqli_query($conn,$check);
 
 		$_SESSION["user_id"] = 1001;
 		$_SESSION["username"] = $_POST["username"];
+		$_SESSION["password"] = $_POST["password"];
 		$_SESSION['loggedin_time'] = time();
 	} else {
 		$message = "Invalid Username or Password!";
