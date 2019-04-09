@@ -562,13 +562,13 @@
             function display(){
               reset();
               for (var o = 0; o < cords.length; o++) {
-                if($cords[o]!=0)
+                if(cords[o]!=0)
                 red(cords[o]);
                 for(var t = 0; t < connected_nodes[o].length ; t++){
                  finalpath(cords[o], connected_nodes[o][t]);
                 }
               }
-              check();
+             // check();
             }
             function Print(){
               console.log(cords,connected_nodes,Tag_strings,cords.length,finalJSON);
@@ -606,7 +606,7 @@
                           // alert("empty name");
                           var t = cords[b];
                          // alert(t);
-                          orange(t);
+                         // orange(t);
                           count++;
                         }
                  }
@@ -628,11 +628,7 @@
                 return;
               }else{
 
-                 if(check()==false){
-                   alert("Please give details for orange colored Junctions before submitting");
-                   return;
-                 }
-                 send();             //alert(finalJSON);
+                                  send();             //alert(finalJSON);
                alert("Map Annotated Successfully");
                var nav = "trial.php?img=" + "<?php echo $n ?>"+"&version=0" ;
                window.location.href =nav;
