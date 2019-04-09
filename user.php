@@ -420,8 +420,22 @@ $x = $building.$floor;
         //SAMPLE=>{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}
         function Submit(){
          reset();
-         src_tag = document.getElementById("source").value;
-         dest_tag = document.getElementById("destination").value;
+         sr = document.getElementById("source").value;
+         des = document.getElementById("destination").value;
+          var obj = JSON.parse(tr);
+          for(var b = 0; b < obj.cords.length ; b++){
+            for(var c = 0 ; c< obj.cords[b].Tags.length;c++){
+             // alert( obj.cords[b].Tags[c]);
+              if(sr == obj.cords[b].Tags[c]){
+                src = obj.cords[b].value;
+               // alert("hello");
+              }
+              if(des == obj.cords[b].Tags[c]){
+                dest = obj.cords[b].value;
+              }
+            }
+          }
+
          // var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
          var obj = JSON.parse(tr);
          for(var b=0;b<obj.cords.length;b++){
@@ -429,10 +443,7 @@ $x = $building.$floor;
           for(var c=0;c<obj.cords[b].connected_nodes.length;c++){
             connected_nodes[b][c] = obj.cords[b].connected_nodes[c];
           }
-            if(obj.cords[b].name==src_tag)
-              src = obj.cords[b].value;
-            if(obj.cords[b].name==dest_tag)
-              dest = obj.cords[b].value;
+            
          }
          document.getElementById("example2").style.opacity = 0.8;
          console.log(src+" "+dest);
@@ -618,9 +629,14 @@ $x = $building.$floor;
                <script language="javascript" type="text/javascript">
                   //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
                  var obj = JSON.parse(tr);
-                  for(var b=0;b<obj.cords.length;b++){
-                      document.write("<option>"+obj.cords[b].name+"</option>");
-                  }
+                 for(var b=0;b<obj.cords.length;b++){
+
+                    for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                      document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                    }
+
+                 } 
+
                 </script>
                </select>
               </div>
@@ -634,9 +650,13 @@ $x = $building.$floor;
                <script language="javascript" type="text/javascript">
                   //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
                  var obj = JSON.parse(tr);
-                 for(var b=0;b<obj.cords.length;b++){
-                     document.write("<option>"+obj.cords[b].name+"</option>");
-                 }
+                for(var b=0;b<obj.cords.length;b++){
+
+                    for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                      document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                    }
+
+                 } 
                </script>
                </select>
               </div>

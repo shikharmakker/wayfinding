@@ -204,10 +204,9 @@
                             <div class="level-item">
                              <a href="upversion.php?img<?php echo($ty[1].$ty[2])?>&version=0" class="button is-success" style="width: 60%;">Update</a><br>
                             </div>
-                            
-                           </div>
-                           <div class="level-item">
-                            <button onclick='$("#<?php echo($ty[1].$ty[2].'0')?>").fadeOut(200)' class="button is-warning is-small is-outlined">Cancel</button>
+                            <div class="level-item">
+                             <button onclick='$("#<?php echo($ty[1].$ty[2].'0')?>").fadeOut(200)' class="button is-dark">Cancel</button>
+                            </div>
                            </div>
                           </div>
                          </div>
@@ -227,10 +226,9 @@
                             <div class="level-item">
                              <a href="upversion.php?img=<?php echo($ty[1].$ty[2])?>&version=1" class="button is-success" style="width: 60%;">Update</a><br>
                             </div>
-                             
-                           </div>
                             <div class="level-item">
-                            <button onclick='$("#<?php echo($ty[1].$ty[2].'1')?>").fadeOut(200)' class="button is-warning is-small is-outlined">Cancel</button>
+                            <button onclick='$("#<?php echo($ty[1].$ty[2].'1')?>").fadeOut(200)' class="button is-dark">Cancel</button>
+                           </div>
                            </div>
                           </div>
                          </div>
@@ -250,10 +248,9 @@
                             <div class="level-item">
                              <a href="" class="button is-success" style="width: 60%;">Update</a><br>
                             </div>
-                            
-                           </div>
-                           <div class="level-item">
-                            <button onclick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeOut(200)' class="button is-warning is-small is-outlined">Cancel</button>
+                            <div class="level-item">
+                             <button onclick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeOut(200)' class="button is-dark">Cancel</button>
+                            </div>
                            </div>
                           </div>
                          </div>
@@ -272,7 +269,7 @@
    </tr>
    </table>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-     
+
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
       <div class="level-item">
@@ -304,7 +301,7 @@
                          </label>
                        </div>
                       </div><br />
-                       
+
                       <div class="field is-horizontal">
                         <div class="field-label is-small">
                           <label class="label">Building Name</label>
@@ -330,9 +327,9 @@
                         </div>
                       </div>
 
-                     
+
                       <br />
-                      
+
                       <div class="level-item">
                        <div id="image-holder"></div>
                       </div>
@@ -346,7 +343,7 @@
                        <div class="level-item">
                         <div class="field">
                           <p class="control" style="margin-top:1.5rem;">
-                           <button id="but-cancel" class="button is-warning is-small  is-outlined">Cancel</button>
+                           <button id="but-cancel" class="button is-dark is-small">Cancel</button>
                           </p>
                         </div>
                        </div>

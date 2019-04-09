@@ -69,35 +69,39 @@ if(isset($_GET["session_expired"])) {
 </script>
 
 <div class="body-content">
-	<nav class="navbar" role="navigation" aria-label="main navigation">
-		<div class="navbar-brand">
-				<span class="navbar-item" style="font-size: x-large;">
-					<strong>InNav Administration</strong>
-					</span>
-				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
-						<span aria-hidden="true"></span>
+	<nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+			<a class="navbar-item" href="">
+				<span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span>
+			</a>
+
+			<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+			</a>
+	</div>
+
+	<div id="navbarBasicExample" class="navbar-menu">
+			<div class="navbar-start">
+				<a class="navbar-item">
+					How to use
 				</a>
-		</div>
-	  <div id="navbarBasicExample" class="navbar-menu">
-	    <div class="navbar-start">
-	      <a class="navbar-item">
-	        Home
-	      </a>
-	    </div>
-	    <div class="navbar-end">
-						<a class="navbar-item">
-								Facing Trouble using AIIMS Nav?
-						</a>
-	      <div class="navbar-item">
-          <a class="button is-primary">
-            <strong>Register</strong>
-          </a>
-	      </div>
-	    </div>
-	  </div>
-	</nav>
+				<a class="navbar-item">
+						About Us
+				</a>
+			</div>
+
+			<div class="navbar-end">
+					<div class="navbar-item">
+									<a class="button is-primary" href="register.php">
+											<strong>Sign up</strong>
+									</a>
+					</div>
+					</div>
+			</div>
+
+</nav>
 
 		<br />
 		<div  class="card-wrapper">

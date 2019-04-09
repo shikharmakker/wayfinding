@@ -54,7 +54,7 @@ include('Constants.php');?>
   								Facing Trouble using AIIMS Nav?
   						</a>
   	      <div class="navbar-item">
-            <a class="button is-primary">
+            <a class="button is-primary" href="login.php">
               <strong>Login</strong>
             </a>
   	      </div>

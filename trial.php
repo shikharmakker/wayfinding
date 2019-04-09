@@ -187,7 +187,6 @@
          <?php
          $n = $_GET['img'];
          $version = $_GET['version'];
-         $pass = $_SESSION['password'];
         // $p = $_POST['psw'];
 
          $sql = "SELECT JSON_string FROM maps_data WHERE name = '$n' and version = '$version'";
@@ -211,9 +210,6 @@
          var chords = [];
 
          var ct =  '<?php echo $a ;?>';
-         var pass = '<?php echo $pass ;?>';
-         alert(pass);
-
          //alert(ct);
          tr = '<?php echo $row['JSON_string'] ;?>';
 
@@ -289,15 +285,28 @@
                    sel = 0;
                  }
                    document.getElementById("description").innerHTML="";
-                   for (var c = 0; c < obj.cords.length; c++) {
+                   for (var z = 0; z < obj.cords.length; z++) {
               // green(obj.cords.value);
-                   if(i==obj.cords[c].value)
-                   document.getElementById("description").innerHTML=obj.cords[c].description;
-                 document.getElementById("nam").innerHTML=obj.cords[c].name;
+                   if(i==obj.cords[z].value){
+                   document.getElementById("description").innerHTML=obj.cords[z].description;
+                   document.getElementById("nam").innerHTML=obj.cords[z].name;
+                   document.getElementById("naml").innerHTML = "Name: ";
+                   document.getElementById("desl").innerHTML = "Description: ";
+
+                 }
+                   
                    yellow(i);
                  }
                  sel = 1;
                  prev = i;
+                         }
+                         else{
+                          document.getElementById("description").innerHTML="";
+                   document.getElementById("nam").innerHTML="";
+                   document.getElementById("naml").innerHTML = "";
+                   document.getElementById("desl").innerHTML = "";
+                   reset();
+                   display();
                          }
 
              
@@ -553,7 +562,7 @@
             function display(){
               reset();
               for (var o = 0; o < cords.length; o++) {
-                if(!cords[o] == 0)
+                if($cords[o]!=0)
                 red(cords[o]);
                 for(var t = 0; t < connected_nodes[o].length ; t++){
                  finalpath(cords[o], connected_nodes[o][t]);
@@ -681,7 +690,7 @@
               document.getElementById('response_name').innerHTML = '';
               document.getElementById('response_description').innerHTML = '';
               document.getElementById('buttons').innerHTML = '';
-		alert('You have successfully added Node');
+    alert('You have successfully added Node');
                unselect(tag_index);
               tag_index = -1;
               tag_select = 0;
@@ -873,10 +882,11 @@
             <a class="button is-success is-fullwidth is-medium" id="Submit" type="button" onclick="myFunction()">Submit</a> <br />
      <a class="button is-link is-rounded is-small" id="undo" onclick="undo()">Undo</a>
      <a class="button is-danger is-rounded is-small" id="undo" onclick="redo()">Redo</a>
-      <p id="name"></p>
-         <p id="description"></p>
+<br>
+              <label id = "naml"></label><p id="nam"></p>
+         <br><label id = "desl"></label><p id="description"></p>
           <p hidden id="json"></p>
-        
+          <p hidden id="name"></p>
           <!--<button id = "Display" type="button" onclick ="display()" >Display</button>-->
           <!--<button id = "Debug" type="button" onclick ="debug()" >Debug</button>-->
           <!--<p id = "response">Clicked at => </p>-->
@@ -908,47 +918,47 @@
           </div>
          </div>
         </div>
-        <div class="column is-flex">
-	<div>
-	 <p id="response_name"></p>
+      <div class="column" style="padding: 5vh 0.75vw;">
+          <p id="response_name"></p>
           <p id="response_tag"></p>
           <p id="response_description"></p>
           <p id="buttons"></p>
-	</div>
-<br>
-         <div class="level-item">
-          <div class="color-key" style="display: flex;">
-           <table class="table is-bordered" style="color: #555; font-size: 0.8rem;">
-            <tr>
-             <th style="text-align: center; color: #666; font-weight: 450;">Colour</th>
-             <th style="color: #666; font-weight: 450;">Significance</th>
-            </tr>
-            <tr>
-             <td style="color: red; text-align: center;">Red</td>
-             <td>Added Node </td>
-            </tr>
-            <tr>
-             <td style="color: #ffcb00; text-align: center;">Yellow</td>
-             <td>Selected Node</td>
-            </tr>
-            <tr>
-             <td style="color: blue; text-align: center;">Blue</td>
-             <td>Selected node of an edge</td>
-            </tr>
-            <tr>
-             <td style="color: green; text-align: center; ">Green</td>
-             <td>Edge line</td>
-            </tr>
-           </table><br /><br />
 
-          </div>
+                 <div class="color-key" style="display:">
+                  <table class="table is-bordered" style="color: #555; font-size: 0.8rem;">
+                   <tr>
+                    <th style="text-align: center; color: #666; font-weight: 450;">Colour</th>
+                    <th style="color: #666; font-weight: 450;">Significance</th>
+                   </tr>
+                   <tr>
+                    <td style="color: red; text-align: center;">Red</td>
+                    <td>Added Node </td>
+                   </tr>
+                   <tr>
+                    <td style="color: #ffcb00; text-align: center;">Yellow</td>
+                    <td>Selected Node</td>
+                   </tr>
+                   <tr>
+                    <td style="color: blue; text-align: center;">Blue</td>
+                    <td>Selected node of an edge</td>
+                   </tr>
+                   <tr>
+                    <td style="color: green; text-align: center; ">Green</td>
+                    <td>Edge line</td>
+                   </tr>
+                  </table><br /><br />
 
-         </div>
+                 </div>
 
         </div>
 
 
+
+
+
+
       </div>
+
 
       <!-- <button class="button-" id = "Update" type="button" onclick ="Update()" >Update</button>
       <div class="aid">
