@@ -90,34 +90,6 @@ function way($a,$q){
          
 }
 
-function way1($p,$t,$n){
-    $str;
-    $nx = $n%100;
-    $ny = floor($n/100);
-    $tx = $t%100;
-    $ty = floor($t/100);
-    $px = $p%100;
-    $py = floor($p/100);
-    $sp1 =($ny - $ty)/($nx - $tx);
-    $sp2 =($ty - $py)/($tx - $px);
-
-    $m = $sp1 * $sp2;
-    if($m == 0){
-      
-          $str = "go straight to" .getname($n);
-       
-    }
-    if($m==-1){
-        if()
-    }
-
-
-    $d_1 = $n - $t;
-    $d_2 = $t - $p;
-
-
-}
-
 function runTest() {
   $g = new Graph();
   global $c;
@@ -153,9 +125,8 @@ function runTest() {
             $pr = $path[$q-1];}
             
              //echo gettype($pr);
-            $rnex =  way($prev,$tem,$nex);
+            $rnex = way($tem,$nex);
             $rprev = way($tem,$pr);
-            
             for($b = 0; $b < count($chords);$b++){
             if($tem == $chords[$b]['value']){
             //  t[q] = obj.cords[b].description;

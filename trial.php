@@ -18,6 +18,7 @@
    }
 
    ?>
+    
    <html>
 
    <head>
@@ -31,6 +32,26 @@
           body{
               max-height: 100vh;
              }
+                   .fullscreen-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(90, 90, 90, 0.5);
+  z-index: 9999;
+}
+
+#popdiv {
+ width: 50%;
+ height: 50%;
+  background-color: white;
+  position: absolute;
+  top: 100px;
+  left: 350px;
+}
+
              .content{
               margin: 1vh 1vw;
              }
@@ -202,13 +223,16 @@
          }
          $result = mysqli_query($conn, $sql);
          $row = mysqli_fetch_assoc($result);
+         $psw = $_SESSION['password'];
+
          ?>
          var tr;
          var delall=0;
+         var prob = 0;
          //alert(name_temp);
        //  var version = 0;
          var chords = [];
-
+         var psw =  '<?php echo $psw ;?>';
          var ct =  '<?php echo $a ;?>';
          //alert(ct);
          tr = '<?php echo $row['JSON_string'] ;?>';
@@ -279,7 +303,7 @@
 
              
 
-               if(find(i,cords)!=-1){
+               if(find(i,cords)!=-1 && delete_ == false){
                  if(sel == 1){
                    red(prev);
                    sel = 0;
@@ -327,9 +351,9 @@
    /*     document.write("<center><div class = \"fullscreen-container\"><iframe src=\"popup-trial.php?id=\""+sele+"\" style=\"height: 100%; width: 40%;\" scrolling=\"yes\"></iframe></div></center>");           
                   $(".fullscreen-container").fadeTo(200, 1);*/
                 //    alert( $(".fullscreen-container")[0]);
-                document.getElementById('response_name').innerHTML = '<label class="label">Name: </label><input type="text" id="Name_input" placeholder="Submit Name " size="15">';
-                document.getElementById('response_description').innerHTML = '<label class="label">Nearby services</label><input type="text" id="Description_input" placeholder="Submit Description" size="15">';
-                document.getElementById('response_tag').innerHTML = ' <label class="label">Description</label><input type="text" id="Tag_input" placeholder="Submit Tags" size="15">';
+                document.getElementById('response_name').innerHTML = '<label class="label">Name: </label><input type="text" id="Name_input" required placeholder="Submit Name " size="15">';
+                document.getElementById('response_description').innerHTML = '<label class="label">Nearby services</label><input type="text" id="Description_input" required placeholder="Submit Description" size="15">';
+                document.getElementById('response_tag').innerHTML = ' <label class="label">Description</label><input type="text" required id="Tag_input" placeholder="Submit Tags" size="15">';
                
                 document.getElementById('buttons').innerHTML = '<button id = "Tag_cancel" type="button" onclick ="Cancel_tag()" >Done</button>';
                 unselect("Node");
@@ -366,6 +390,7 @@
                 }
               }
             } else if (delete_) {
+
                  var index_delete = find(i,cords);
                  if (index_delete == -1) {
                    alert("Please select registered point");
@@ -453,6 +478,9 @@
              if(Edge_select){
                Edge_select = false;
              }
+             if(delete_){
+                delete_ = false;
+             }
               document.getElementById(i).style.opacity = "1";
               document.getElementById(i).style.backgroundColor = "";
             }
@@ -463,11 +491,20 @@
               unselect("Tags");
               document.getElementById(prev).style.opacity = "1";
               //document.getElementById(prev).style.backgroundColor = "red";
-              Node_select = false;
-              Edge_select = false;
-              select = 0;
-              delete_  = false;
+                edge_index = -1;
+                Node_select = false;
+                Edge_select = false;
+                Tag = false;
+                delete_ = false;
+                select = 0;
+                tag_select = 0;
+                tag_index = -1;
+                sel = 0;
+                prev = -1;
+                sele = -1 ;
+              
               Cancel_tag();
+              greygrid();
             }
             function path(x,y){
                 var a,b,c,d,e,f,g;
@@ -611,11 +648,15 @@
                         }
                  }
                //  alert(cords);
+               
                  if(count > 0)
                    return false;
             }
             function Submit(){
-
+              if(prob ==1){
+                alert("Please fill the details of Junction");
+                return;
+              }
               Create_JSON();
               document.getElementById('json').innerHTML = finalJSON;
 
@@ -679,6 +720,12 @@
               if(tag_index != -1){
                 red(cords[tag_index]);
               }
+              if(document.getElementById('Description_input').value=="" || document.getElementById('Name_input').value =="" || document.getElementById('Tag_input').value==""){
+                alert('please fill the details for the junction');
+                prob = 1;
+                return; 
+              }
+
               Submit_tag();
               Submit_name();
               Submit_description();
@@ -686,8 +733,9 @@
               document.getElementById('response_name').innerHTML = '';
               document.getElementById('response_description').innerHTML = '';
               document.getElementById('buttons').innerHTML = '';
-    alert('You have successfully added Node');
-               unselect(tag_index);
+              prob = 0;
+              alert('You have successfully added junction');
+              unselect(tag_index);
               tag_index = -1;
               tag_select = 0;
               Tag = false;
@@ -707,7 +755,11 @@
                 return;
               }
               aler = 0;
-              Tag_strings[tag_index].push(input);
+              var arr = input.split(',');
+    for(var i = 0 ; i < arr.length ; i++){
+              Tag_strings[tag_index].push(arr[i]);
+}
+
               document.getElementById('Tag_input').value = "";
 
 
@@ -796,6 +848,7 @@
             }
             function mouseOut(i){
               if(Node_select){
+                greygrid();
                 reset();
                 display();
               }
@@ -875,7 +928,62 @@
            </table>
 
           </div>
-            <a class="button is-success is-fullwidth is-medium" id="Submit" type="button" onclick="myFunction()">Submit</a> <br />
+            <a class="button is-success is-fullwidth is-medium" id="but1" type="button" >Submit</a> <br />
+
+         <div class="fullscreen-container">
+      <div id="popdiv">
+          <form method="post">
+           <div class="field">
+             <label class="label">Enter Password</label>
+             <div class="control">
+               <input class="input is-fullwidth" type="password" name="psw" id="psw" placeholder="Password">
+             </div>
+           </div>
+            <div class="field is-grouped is-grouped-centered">
+              <p class="control">
+                <a class="button is-success is-fullwidth" id="btnSubmit">
+                  Submit
+                </a>
+              </p>
+              <p class="control">
+                <a class="button is-light is-fullwidth" id="but2">
+                  Cancel
+                </a>
+              </p>
+            </div>
+          </form>
+
+      </div>
+    </div>
+       <script type="text/javascript">
+            $(function() {
+      $("#but1").click(function() {
+        $(".fullscreen-container").fadeTo(200, 1);
+      });
+      $("#but2").click(function() {
+        $(".fullscreen-container").fadeOut(200);
+      });
+    });
+
+              $(function () {
+        $("#btnSubmit").click(function () {
+            var password = $("#psw").val();
+            var confirmPassword = psw;
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            Submit();
+        });
+    });
+
+
+           
+
+
+        </script>
+        
+
      <a class="button is-link is-rounded is-small" id="undo" onclick="undo()">Undo</a>
      <a class="button is-danger is-rounded is-small" id="undo" onclick="redo()">Redo</a>
 <br>

@@ -42,6 +42,7 @@ $q0 = $row0['JSON_string'];
 $q1 = $row1['JSON_string'];
 $q2 = $row2['JSON_string'];
 $query;
+
 if($version == 0){
 	echo "already this version in use";
 }
@@ -51,9 +52,10 @@ $query1 = mysqli_query($conn,"update maps_data set name = '$name', JSON_string =
 //$query2 = mysqli_query($conn,"update maps_data set name = '$name', JSON_string = '$q2', version = '2', username = '$user' where name = '$name' and version = '2'");
 }
 else if($version == 2){
-$query0 = mysqli_query($conn,"update maps_data set name = '$name', JSON_string = '$q2', username = '$user' where name = '$name' and version = '2'");
-$query1 = mysqli_query($conn,"update maps_data set name = '$name', JSON_string = '$q2', username = '$user' where name = '$name' and version = '0'");
+$query0 = mysqli_query($conn,"update maps_data set name = '$name', JSON_string = '$q1', username = '$user' where name = '$name' and version = '2'");
 $query2 = mysqli_query($conn,"update maps_data set name = '$name', JSON_string = '$q0', username = '$user' where name = '$name' and version = '1'");
+$query1 = mysqli_query($conn,"update maps_data set name = '$name', JSON_string = '$q2', username = '$user' where name = '$name' and version = '0'");
+
 }
 $url = 'welcome.php';
 header( "Location: $url" );

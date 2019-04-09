@@ -1,5 +1,4 @@
-<?php 
-include('Constants.php');?>
+
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -20,6 +19,7 @@ include('Constants.php');?>
    font-size: 2rem
   }
  </style>
+ <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
  <script language = JavaScript1.2>
                     function Verify()
                     {
@@ -73,14 +73,32 @@ include('Constants.php');?>
   				<div class="card-content">
   					<form   method="post" enctype="multipart/form-data" autocomplete="off" onsubmit="return Verify()" name="myform">
   							<div class="field">
-          Enter a username:
+          Enter Firstname:
   								<p class="control has-icons-left has-icons-right">
-  										<input class="input" type="text" placeholder="Enter username" name="username" required >
+  										<input class="input" type="text" placeholder="Enter Firstname" name="firstname" required >
   										<span class="icon is-small is-left">
   												<i class="fas fa-envelope"></i>
   										</span>
   								</p>
   						</div>
+              <div class="field">
+          Enter Lastname:
+                  <p class="control has-icons-left has-icons-right">
+                      <input class="input" type="text" placeholder="Enter Lastname" name="lastname" required >
+                      <span class="icon is-small is-left">
+                          <i class="fas fa-envelope"></i>
+                      </span>
+                  </p>
+              </div>
+              <div class="field">
+          Enter your Email:
+                  <p class="control has-icons-left has-icons-right">
+                      <input class="input" type="text" placeholder="Enter your Email" name="email" required >
+                      <span class="icon is-small is-left">
+                          <i class="fas fa-envelope"></i>
+                      </span>
+                  </p>
+              </div>
         <div class="field">
          Enter a Password:
   								<p class="control has-icons-left">
@@ -90,6 +108,16 @@ include('Constants.php');?>
   										</span>
   								</p>
   						</div>
+              <div class="field">
+         Confirm Password:
+                  <p class="control has-icons-left">
+           <input class="input" type="password" placeholder="Enter password again" name="pass" required>
+                      <span class="icon is-small is-left">
+                          <i class="fas fa-lock"></i>
+                      </span>
+                  </p>
+              </div>
+
        
   					
   							
@@ -104,11 +132,34 @@ include('Constants.php');?>
   			</div>
   		</div>
  </body>
+ <script type="text/javascript">
+         $(function () {
+        $("#button").click(function () {
+            var password = $("#password").val();
+            var confirmPassword = $("#pass").val();
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            else{
+              alert("You are registered successfully, You can go to login page");
+               
+            }
+          
+        });
+    });
+
+ </script>
 </html>
 <?php 
+include('Constants.php');
 if(count($_POST)>0) {
-  $user = $_POST["username"];
+  $first = $_POST["firstname"];
+  $last = $_POST["lastname"];
   $psw = $_POST["password"];
-  $query = mysqli_query($conn,"INSERT INTO admin (username,password) VALUES ('$user','$psw')");
+  $email = $_POST["email"];
+  $user = $first.$last;
+  $query = mysqli_query($conn,"INSERT INTO admin (username,password,firstname,lastname,email) VALUES ('$user','$psw','$first','$last','$email')");
+
 }
 ?>

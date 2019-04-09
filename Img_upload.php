@@ -30,7 +30,17 @@ if(isset($_SESSION["username"])) {    }
 ?>
 
 <?php
+$building = $_POST["building_name"] ;
+$floor = $_POST["floor"];
+$x = $_POST["building_name"] . $_POST["floor"];
 $user = $_SESSION["username"];
+$file = $x . '.jpg';
+$sqlc1 = mysqli_query($conn,"Select * from maps where file_name = '$file'");
+$rowc1 = mysqli_fetch_assoc($sqlc1);
+if($rowc1){
+    header('location: welcome.php?msg=already exists');
+    return;
+}
 $target_dir = "images/";
 $target_file = $target_dir.basename($_FILES["myimage"]["name"]);
 $uploadOk = 1;
@@ -55,10 +65,7 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
-$building = $_POST["building_name"] ;
-$floor = $_POST["floor"];
 
-$x = $_POST["building_name"] . $_POST["floor"];
 $y = $user;
 $version = 0;
 $z = '{"cords":[{"value": 0,"connected_nodes":[],"Tags":[],"name":"","description":""}]}';
