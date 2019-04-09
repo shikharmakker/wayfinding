@@ -632,6 +632,7 @@ $x = $building.$floor;
                  for(var b=0;b<obj.cords.length;b++){
 
                     for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                       if(obj.cords[b].Tags[c]!="undefined")
                       document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
                     }
 
@@ -653,6 +654,7 @@ $x = $building.$floor;
                 for(var b=0;b<obj.cords.length;b++){
 
                     for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                       if(obj.cords[b].Tags[c]!="undefined")
                       document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
                     }
 
