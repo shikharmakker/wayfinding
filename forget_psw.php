@@ -5,9 +5,11 @@ require("class.smtp.php");
 
 
 $user = $_POST['username'];
+
 $q = mysqli_query($conn,"SELECT * FROM admin WHERE username = '$user'");
 $row = mysqli_fetch_assoc($q);
 $email = $row['email'];
+echo "Check your registered Email ID . ";
 $api = md5(uniqid(rand()));
 $query = mysqli_query($conn,"INSERT INTO forget_psw(username,email,api_key) VALUES ('$user','$email','$api')");
 
@@ -44,7 +46,7 @@ $sendMail = function($to, $subject, $message)
 
       $mail->send();
       //echo "hello";
-      echo "mail sent to $to";
+      echo "Mail has been sent to $to";
   } 
   catch (Exception $e) 
   {

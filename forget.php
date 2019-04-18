@@ -28,7 +28,7 @@
                   username:user,
                   },
                   function(response,status){ // Required Callback Function
-               	  alert("*----Received Data----*nnResponse : " + response+"nnStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
+               	  alert(response);//"response" receives - whatever written in echo of above PHP script.
              	//	alert("Check your mail for the link");
                   //alert(response);
                   
