@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include('Constants.php'); 
+<?php include('Constants.php');
 $floor = $_GET['floor'];
 $building = $_GET['building'];
 $x = $building.$floor;
@@ -7,48 +7,97 @@ $x = $building.$floor;
 
 <html>
    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="css/index.css" type="text/css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
       <style>
          body{
           max-height: 100vh;
-          font-family: 'Raleway', sans-serif;
-         }
-         section{
-          height:7rem;
-          font-size: 5rem;
+          font-family: 'Libre Franklin';
          }
          .content{
-          margin: 0.25rem;
+          margin: 0.5vh 1vw;
+         }
+         .column{
+          padding: 0px;
          }
          .grid-container {
              display: inline-grid;
-             grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-             <!--background-color: #2345F4;-->
+             grid-template-columns: repeat(60, 1fr);
              padding: 0px;
              background-repeat: no-repeat;
              background-size: 600px 600px;
+             max-width: 100vw;
             }
-         .grid-item {
-          <!--background-color: rgba(255, 255, 255, 0.8);-->
-          border: 0px solid rgba(0, 0, 0, 0.8);
-          padding:5px;
-          font-size: 30px;
-          text-align: center;
-          opacity: 1;
-         }
+            @media only screen and (max-width: 350px){
+             .grid-item {
+              padding: 0.165rem;
+              opacity: 0.8;
+             }
+            }
+
+            @media only screen and (min-width: 350px){
+             .grid-item {
+              padding: 0.19rem;
+              opacity: 0.8;
+             }
+            }
+            @media only screen and (min-width: 400px){
+             .grid-item {
+              padding: 0.22rem;
+              opacity: 0.8;
+             }
+            }
+            @media only screen and (min-width: 700px){
+             .grid-item {
+              padding: 0.4rem;
+              opacity: 0.8;
+             }
+            }
+            @media only screen and (min-width: 1000px){
+             .grid-item {
+              padding: 0.25rem;
+              opacity: 0.8;
+             }
+            }
+            @media only screen and (min-width: 1100px){
+             .grid-item {
+              padding: 0.32rem;
+              opacity: 0.8;
+             }
+            }
+            .fullscreen-container {
+              display: none;
+              position: fixed;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              background-color: #00000038;
+              z-index: 9999;
+            }
+
+           #popdiv {
+             background-color: white;
+             position: absolute;
+             top: 25vh;
+             left: 28vw;
+             min-width: 40vw;
+             min-height: 30vh;
+             padding: 2vh 2vw;
+           }
+
 
          #example2 {
+          display: inline-block;
           padding: 0px;
           background-repeat: no-repeat;
           background-size: 600px 600px;
           margin-top: 0px;
           float: left;
-          max-width: 100vw;
-          max-height: 100vh;
+          max-height: 100%;
          }
          #button-logout{
          background-color: white;
@@ -140,7 +189,44 @@ $x = $building.$floor;
           z-index: -1;
           height: 100%;
          }
+          .fullscreen-container {
+                display: none;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(90, 90, 90, 0.5);
+                z-index: 9999;
+              }
 
+             #popdiv {
+               width: 50%;
+               height: 50%;
+               background-color: white;
+               position: absolute;
+               top: 100px;
+               left: 350px;
+             }
+ .full-container {
+                display: none;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(90, 90, 90, 0.5);
+                z-index: 9999;
+              }
+
+             #pop {
+               width: 50%;
+               height: 50%;
+               background-color: white;
+               position: absolute;
+               top: 100px;
+               left: 350px;
+             }
       </style>
       <script>
       function myfunction(){
@@ -152,19 +238,107 @@ $x = $building.$floor;
       var elem = document.getElementById("example2");
       elem.style.background="url('" + a + "')";
       elem.style.backgroundRepeat="no-repeat";
-       elem.style.backgroundSize="600px 600px";
-      
+      elem.style.backgroundSize="100% 100%";
+
      }
+
       </script>
+
       <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+      // When the user clicks on div, open the popup
+          $(function() {
+   $("#but1").click(function() {
+     $(".fullscreen-container").fadeTo(200, 1);
+   });
+   $("#but2").click(function() {
+     $(".fullscreen-container").fadeOut(200);
+   });
+ });
+
+           $(function () {
+     $("#btnSub").click(function () {
+     //  alert("hello");
+          var tag = document.getElementById("complaint").value;
+             var comp = document.getElementById("prob").value;
+            // alert(tag);
+             var val;
+              var obj = JSON.parse(tr);
+              var img = '<?php echo $x ;?>';
+            //  alert(img);
+           for(var b = 0; b < obj.cords.length ; b++){
+           for(var c = 0 ; c< obj.cords[b].Tags.length;c++){
+          // alert( obj.cords[b].Tags[c]);
+           if(tag == obj.cords[b].Tags[c]){
+             val = obj.cords[b].value;
+            }
+          }
+        }
+        $.post("complaint.php", //Required URL of the page on server
+       { // Data Sending With Request To Server
+           value:val,
+           map:img,
+           complaint:comp,
+           tag:tag
+       },
+function(response,status){ // Required Callback Function
+//alert("*----Received Data----*nnResponse : " + response+"nnStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
+$(".fullscreen-container").fadeOut(200);
+$("#form")[0].reset();
+
+});
+     });
+ });
+          
+  var img = '<?php echo $x ;?>';
+
+
+           //alert(nd);
+      var nod = $.ajax({
+    type: 'POST',       
+    url: "node.php",
+    data: {map:img},
+    dataType: 'json',
+    context: document.body,
+    global: false,
+    async:false,
+    success: function(data) {
+        return data;
+    }
+}).responseText;
+
+//alert(nod);
+var a = nod.length ; 
+var tt = JSON.parse(nod); 
+ 
+
+
+
+
+      </script>
+ <?php
+       $res = mysqli_query($conn,"SELECT * FROM junctions WHERE map = '$x' ");
+        $node = array();
+        $i=0;
+      while($ro = mysqli_fetch_assoc($res)){
+          $node[$i]['value'] = $ro['value'];
+          $node[$i]['name'] = $ro['name'];
+          $node[$i]['Tags'] = $ro['Tags'];
+          $node[$i]['Description'] = $ro['Description'];
+          $node[$i]['audio'] = $ro['audio'];
+          $node[$i]['image'] = $ro['image'];  
+          $i++;
+      }
+      ?>
+
      <script>
+
+     
       <?php
       $sql = "SELECT JSON_string FROM maps_data WHERE name = '$x' and version = '0' limit 1";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
-
-
       ?>
 
       <?php
@@ -189,8 +363,19 @@ $x = $building.$floor;
          var sel = 0;
          var prev = -1;
         function clk(i){
-        document.getElementById("description").innerHTML="";
+          /*     for(var c = 0; c < tt.length; c++){
+                //alert("aa");
+                if(i==tt[c].value){
+                document.getElementById("n").innerHTML=tt[c].name;
+                document.getElementById("d").innerHTML=tt[c].Description;
+                document.getElementById("t").innerHTML=tt[c].Tags;
+
+              }
+                yellow(i);
+              }*/
+         document.getElementById("description").innerHTML="";
             if(find(i,chords)!=-1){
+              $(".full-container").fadeTo(200, 1);
               if(sel == 1){
                 red(prev);
                 sel = 0;
@@ -200,7 +385,7 @@ $x = $building.$floor;
            // green(obj.cords.value);
                 if(i==obj.cords[c].value){
                   document.getElementById("name").innerHTML=obj.cords[c].name;
-
+                 
                 document.getElementById("description").innerHTML=obj.cords[c].description;
                 document.getElementById("tags").innerHTML=obj.cords[c].Tags;}
                 yellow(i);
@@ -332,9 +517,19 @@ $x = $building.$floor;
                       document.getElementById("display_name").innerHTML+=obj.cords[c].name;
                }
              }
+              for (var c = 0; c < obj.cords.length; c++) {
+           // green(obj.cords.value);
+                if(i==obj.cords[c].value){
+                  document.getElementById("name").innerHTML=obj.cords[c].name;
+                 
+                document.getElementById("description").innerHTML=obj.cords[c].description;
+                document.getElementById("tags").innerHTML=obj.cords[c].Tags;}
+                yellow(i);
+              }
            }
            return;
         }
+
         function BFS(pred, dist){
           var queue = [];
           var visited = [];
@@ -443,8 +638,24 @@ $x = $building.$floor;
           for(var c=0;c<obj.cords[b].connected_nodes.length;c++){
             connected_nodes[b][c] = obj.cords[b].connected_nodes[c];
           }
-            
+
          }
+          var img = '<?php echo $x ;?>';
+      //   alert(src);
+          var n = $.ajax({
+         type: 'POST',       
+          url: "RunTest.php",
+           data: {map:img, source:sr, destination:des},
+         
+          context: document.body,
+        global: false,
+        async:false,
+        success: function(data) {
+        return data;
+        }
+        }).responseText;
+       //   alert(n);
+
          document.getElementById("example2").style.opacity = 0.8;
          console.log(src+" "+dest);
          shortest_path();
@@ -487,28 +698,36 @@ $x = $building.$floor;
    <body>
       <body onload="myfunction()">
        <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="">
-           <span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span><span style="font-size: 1.4rem; margin-left: 1vw; margin-right: 1vw; font-weight: 300;">Indoor Navigation Portal</span>
-          </a>
-
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-           <a class="navbar-item">
-            How to use
+         <div class="navbar-brand">
+           <a class="navbar-item" href="">
+            <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif;"><strong>InNav</strong></span><span style="font-size: 1.4rem; margin-left: 1vw; margin-right: 1vw; font-weight: 300;">Indoor Navigation Portal</span>
            </a>
-           <a class="navbar-item">
-             About Us
+
+           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+             <span aria-hidden="true"></span>
+             <span aria-hidden="true"></span>
+             <span aria-hidden="true"></span>
            </a>
-          </div>
-          </div>
+         </div>
+
+         <div id="navbarBasicExample" class="navbar-menu">
+           <div class="navbar-start">
+            <a class="navbar-item">
+             How to use
+            </a>
+            <a class="navbar-item">
+              About Us
+            </a>
+           </div>
+
+           <div class="navbar-end">
+             <div class="navbar-item">
+                 <a class="button is-primary" href="select.php">
+                   <strong>Back to Menu</strong>
+                 </a>
+             </div>
+             </div>
+           </div>
        </nav>
 
        <script>
@@ -541,7 +760,7 @@ $x = $building.$floor;
 
        <div class="content">
         <div class="columns">
-         <div class="column is-flex">
+         <div class="column is-flex level-item">
           <div class="level-item">
            <div class="way">
             <div>
@@ -566,29 +785,108 @@ $x = $building.$floor;
              <p>Services:</p>
              <p id="tags"></p>
             </div>
-           </div>
-          </div>
-         </div>
-         <div class="column is-three-sixths is-flex">
-          <div id="example2">
-             <div class="grid-container">
-                <script type="text/javascript">
-                   for(var i=0;i<60;i++){
-                      for (var j=0;j<60 ;j++ ) {
-                         var k =100*i + j;
-                         document.write("<div class=\"grid-item\" id = \""+k+"\" onclick =\"clk("+
-                            k+")\"></div>");
-                   }}
-                </script>
-                <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
-                <script src="typeahead.min.js"></script>
+            
+
+            <div class="">
+             <button id="but1" class="button is-warning">Complaint</button>
+               <div class="fullscreen-container">
+                <div id="popdiv">
+                 <form method="post" id="form">
+                  <div class="field is-horizontal">
+                   <div class="field-label is-normal">
+                     <label class="label">Service</label>
+                   </div>
+                   <div class="field-body">
+                     <div class="field">
+                       <div class="control">
+                        <div class="select is-fullwidth">
+                        <select name="complaint" id = "complaint" class="select">
+                        <script language="javascript" type="text/javascript">
+                         var obj = JSON.parse(tr);
+                         for(var b=0;b<obj.cords.length;b++){
+                            for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                               if(obj.cords[b].Tags[c]!="undefined")
+                              document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                            }
+                         }
+                         </script>
+                        </select>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div>
+
+                   <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                      <label class="label">Tell your Complaint</label>
+                    </div>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control">
+                           <input type="radio" name="prob" value="Service provider unavailable" id="provider_missing" />Service provider unavailable<br />
+             <input type="radio" name="prob" value="Service is down" id="disabled" />Service is down<br />
+              <input type="radio" name="prob" value="Unserviceable" id="unserviceable" />Unserviceable<br />
+               <input type="radio" name="prob" value="Service Obsolete" id="obsolete" />Service Obsolete<br />
+                <input type="radio" name="prob" value="Other" id="other" />Other<br />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="field is-grouped is-grouped-centered">
+                     <p class="control">
+                       <a class="button is-success is-fullwidth" id="btnSub">
+                         Submit
+                       </a>
+                     </p>
+                     <p class="control">
+                       <a class="button is-light is-fullwidth" id="but2">
+                         Cancel
+                       </a>
+                     </p>
+                   </div>
+                 </form>
+                </div>
               </div>
            </div>
 
+           </div>
+          </div>
          </div>
-         <div class="column is-flex">
+
+
+   <!--      <div class="full-container">
+         <div id="pop">
+           <label class="label">Name</label><p id="n"></p><br>
+            <label class="label">Description</label><p id="d"></p><br>
+            <label class="label">Services</label><p id="t"></p>
+         </div>
+       </div> -->
+
+
+         <div class="column is-half is-flex">
           <div class="level-item">
-           <div class="color-key"  style="display: flex; min-width: 15vw;">
+           <div id="example2">
+              <div class="grid-container">
+                 <script type="text/javascript">
+                    for(var i=0;i<60;i++){
+                       for (var j=0;j<60 ;j++ ) {
+                          var k =100*i + j;
+                          document.write("<div class=\"grid-item\" id = \""+k+"\" onclick =\"clk("+
+                             k+")\"></div>");
+                    }}
+                 </script>
+                 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">        </script>
+                 <script src="typeahead.min.js"></script>
+               </div>
+            </div>
+            <br>
+
+          </div>
+
+         </div>
+         <div class="column" style="padding: 5vh 0.75vw;">
+          <div class="color-key">
             <table class="table is-bordered" style="color: #555; font-size: 0.8rem;">
              <tr>
               <th style="text-align: center; color: #666; font-weight: 450;">Colour</th>
@@ -612,64 +910,68 @@ $x = $building.$floor;
              </tr>
             </table><br /><br />
            </div>
-          </div>
          </div>
         </div>
 
 
-        <div class="level-item" style="background-color: #a9e2dd33;">
-         <div class="user-input-wrapper" style="min-width: 58%">
+        <div class="level-item" style="">
+         <div class="user-input-wrapper" style="min-width: 30%">
           <div class="user-input" style="display: block;">
            <div class="columns">
-            <div class="column">
-             <div class="source">
-              Source:
-              <div class="select is-primary is-small">
-              <select name="source" id = "source" class="select is-fullwidth">
-               <script language="javascript" type="text/javascript">
-                  //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
-                 var obj = JSON.parse(tr);
-                 for(var b=0;b<obj.cords.length;b++){
+              <table style="border-color: white;">
+               <tr>
+                <td style="width:12px; text-align: right;">Source</td>
+                <td style="width:100px;">
+                 <div class="select is-primary is-small" style="width:100px;">
+                 <select name="source" id = "source" class="select is-fullwidth">
+                  <script language="javascript" type="text/javascript">
+                     //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
+                    var obj = JSON.parse(tr);
+                    for(var b=0;b<obj.cords.length;b++){
 
-                    for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                       if(obj.cords[b].Tags[c]!="undefined")
-                      document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                       for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                      if(obj.cords[b].Tags[c]!="undefined")
+                         document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                       }
+
                     }
 
-                 } 
+                   </script>
+                  </select>
+                 </div>
+                </td>
+           </tr>
+               <tr>
+                <td style="width:12px; text-align: right;">Destination</td>
+                <td style="width:100px;">
+                 <div class="select is-primary is-small" style="width:100px;">
+                 <select name="destination" id = "destination" class="select is-fullwidth">
+                  <script language="javascript" type="text/javascript">
+                     //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
+                    var obj = JSON.parse(tr);
+                   for(var b=0;b<obj.cords.length;b++){
 
-                </script>
-               </select>
-              </div>
-             </div>
-            </div>
-            <div class="column">
-             <div class="destination">
-              Destination:
-              <div class="select is-primary is-small">
-              <select name="destination" id = "destination" class="select is-fullwidth">
-               <script language="javascript" type="text/javascript">
-                  //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
-                 var obj = JSON.parse(tr);
-                for(var b=0;b<obj.cords.length;b++){
+                       for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                      if(obj.cords[b].Tags[c]!="undefined")
+                         document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                       }
 
-                    for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                       if(obj.cords[b].Tags[c]!="undefined")
-                      document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
                     }
-
-                 } 
-               </script>
-               </select>
+                  </script>
+                  </select>
+                 </div>
+                </td>
+               </tr>
+              </table>
+              <div class="column">
+               <div class="level-item">
+                <a class="button is-success is-large" id = "submit" type = "button" onclick = "Submit()" style="margin-top: 2vh; margin-left: 2vw;">Submit</a>
+               </div>
               </div>
-             </div>
-            </div>
+
+
            </div>
-
          </div>
-        <div class="level-item">
-         <a class="button is-success is-medium" id = "submit" type = "button" onclick = "Submit()" style="margin-top: 1vh;">Submit</a>
-        </div>
         </div>
 
 
@@ -691,6 +993,7 @@ $x = $building.$floor;
          </div>
          -->
          <script>
+
          // When the user clicks on div, open the popup
          function myFunction() {
            var popup = document.getElementById("myPopup");

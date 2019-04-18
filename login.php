@@ -94,7 +94,7 @@ if(isset($_GET["session_expired"])) {
 
 			<div class="navbar-end">
 					<div class="navbar-item">
-									<a class="button is-primary" href="register.php">
+									<a class="button is-primary" href="register.html">
 											<strong>Sign up</strong>
 									</a>
 					</div>
@@ -141,6 +141,7 @@ if(isset($_GET["session_expired"])) {
 								<p class="control" style="margin-top:1.5rem;">
 									<strong><input style="width:100%;" id="button" type="submit" value="Login" name="login" class="button is-success"/></strong>
 								</p>
+								 <center>  <a href="forget.php">Forget Password ?</a></center>
 						</div>
 
 								</form>

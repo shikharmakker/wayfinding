@@ -1,0 +1,258 @@
+<?php
+include('Constants.php');?>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/index.css" type="text/css" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <style>
+  .card-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 5rem);
+  }
+  .card-header-title{
+   font-size: 2rem
+  }
+  .label{
+   font-weight: 500;
+  }
+ </style>
+ <script language = JavaScript1.2>
+                    function Verify()
+                    {
+                       //alert("Hello! I am an alert box!!");
+                       myform.action = "";
+                       myform.method = "post";
+                    }
+</script>
+  <title>Register</title>
+ </head>
+ <body>
+  <div class="body-content">
+   <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="">
+          <span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span>
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            How to use
+          </a>
+          <a class="navbar-item">
+              About Us
+          </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                    <a class="button is-primary" href="login.php">
+                        <strong>Login</strong>
+                    </a>
+            </div>
+            </div>
+        </div>
+
+  </nav>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+            });
+        });
+    }
+
+  });
+
+  </script>
+
+      <br />
+      <div  class="card-wrapper">
+        <div class="card" style="width:100%;max-width:900px;margin:auto;">
+          <div class="card-header">
+            <p class="card-header-title">
+              Register
+            </p>
+          </div>
+          <div class="card-content">
+            <form   method="post" enctype="multipart/form-data" autocomplete="off" onsubmit="return Verify()" name="myform">
+        <div class="field is-horizontal">
+         <div class="field-label is-normal">
+           <label class="label">Name</label>
+         </div>
+         <div class="field-body">
+           <div class="field">
+             <p class="control is-expanded">
+               <input class="input" type="text" placeholder="First Name" id="firstname" name="firstname" required>
+             </p>
+           </div>
+           <div class="field">
+             <p class="control is-expanded">
+               <input class="input" type="text" placeholder="Last Name" id="lastname" name="lastname">
+             </p>
+           </div>
+          </div>
+         </div>
+         <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Email</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+             <p class="control is-expanded has-icons-left has-icons-right">
+               <input class="input" type="email" placeholder="Email" name="email" required id="email">
+               <span class="icon is-small is-left">
+                 <i class="fas fa-envelope"></i>
+               </span>
+             </p>
+            </div>
+           </div>
+          </div>
+          <div class="field is-horizontal">
+           <div class="field-label is-normal">
+             <label class="label">Employee ID</label>
+           </div>
+            <div class="field-body">
+              <div class="field is-expanded">
+                <div class="field">
+                  <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="Employee ID" required name="employee" id="employee">
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+           <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Password</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded has-icons-left">
+                 <input class="input" type="password" placeholder="Password" name="password" id="password" required>
+                 <span class="icon is-small is-left">
+                              <i class="fas fa-lock"></i>
+                          </span>
+                </p>
+              </div>
+             </div>
+            </div>
+            <div class="field is-horizontal">
+             <div class="field-label is-normal">
+               <label class="label">Confirm Password</label>
+             </div>
+             <div class="field-body">
+               <div class="field">
+                 <p class="control is-expanded has-icons-left">
+                  <input class="input" type="password" placeholder="Confirm password" name="pass" required id="pass" required>
+                  <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                 </p>
+               </div>
+              </div>
+             </div>
+             <div class="field">
+               <p class="control" style="margin-top:1.5rem;">
+                <input style="width:100%;" id="button" type="submit" value="Register" name="Register" class="button is-success is-medium"/>
+               </p>
+             </div>
+           </div>
+
+
+          
+         
+                  </form>
+          </div>
+        </div>
+      </div>
+ </body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script type="text/javascript">
+         $(function () {
+        $("#button").click(function () {
+            var password = $("#password").val();
+            var confirmPassword = $("#pass").val();
+            var first = $("#firstname").val();
+            var last = $("#lastname").val();
+            var email = $("#email").val();
+            var emp = $("#employee").val();
+            if(first==""){
+              alert("fill the firstname");
+            }
+            else if(last==""){
+              alert("fill your lastname");
+            }
+            else if(email==""){
+              alert("Please provide your Email");
+            }
+            else if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                //return false;
+            }
+            else{
+              $.post("register.php", //Required URL of the page on server
+                  { // Data Sending With Request To Server
+                  firstname:first,
+                  lastname:last,
+                  password:password,
+                  email:email,
+                  employee:emp,
+                  },
+                  function(response,status){ // Required Callback Function
+             //    alert("*----Received Data----*nnResponse : " + response+"nnStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
+
+              if(response == 1){
+                alert("Sorry, this username already exists. Please register again with a different username");
+              }
+              else{
+                var nav = "login.php" ;
+                    location.href =nav;
+                  $("#form")[0].reset();
+              }
+                  //alert(response);
+                  
+
+                  });
+              alert("Thanks for the response");
+            //  alert("Check your registered email for verification ");      
+            }
+          
+        });
+    });
+
+ </script>
+</html>

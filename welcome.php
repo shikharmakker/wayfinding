@@ -47,7 +47,7 @@
       }
 
       #popdiv1 {
-       min-height: 70%;
+       min-height: 60%;
        background-color: white;
        position: absolute;
        justify-content: center;
@@ -57,7 +57,7 @@
        }
 
       #popdiv2 {
-       min-height: 70%;
+       min-height: 50%;
        min-width: 40%;
        background-color: white;
        position: absolute;
@@ -104,11 +104,22 @@
 
 
   <?php
+  if(isset($_GET["msg"])){
+  $msg = $_GET['msg'];
+}
+$user = $_SESSION['username'];
+$q = mysqli_query($conn,"SELECT * from admin where username = '$user'");
+$row = mysqli_fetch_assoc($q);
+$first = $row['firstname'];
   if(isset($_SESSION["username"])) {    }
   ?>
 
   <script>
-
+    var ps =  '<?php echo $msg ;?>';
+   // alert(ps);
+    if(ps){
+      alert('file name already exists');
+    }
   // When the user clicks on div, open the popup
   function myunction() {
       var popup = document.getElementById("myPopup");
@@ -158,7 +169,7 @@
      <div class="hero-body">
        <div class="container">
          <h1 class="title">
-           <strong>Welcome <?php echo $_SESSION["username"]; ?>!</strong>
+           <strong>Welcome <?php echo $first; ?>!</strong>
          </h1>
          <?php
          $ch="select * from maps where username = '$_SESSION[username]' ORDER BY date DESC";
@@ -178,17 +189,16 @@
       <td><center>
          <table valign="center" style="border: 1px solid black;  width:85%;">
                  <tr align="center" style="border: 1px solid black; height: 3em">
-                     <th style="border: 1px solid black;width:17%">Building</th>
-                     <th style="border: 1px solid black;width:10%">Floor</th>
-                     <th style="border: 1px solid black;width:15%">Date</th>
-                     <th style="border: 1px solid black;width:20%">Edit</th>
-                     <th style="border: 1px solid black;width:8%">Delete</th>
+                     <th style="border: 1px solid black;width:25%">Building</th>
+                     <th style="border: 1px solid black;width:20%">Floor</th>
+                     <th style="border: 1px solid black;width:20%">Map Versions</th>
+                     <th style="border: 1px solid black;width:15%">Delete</th>
                       </tr>
                       <?php while ($ty = mysqli_fetch_array($query)){ ?>
                       <tr align="center" style="border: 1px solid black; height: 3em">
                       <td style="border: 1px solid black;"><?php echo $ty[1]?></td>
                       <td style="border: 1px solid black;"><?php echo $ty[2]?></td>
-                      <td style="border: 1px solid black;"><?php echo $ty[5]?></td>
+                   
                       <td style="border: 1px solid black;">
                        <div class="level-item">
                         <div class="fullscreen-container" id="<?php echo($ty[1].$ty[2].'0')?>">
@@ -246,8 +256,7 @@
                              <a href="trial.php?img=<?php echo($ty[1].$ty[2])?>&version=2" class="button is-link" style="width: 60%;">Edit</a>
                             </div>
                             <div class="level-item">
-                             <a href="" class="button is-success" style="width: 60%;">Update</a><br>
-                            </div>
+                              <a href="upversion.php?img=<?php echo($ty[1].$ty[2])?>&version=2" class="button is-success" style="width: 60%;">Update</a><br>                            </div>
                             <div class="level-item">
                              <button onclick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeOut(200)' class="button is-dark">Cancel</button>
                             </div>
@@ -256,9 +265,9 @@
                          </div>
                          </div>
                        </div>
-                       <button  onClick='$("#<?php echo($ty[1].$ty[2].'0')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Version 1</button>
-                        <button  onClick='$("#<?php echo($ty[1].$ty[2].'1')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Version 2</button>
-                        <button  onClick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Version 3</button>
+                       <button  onClick='$("#<?php echo($ty[1].$ty[2].'0')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Current</button>
+                        <button  onClick='$("#<?php echo($ty[1].$ty[2].'1')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Previous</button>
+                        <button  onClick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Older</button>
                       </td>
                       <td style="border: 1px solid black;"><a href='delete.php?id=<?php echo($ty[1].$ty[2]) ?>'>Delete Map</a></td>
                       </tr>

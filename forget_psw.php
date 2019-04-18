@@ -3,27 +3,14 @@ include('Constants.php');
 require("class.phpmailer.php");
 require("class.smtp.php");
 
-  $first = $_POST["firstname"];
-  $last = $_POST["lastname"];
-  $psw = $_POST["password"];
-  $email = $_POST["email"];
-  $emp = $_POST['employee'];
-  $confirm=md5(uniqid(rand()));
-  $user = $first.$last;
-  $q = mysqli_query($conn,"SELECT * FROM admin WHERE username = '$user'");
-  $num = mysqli_num_rows($q);
-  if($num == 1){
-    print_r($num);
-    die;
-  }
-  $query = mysqli_query($conn,"INSERT INTO temp_admin (username,password,firstname,lastname,email,confirm) VALUES ('$user','$psw','$first','$last','$email','$confirm')");
-  $sql2="INSERT INTO admin(firstname,lastname,email,username,password,employee_id)VALUES('$first','$last','$email','$user','$psw','$emp')";
-  $result2=mysqli_query($conn,$sql2);
-  // send e-mail to ...
-// echo "hello";
-         //$from = 'shikharmakker@gmail.com';
 
-   
+$user = $_POST['username'];
+$q = mysqli_query($conn,"SELECT * FROM admin WHERE username = '$user'");
+$row = mysqli_fetch_assoc($q);
+$email = $row['email'];
+$api = md5(uniqid(rand()));
+$query = mysqli_query($conn,"INSERT INTO forget_psw(username,email,api_key) VALUES ('$user','$email','$api')");
+
 
 $sendMail = function($to, $subject, $message)
 {
@@ -64,17 +51,11 @@ $sendMail = function($to, $subject, $message)
       echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
   }
 };
-  $to = $email;
-         $subject = "Your confirmation link here";
-         $message="Your Comfirmation link \r\n";
-         $message.="Click on this link to activate your account \r\n";
-         $message.="10.17.50.43/wayfinding/confirmation.php?passkey=$confirm \n \n \n";
-         $message.="<br>";
-         $message.="Your username: $user";
-         $message.="<br>";
-         $message.="Your password: $psw \n";
+
+$to = $email;
+         $subject = "Password Recovery";
+         $message="Your Password Recovery link \r\n";
+         $message.="Click on this link to change your password \r\n";
+         $message.="localhost/aims/pass.php?user=$user&key=$api \n \n \n";
     $sendMail($to,$subject,$message);
-
-
-
-      ?>
+?>

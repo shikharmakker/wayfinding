@@ -13,18 +13,32 @@ $c = $r['cords'];
 $tags;
 $tag;
 $ct = 0;
+
+function div($a){
+  return floor($a/100);
+}
+function mod($a){
+  return ($a%100);
+}
+
 foreach ($c as $key => $value) {
 	# code...
 	$tags = $value['Tags'];
 	foreach ($tags as $k => $v) {
 		# code...
+		if($v == "undefined"){
+			continue;
+		}
 		$val = $value['value'];
 		$tag[$ct]['value'] = $val;
 		$tag[$ct]['Tags'] = $v;
+		$tag[$ct]['x'] = mod($val);
+		$tag[$ct]['y'] = div($val);
 		$ct++; 
 	}
 }
-$j = json_encode($tag);
+$t = array('cords'=>$tag);
+$j = json_encode($t);
 print_r($j);
 
 ?>

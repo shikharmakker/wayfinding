@@ -1,10 +1,15 @@
 <?php include('Constants.php') ?>
 <?php
 
+//$x = $_POST['map'];
+//$sr_t = $_POST['source'];
+//$det_t = $_POST['destination'];
+//$src_t = trim($sr_t, '"');
+//$dest_t = trim($det_t,'"');
+//echo gettype($src_t);die;
 $floor = $_GET['floor'];
 $building = $_GET['building'];
 $x = $building.$floor;
-
 $sql = "SELECT JSON_string FROM maps_data WHERE name = '$x' and version=0";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -90,6 +95,28 @@ function way($a,$q){
          
 }
 
+function div($a){
+  return floor($a/100);
+}
+function mod($a){
+  return ($a%100);
+}
+
+function slope($p , $t ){
+  if($p==NULL || $t == NULL){
+    return 0;
+  }
+  $px =  mod($p);
+  $py = div($p);
+  $tx = mod($t);
+  $ty = div($t);
+ // $nx = mod($n);
+ // $ny = div($n);
+  $sl = ($ty - $py)/($tx - $px);
+  return $sl;
+
+}
+
 function runTest() {
   $g = new Graph();
   global $c;
@@ -136,6 +163,10 @@ function runTest() {
               $t[$q]['Tags'] = $c[$b]['Tags'];
               $t[$q]['prevway'] = $rprev;
               $t[$q]['nextway'] = $rnex;
+              $t[$q]['x'] = mod($tem);
+              $t[$q]['y'] = div($tem);
+            //  $t[$q]['nextslope'] = slope($tem,$nex);
+             // $t[$q]['prevslope'] = slope($prev,$tem);
               //$t[$q] = ('value'=> $chords[$b] , 'description'=> , 'name'=> $c[$b]['name'], 'Tags'=> $c[$b]['Tags'], 'nextway'=> $rnex, 'prevway'=> $rprev);
               break;
             }
