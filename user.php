@@ -466,7 +466,23 @@ var tt = JSON.parse(nod);
               //  document.getElementById("tags").innerHTML=obj.cords[c].Tags;
               var img = '<?php echo $x ;?>';
               var test ;
+              var cp = $.ajax({
+         type: 'POST',
+          url: "getcomplaint.php",
+           data: {map:img, value:i},
 
+        context: document.body,
+        global: false,
+        async:false,
+        success: function(data) {
+        //alert(data);
+        return data;
+        }
+        }).responseText;
+
+              var cpj = JSON.parse(cp);
+
+              //alert(cpj);
         var nde = $.ajax({
          type: 'POST',
           url: "getnode.php",
@@ -482,10 +498,18 @@ var tt = JSON.parse(nod);
         }).responseText;
              // alert(nde);
               var ob = JSON.parse(nde);
-               document.getElementById("n").innerHTML=ob.name;
+               document.getElementById("n").innerHTML=" "+ob.name;
 
                 document.getElementById("d").innerHTML=ob.Description;
                 document.getElementById("t").innerHTML=ob.Tags;
+                
+                
+              if(cpj==null){
+                document.getElementById('cpl').innerHTML=" ";
+              }
+              else{
+                document.getElementById('cpl').innerHTML = cpj.complaint + " at " + cpj.Tag;
+              }
                 document.getElementById("ad").src = "audio/"+ob.audio;
 
                 document.getElementById("preview").src ="img/"+ob.image;
@@ -1026,11 +1050,12 @@ var tt = JSON.parse(nod);
              </p>
             </div>
             <div class="card-content">
-              <label class="label" style="display: inline-block;">Name: </label><p style="display: inline-block;" id="n"></p><br />
-              <label class="label" style="display: inline-block;">Description: </label><p id="d" style="display: inline-block;"></p><br />
-              <label class="label" style="display: inline-block;">Services: </label><p id="t" style="display: inline-block;"></p><br />
-              <label class="label" style="display: inline-block;">Audio Landmark: </label><p id="audio" style="display: none;"></p> <audio controls style="width: 100%; height: 5vh;" src="" id='ad'></audio><br />
-              <label class="label" style="display: inline-block;">Image Landmark: </label><p id="image" style="display: none;"></p> <img src="" style="max-width: 100%; max-height:30vh;" id="preview">
+              <label class="label" style="display: inline-block; padding-right: 0.5vw;">Name: </label><p style="display: inline-block;" id="n"></p><br />
+              <label class="label" style="display: inline-block;padding-right: 0.5vw;" >Description: </label><p id="d" style="display: inline-block;"></p><br />
+              <label class="label" style="display: inline-block;padding-right: 0.5vw;">Services: </label><p id="t" style="display: inline-block;"></p><br />
+              <label class="label" style="display: inline-block;padding-right: 0.5vw;">Active Complaint: </label><p style="display: inline-block;" id="cpl"></p><br />
+              <label class="label" style="display: inline-block;padding-right: 0.5vw;">Audio Landmark: </label><p id="audio" style="display: none;"></p> <audio controls style="width: 100%; height: 5vh;" src="" id='ad'></audio><br />
+              <label class="label" style="display: inline-block;padding-right: 0.5vw;">Image Landmark: </label><p id="image" style="display: none;"></p> <img src="" style="max-width: 100%; max-height:30vh;" id="preview">
               <a class="button is-light is-fullwidth is-medium" id="bt2" style="margin-top: 4vh;">
                 OK
               </a>
