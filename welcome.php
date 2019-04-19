@@ -46,19 +46,17 @@
        z-index: 9999;
        align-items: center;
       }
-
       #popdiv1 {
-       min-height: 65%;
+       min-height: 60%;
        background-color: white;
        position: absolute;
        justify-content: center;
        align-items: center;
        top: 70px;
-       padding: 1.5vh 2vw;
+       padding: 2.5vh 2vw;
        }
-
       #popdiv2 {
-       min-height: 55%;
+       min-height: 40%;
        min-width: 40%;
        background-color: white;
        position: absolute;
@@ -66,9 +64,8 @@
        align-items: center;
        padding: 0.5vh 2vw;
        top: 0.5px;
-       padding: 0px 0px;
+       padding: 2vh 1vw;
       }
-
        iframe{
         height: 400px;
         width: 400px;
@@ -86,7 +83,6 @@
     .del a:hover{
      color: red;
     }
-
  </style>
   <script src="/scripts/snippet-javascript-console.min.js?v=1"></script>
 </head>
@@ -178,31 +174,23 @@ $first = $row['firstname'];
 
  <script>
  document.addEventListener('DOMContentLoaded', () => {
-
    // Get all "navbar-burger" elements
    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
    // Check if there are any navbar burgers
    if ($navbarBurgers.length > 0) {
-
      // Add a click event on each of them
      $navbarBurgers.forEach( el => {
        el.addEventListener('click', () => {
-
          // Get the target from the "data-target" attribute
          const target = el.dataset.target;
          const $target = document.getElementById(target);
-
          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
          el.classList.toggle('is-active');
          $target.classList.toggle('is-active');
-
        });
      });
    }
-
  });
-
  </script>
    <section class="hero is-primary">
      <div class="hero-body">
@@ -212,7 +200,6 @@ $first = $row['firstname'];
          </h1>
          <?php
          $ch="select * from maps where username = '$_SESSION[username]' ORDER BY date DESC";
-
          $query = mysqli_query($conn,$ch);
                   ?>
          <div>
@@ -276,7 +263,7 @@ $first = $row['firstname'];
                              <a href="upversion.php?img=<?php echo($ty[1].$ty[2])?>&version=1" class="button is-success" style="width: 60%;">Update</a><br>
                             </div>
                             <div class="level-item">
-                            <button onclick='$("#<?php echo($ty[1].$ty[2].'1')?>").fadeOut(200)' class="button is-dark">Cancel</button>
+                            <button onclick='$("#<?php echo($ty[1].$ty[2].'1')?>").fadeOut(200)' class="button is-light">Cancel</button>
                            </div>
                            </div>
                           </div>
@@ -297,7 +284,7 @@ $first = $row['firstname'];
                             <div class="level-item">
                               <a href="upversion.php?img=<?php echo($ty[1].$ty[2])?>&version=2" class="button is-success" style="width: 60%;">Update</a><br>                            </div>
                             <div class="level-item">
-                             <button onclick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeOut(200)' class="button is-dark">Cancel</button>
+                             <button onclick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeOut(200)' class="button is-light">Cancel</button>
                             </div>
                            </div>
                           </div>
@@ -381,7 +368,7 @@ $first = $row['firstname'];
                        <div class="level-item">
                         <div class="field" style="width: 100%;">
                           <p class="control">
-                           <strong><input id="button" type="submit" value="Upload" name="submit_image" class="button is-success is-fullwidth" style="margin-top:4vh;"/></strong>
+                           <strong><input id="button" type="submit" value="Upload" name="submit_image" class="button is-success is-fullwidth" style="margin-top:3vh; margin-bottom: 2vh;"/></strong>
                           </p>
                         </div>
                        </div>
@@ -428,43 +415,31 @@ $first = $row['firstname'];
                                }
                              });
                              $("submit").on('click',function(){
-
                              })
-
                            });
                     function geoFindMe() {
-
   const status = document.querySelector('.status');
   const mapLink = document.querySelector('#map-link');
-
   mapLink.href = '';
   mapLink.textContent = '';
-
   function success(position) {
     const latitude  = position.coords.latitude;
     const longitude = position.coords.longitude;
-
     status.textContent = '';
     mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
     mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
   }
-
   function error() {
     status.textContent = 'Unable to retrieve your location';
   }
-
   if (!navigator.geolocation) {
     status.textContent = 'Geolocation is not supported by your browser';
   } else {
     status.textContent = 'Locating…';
     navigator.geolocation.getCurrentPosition(success, error);
   }
-
 }
-
 document.querySelector('#find-me').addEventListener('click', geoFindMe);
-
-
                     </script>
 
                    </div>

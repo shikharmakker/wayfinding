@@ -29,8 +29,12 @@ foreach ($c as $key => $value) {
 		if($v == "undefined"){
 			continue;
 		}
+		if($v == "dummy"){
+			continue;
+		}
 		$val = $value['value'];
 		$tag[$ct]['value'] = $val;
+		$tag[$ct]['name'] = $value['name'];
 		$tag[$ct]['Tags'] = $v;
 		$tag[$ct]['x'] = mod($val);
 		$tag[$ct]['y'] = div($val);

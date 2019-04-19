@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ <link href="css/index.css" type="text/css" rel="stylesheet">
+ <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+ <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
+ <title></title>
+ <style>
+       body{
+           font-family: 'Libre Franklin', sans-serif;
+          }
+          section{
+           height:7rem;
+           font-size: 5rem;
+          }
+          .content{
+           margin: 2vh 1vw;
+          }
+ </style>
+</head>
+
+<body>
+ <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand" href="user-landing.php">
+    <a class="navbar-item" href="">
+     <span class="icon is-normal">
+      <i class="fas fa-2x	 fa-home" href="user-landing.php"></i>
+     </span>
+     <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav</strong></span>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+    <div class="navbar-end">
+     <div class="navbar-item">
+      <a class="button is-light" href="aboutus.htm">
+        About Us
+      </a>
+     </div>
+     </div>
+    </div>
+ </nav>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+     // Get all "navbar-burger" elements
+     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+     // Check if there are any navbar burgers
+     if ($navbarBurgers.length > 0) {
+
+       // Add a click event on each of them
+       $navbarBurgers.forEach( el => {
+         el.addEventListener('click', () => {
+
+           // Get the target from the "data-target" attribute
+           const target = el.dataset.target;
+           const $target = document.getElementById(target);
+
+           // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+           el.classList.toggle('is-active');
+           $target.classList.toggle('is-active');
+         });
+       });
+     }
+
+    });
+
+  </script>
+
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          <strong>How to use InNav</strong>
+        </h1>
+      </div>
+    </div>
+  </section>
+  <!-- PLACE CONTENT HERE -->
+  <div class="content">
+   <h4><a id="For_Navigation_0"></a>How to navigate</h4>
+   <ol>
+   <li>Choose ‘Navigation’ in the main menu. You’ll be re-directed to the map-selection menu.</li>
+   <li>Choose your building from the available list of buildings in the dropdown menu. Next, choose your floor from the dropdown menu. Click on ‘Navigate’ to go to the navigation portal.</li>
+   <li>Once you are on the navigation portal, you will have the choice to do the following-</li>
+   <ul>
+   <li><strong>Find your way</strong></li>
+
+   <ol>
+   <li>At the bottom of the map choose your current junction/ junction you want to start from in the ‘Source’ dropdown menu.</li>
+   <li>Similarly, choose your destination/ junction you want to reach in the ‘Destination’ dropdown menu.</li>
+   <li>Submit your selection. The path you need to follow will be displayed on the map.</li>
+   </ol>
+
+   <li><strong>Get information</strong></li>
+   <ol>
+    You can get the relevant information about the junctions in your path and nearby services.
+   </ol>
+   <li><strong>Report an issue</strong></li>
+
+   <ol>
+   <li>You can file a complaint for any service, by clicking on the ‘Complaint’ button.</li>
+   <li>A pop-up will appear on the screen, seeking details of the issue.</li>
+   <li>Select the service you want to report from the dropdown menu.</li>
+   <li>Choose the type of issue from the options given. In case your complaint is not listed, choose the ‘Other’ option. Now, write your complaint in the area which appears below the ‘Other’ option.</li>
+   <li>Click on ‘Submit’ to submit your complaint.</li>
+   </ol>
+  </ul>
+ </ol>
+  </div>
+
+</body>
+</html>

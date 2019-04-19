@@ -69,7 +69,7 @@ $result1 = mysqli_query($conn,$sql1);
               </a>
             </div>
             <div class="navbar-item">
-              <a class="button is-light" href="howtouse.htm">
+              <a class="button is-light" href="howtouseadmin.htm">
                 How to use
               </a>
             </div>

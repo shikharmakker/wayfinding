@@ -23,7 +23,6 @@ $user = $_SESSION["username"];
 
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
- <link href="css/index.css" type="text/css" rel="stylesheet">
  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
@@ -123,6 +122,7 @@ $user = $_SESSION["username"];
          .ia{
           display: inline-block;
           float: left;
+          margin-top: 5vh;
          }
          .popup{
           display: inline-block;
@@ -314,7 +314,7 @@ $user = $_SESSION["username"];
          for(var b= 0; b<obj.cords.length;b++){
             for(var i = 0; i < connected[b].length;i++){
               connected_nodes[b][i] = connected[b][i];
-              
+
             }
             for(var i = 0 ; i < obj.cords[b].Tags.length;i++){
               Tag_strings[b][i] = obj.cords[b].Tags[i];
@@ -342,7 +342,7 @@ $user = $_SESSION["username"];
          function sun(sel){
            return sel;
          }
-         function clk(i){
+        function clk(i){
 
 
            sele = i;
@@ -401,7 +401,7 @@ $user = $_SESSION["username"];
 
 
              document.getElementById('buttons').innerHTML = '<button id = "Tag_cancel" type="button" onclick ="Cancel_tag()" >Done</button>';*/
-             document.getElementById('d').innerHTML = '<form method ="post" enctype="multipart/form-data" id="uploadf"><label class="label">Name: </label><input type="text" id="Name_input" required placeholder="Submit Name " size="15"><label class="label">Description</label><input type="text" id="Description_input" placeholder="Submit Description" size="15"><label class="label">Nearby Services</label><input type="text" required id="Tag_input" placeholder="Submit Tags" size="15"><label class="label">Audio</label><input type="file" id="file" name="file" /><label class="label">Graphic</label><input type="file" id="img" name="img" /><button id = "Tag_cancel" type="submit" onclick ="Cancel_tag()" >Done</button></form>';
+             document.getElementById('d').innerHTML = '<form method ="post" enctype="multipart/form-data" id="uploadf"><label class="label">Name: </label><input class="input is-small" type="text" id="Name_input" required placeholder="Submit Name " size="15"><label class="label">Description</label><input class="input is-small" type="text" id="Description_input" placeholder="Submit Description" size="15"><label class="label">Nearby Services</label><input type="text" required id="Tag_input" placeholder="Submit Tags" size="15" class="input is-small"><label class="label">Audio</label><input type="file" id="file" name="file" /><label class="label">Graphic</label><input type="file" id="img" name="img" /><button class="button is-success is-fullwidth" id = "Tag_cancel" type="submit" onclick ="Cancel_tag()" style="margin-top: 2vh;">Submit</button></form>';
              unselect("Node");
              Tag = true;
              Node_select = false;
@@ -477,7 +477,7 @@ $user = $_SESSION["username"];
            return -1;
          }
          function selected(i){
-            document.getElementById(i).style.backgroundColor = "orange";
+            document.getElementById(i).style.backgroundColor = "#209cee";
            document.getElementById(i).style.opacity = "1";
          }
          function green(i){
@@ -531,6 +531,7 @@ $user = $_SESSION["username"];
            document.getElementById(i).style.backgroundColor = "";
          }
          function Stop(){
+          filled = 1;
            unselect("Node");
            unselect("Edge");
            unselect("Delete");
@@ -623,6 +624,7 @@ $user = $_SESSION["username"];
            select = 0;
          }
          function Edgeselect(){
+          filled = 1;
           selected('Edge');
            if(Tag){
              alert("Please submit tag response or cancel it to proceed");
@@ -660,11 +662,13 @@ $user = $_SESSION["username"];
            document.getElementById(x).style.backgroundColor = "";
          }
           function Delete(){
+            filled = 1;
             selected('Delete');
            if(Tag){
              alert("Please submit tag response or cancel it to proceed");
              return;
            }
+           unselect("Edge");
            delete_ = true;
            Node_select = false;
            if(Edge_select){
@@ -993,53 +997,90 @@ $("#form")[0].reset();
 <body>
 <body onload="myfunction()">
  <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-   <div class="navbar-brand">
-     <a class="navbar-item" href="">
-      <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif;"><strong>InNav</strong></span><span style="font-size: 1.4rem; margin-left: 1vw; margin-right: 1vw; font-weight: 300;">Indoor Navigation Portal</span>
-     </a>
+  <div class="navbar-brand" href="user-landing.php">
+    <a class="navbar-item" href="">
+     <span class="icon is-normal">
+      <i class="fas fa-2x  fa-home" href="user-landing.php"></i>
+     </span>
+     <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav Administration</strong></span><span style="font-size: 1.4rem; margin-left: 1vw; margin-right: 1vw; font-weight: 300;">Indoor Navigation Portal</span>
 
-     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-       <span aria-hidden="true"></span>
-       <span aria-hidden="true"></span>
-       <span aria-hidden="true"></span>
-     </a>
-   </div>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
 
-   <div id="navbarBasicExample" class="navbar-menu">
-     <div class="navbar-start">
-      <a class="navbar-item">
-       How to use
-      </a>
-      <a class="navbar-item">
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+
+
+    <div class="navbar-end">
+     <div class="navbar-item">
+         <a class="button is-primary" href="welcome.php">
+           <strong>Dashboard</strong>
+         </a>
+     </div>
+
+     <div class="navbar-item">
+      <a class="button is-light" href="aboutus.htm">
         About Us
       </a>
      </div>
-
-     <div class="navbar-end">
-       <div class="navbar-item">
-           <a class="button is-primary" href="welcome.php">
-             <strong>Dashboard</strong>
-           </a>
-       </div>
-        <a class="navbar-item" href="logout.php">
-          Logout<span style="display:inline-block; width:0.2rem;"></span>
-          <i class="fas fa-sign-out-alt"></i>
-        </a>
-
-       </div>
+     <div class="navbar-item">
+      <a class="button is-light" href="howtouse.htm">
+       How to use
+      </a>
      </div>
+
+       <a class="navbar-item" href="logout.php">
+         Logout<span style="display:inline-block; width:0.2rem;"></span>
+         <i class="fas fa-sign-out-alt"></i>
+       </a>
+     </div>
+    </div>
  </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // Get all "navbar-burger" elements
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+});
+
+</script>
 
 
   <div class="content">
    <div class="columns">
-     <div class="column is-flex level-item">
+     <div class="column level-item">
      <div class="level-item">
       <div class="ia">
        <div class="choices">
         <table>
            <tr>
-            <a class="button is-text" id="Node" type="button" onclick="Nodeselect()">Junction</a><br />
+            <a class="button is-dark is-fullwidth" id="Node" type="button" onclick="Nodeselect()">Junction</a>
            </tr>
         <!--   <tr>
             <a class="button is-text" id="roomno" type="button" onclick="">Room number</a><br />
@@ -1048,16 +1089,16 @@ $("#form")[0].reset();
             <a class="button is-text" id="amenities" type="button" onclick="tagg()">Amenities</a><br />
            </tr>-->
            <tr>
-           <a class="button is-text" id="Edge" type="button" onclick="Edgeselect()">Path</a><br />
+           <a class="button is-dark is-fullwidth" id="Edge" type="button" onclick="Edgeselect()">Path</a>
            </tr>
            <tr>
-           <a class="button is-text" id="Stop" type="button" onclick="Stop()">Stop Action</a><br />
+           <a class="button is-dark is-fullwidth" id="Stop" type="button" onclick="Stop()">Stop Action</a>
            </tr>
            <tr>
-           <a class="button is-text " id="Delete" type="button" onclick="Delete()">Clear</a><br>
+           <a class="button is-dark is-fullwidth " id="Delete" type="button" onclick="Delete()">Clear</a>
            </tr>
            <tr>
-           <a class="button is-text" id="Delete" type="button" onclick="DeleteAll()">Clear All</a><br />
+           <a class="button is-dark is-fullwidth" id="Delete" type="button" onclick="DeleteAll()">Clear All</a><br />
            </tr>
         </table>
 
@@ -1078,6 +1119,15 @@ $("#form")[0].reset();
                    <a class="button is-success is-fullwidth" id="btnSubmit">
                      Submit
                    </a>
+                   <script>
+                   var input = document.getElementById("psw");
+                   input.addEventListener("keyup", function(event) {
+                     if (event.keyCode === 13) {
+                      event.preventDefault();
+                      document.getElementById("btnSubmit").click();
+                     }
+                   });
+                   </script>
                  </p>
                  <p class="control">
                    <a class="button is-light is-fullwidth" id="but2">
@@ -1088,7 +1138,7 @@ $("#form")[0].reset();
              </form>
             </div>
         </div>
-    <script type="text/javascript">
+     <script type="text/javascript">
          $(function() {
    $("#but1").click(function() {
     if(filled==1){
@@ -1170,7 +1220,7 @@ $("#form")[0].reset();
        <p id="buttons"></p>
        <p id="d" style="margin-bottom: 15vh; padding: 5vh 0.75vw;"></p>
 
-              <div class="color-key">
+              <div class="color-key" style="margin-bottom= 1vh;">
                <table class="table is-bordered" style="color: #555; font-size: 0.8rem;">
                 <tr>
                  <th style="text-align: center; color: #666; font-weight: 450;">Colour</th>
@@ -1272,7 +1322,7 @@ $(document).ready(function(){
 -->
 
 
- <?php
+<?php
 
 //print_r($user);
 $sql = "SELECT password FROM admin WHERE username = '$user'";

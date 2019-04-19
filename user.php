@@ -16,7 +16,7 @@ $x = $building.$floor;
       <style>
          body{
           max-height: 100vh;
-          font-family: 'Libre Franklin';
+          font-family: 'Libre Franklin', sans-serif;
          }
          .content{
           margin-top: 5vh;
@@ -875,36 +875,43 @@ var tt = JSON.parse(nod);
    <body>
       <body onload="myfunction()">
        <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-         <div class="navbar-brand">
-           <a class="navbar-item" href="">
-            <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif;"><strong>InNav</strong></span><span style="font-size: 1.4rem; margin-left: 1vw; margin-right: 1vw; font-weight: 300;">Indoor Navigation Portal</span>
-           </a>
+        <div class="navbar-brand" href="user-landing.php">
+          <a class="navbar-item" href="">
+           <span class="icon is-normal">
+            <i class="fas fa-2x  fa-home" href="user-landing.php"></i>
+           </span>
+           <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav</strong></span>
 
-           <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-             <span aria-hidden="true"></span>
-             <span aria-hidden="true"></span>
-             <span aria-hidden="true"></span>
-           </a>
-         </div>
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
 
-         <div id="navbarBasicExample" class="navbar-menu">
-           <div class="navbar-start">
-            <a class="navbar-item">
-             How to use
-            </a>
-            <a class="navbar-item">
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+          </div>
+
+
+          <div class="navbar-end">
+           <div class="navbar-item">
+               <a class="button is-primary" href="select.php">
+                 <strong>Back to menu</strong>
+               </a>
+           </div>
+           <div class="navbar-item">
+            <a class="button is-light" href="aboutus.htm">
               About Us
             </a>
            </div>
-
-           <div class="navbar-end">
-             <div class="navbar-item">
-                 <a class="button is-primary" href="select.php">
-                   <strong>Back to Menu</strong>
-                 </a>
-             </div>
-             </div>
+           <div class="navbar-item">
+            <a class="button is-light" href="howtouseuser.htm">
+             How to use
+            </a>
            </div>
+          </div>
+          </div>
        </nav>
 
        <script>
@@ -942,18 +949,16 @@ var tt = JSON.parse(nod);
            <div class="way">
 
             <div class="">
-             <a class="button is-link is-rounded" id="next" type = "button" onclick="Next()">Next</a>
-             <a class="button is-link is-rounded" id="previous" type = "button" onclick="Previous()">Previous</a>
-             <p id="display_next"></p>
-
+             <a class="button is-link is-fullwidth" id="next" type = "button" onclick="Next()" style="margin: 2vh 1vw;">Next</a>
+             <a class="button is-link is-fullwidth" id="previous" type = "button" onclick="Previous()" style="margin: 2vh 1vw;">Previous</a>
             </div>
-
+             <p id="display_next" style="max-width: 100px; padding: 1vh 1vw;"></p>
             <br><br>
 
 
 
             <div class="">
-             <button id="but1" class="button is-warning">Complaint</button>
+             <button id="but1" class="button is-danger is-fullwidth" style="margin: 2vh 1vw;">Complaint</button>
                <div class="fullscreen-container">
                 <div id="popdiv">
                  <div class="card" style="width:100%;max-width:600px;margin:auto;">
@@ -978,7 +983,7 @@ var tt = JSON.parse(nod);
                            var obj = JSON.parse(tr);
                            for(var b=0;b<obj.cords.length;b++){
                               for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                                 if(obj.cords[b].Tags[c]!="undefined")
+                                 if(obj.cords[b].Tags[c]!="undefined" && obj.cords[b].Tags[c]!="dummy" )
                                 document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
                               }
                            }
@@ -1030,12 +1035,10 @@ var tt = JSON.parse(nod);
                    </form>
                   </div>
                  </div>
-
                 </div>
               </div>
 
            </div>
-
            </div>
           </div>
          </div>
@@ -1056,7 +1059,7 @@ var tt = JSON.parse(nod);
               <label class="label" style="display: inline-block;padding-right: 0.5vw;">Active Complaint: </label><p style="display: inline-block;" id="cpl"></p><br />
               <label class="label" style="display: inline-block;padding-right: 0.5vw;">Audio Landmark: </label><p id="audio" style="display: none;"></p> <audio controls style="width: 100%; height: 5vh;" src="" id='ad'></audio><br />
               <label class="label" style="display: inline-block;padding-right: 0.5vw;">Image Landmark: </label><p id="image" style="display: none;"></p> <img src="" style="max-width: 100%; max-height:30vh;" id="preview">
-              <a class="button is-light is-fullwidth is-medium" id="bt2" style="margin-top: 4vh;">
+              <a class="button is-success is-fullwidth is-medium" id="bt2" style="margin-top: 4vh;">
                 OK
               </a>
            </div>
@@ -1095,11 +1098,11 @@ var tt = JSON.parse(nod);
              </tr>
              <tr>
               <td style="color: #0023F5; text-align: center;">Blue</td>
-              <td>Path Nodes</td>
+              <td>Path nodes</td>
              </tr>
              <tr>
               <td style="color: #EB3223; text-align: center;">Red</td>
-              <td>Source Node</td>
+              <td>Source Node/ Seen node</td>
              </tr>
              <tr>
               <td style="color: #9EF74D; text-align: center;">Green</td>
@@ -1107,7 +1110,7 @@ var tt = JSON.parse(nod);
              </tr>
              <tr>
               <td style="color: #ffcb00; text-align: center;">Yellow</td>
-              <td>Selected Node</td>
+              <td>Selected node</td>
              </tr>
             </table><br /><br />
            </div>
@@ -1115,7 +1118,7 @@ var tt = JSON.parse(nod);
         </div>
 
 
-        <div class="user-input-wrapper">
+        <div class="user-input-wrapper" style="padding-top: 2vh;">
          <div class="columns">
           <div class="column"></div>
           <div class="column">
@@ -1136,7 +1139,7 @@ var tt = JSON.parse(nod);
                           for(var b=0;b<obj.cords.length;b++){
 
                              for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                            if(obj.cords[b].Tags[c]!="undefined")
+                            if(obj.cords[b].Tags[c]!="undefined" && obj.cords[b].Tags[c]!="dummy" )
                                document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
                              }
 
@@ -1166,7 +1169,7 @@ var tt = JSON.parse(nod);
                         for(var b=0;b<obj.cords.length;b++){
 
                             for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                           if(obj.cords[b].Tags[c]!="undefined")
+                           if(obj.cords[b].Tags[c]!="undefined" && obj.cords[b].Tags[c]!="dummy" )
                               document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
                             }
 
@@ -1220,5 +1223,3 @@ var tt = JSON.parse(nod);
        </div>
    </body>
 </html>
-user.php
-Displaying user.php.

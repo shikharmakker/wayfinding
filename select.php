@@ -82,7 +82,7 @@ $r = json_encode($buildings);
 
  <body>
   <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-   <div class="navbar-brand" href="user-landing.php">
+   <div class="navbar-brand" href="user_land.html">
      <a class="navbar-item" href="">
       <span class="icon is-normal">
        <i class="fas fa-2x   fa-home" href="user-landing.php"></i>
@@ -108,7 +108,7 @@ $r = json_encode($buildings);
        </a>
       </div>
       <div class="navbar-item">
-       <a class="button is-light" href="howtouse.htm">
+       <a class="button is-light" href="howtouseuser.htm">
         How to use
        </a>
       </div>

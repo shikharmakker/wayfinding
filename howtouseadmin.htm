@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ <link href="css/index.css" type="text/css" rel="stylesheet">
+ <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+ <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
+ <title></title>
+ <style>
+       body{
+           font-family: 'Libre Franklin', sans-serif;
+          }
+          section{
+           height:7rem;
+           font-size: 5rem;
+          }
+          .content{
+           margin: 2vh 1vw;
+          }
+ </style>
+</head>
+
+<body>
+ <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand" href="user-landing.php">
+    <a class="navbar-item" href="">
+     <span class="icon is-normal">
+      <i class="fas fa-2x	 fa-home" href="user-landing.php"></i>
+     </span>
+     <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav Administration</strong></span>
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+    </div>
+    <div class="navbar-end">
+     <div class="navbar-item">
+      <a class="button is-light" href="aboutus.htm">
+        About Us
+      </a>
+     </div>
+     </div>
+    </div>
+ </nav>
+
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+     // Get all "navbar-burger" elements
+     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+     // Check if there are any navbar burgers
+     if ($navbarBurgers.length > 0) {
+
+       // Add a click event on each of them
+       $navbarBurgers.forEach( el => {
+         el.addEventListener('click', () => {
+
+           // Get the target from the "data-target" attribute
+           const target = el.dataset.target;
+           const $target = document.getElementById(target);
+
+           // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+           el.classList.toggle('is-active');
+           $target.classList.toggle('is-active');
+         });
+       });
+     }
+
+    });
+
+  </script>
+
+  <section class="hero is-primary">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          <strong>How to use InNav</strong>
+        </h1>
+      </div>
+    </div>
+  </section>
+  <!-- PLACE CONTENT HERE -->
+  <div class="content">
+   <h4><a id="For_Navigation_0"></a>How to edit a map</h4>
+   <ol>
+   <li>Login to your account. If you are a new user. click on ‘Register’ and fill the form to sign up as an administrator. On logging in, you will be directed to your dashboard.</li>
+   <li>The dashboard contains all your annotated building-floor-maps. You can maintain three past versions of each map. You can access the maps by clicking on the appropriate labels.</li>
+   <li>When you select a version of a map, a window will pop up on the screen, showing a preview of the map, along with links to update or edit the map. For editting a map, you will be redirected to the indoor navigation portal.</li>
+   <br />
+   <strong><li>Editting the map</li></strong>
+   <ul style="list-style-type:;">
+   <li>You can add a junction by selecting ‘Junction’ from the main menu. A grid will appear on the map. Choose the point on the map you wish to add as a junction. Fill the name and other relevant information about the juntion in the form which appears. You can also add audio and visual landmarks for the junction. Submit the form. Your junction has now been added to the map!</li>
+   <li>For adding a new path, select ‘Path’. Now, choose 2 junctions between which you want to make the path.</li>
+   <li>If you wish to stop an ongoing action, select ‘Stop Action’ from the main menu.</li>
+   <li>To remove a junction, click on ‘Clear’ and select the junction.</li>
+   <li>To remove all the junctions and information stored, click on ‘Clear All’.</li>
+   <li>After doing all the changes you want, click on ‘Submit’. A window requiring your password will pop up. Fill your password and submit.</li><br />
+  </ul>
+     You have successfully edited the map!
+ </ol>
+ </div>
+
+</body>
+</html>
