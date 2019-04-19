@@ -4,23 +4,33 @@ include('Constants.php');?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link href="css/index.css" type="text/css" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
   <style>
+  body{
+      max-height: 100vh;
+      font-family: 'Libre Franklin', sans-serif;
+     }
   .card-wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100vh - 10rem);
   }
   .card-header-title{
    font-size: 2rem
   }
-  .label{
-   font-weight: 500;
+  .field-label{
+   flex-grow: 1.5;
+  }
+  .columns a{
+   color: #666;
+  }
+  .columns a:hover{
+   color: #000;
   }
  </style>
  <script language = JavaScript1.2>
@@ -36,38 +46,41 @@ include('Constants.php');?>
  <body>
   <div class="body-content">
    <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a class="navbar-item" href="">
-          <span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span>
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
+    <div class="navbar-brand" href="user-landing.php">
+      <a class="navbar-item" href="">
+       <span class="icon is-normal">
+        <i class="fas fa-2x  fa-home" href="user-landing.php"></i>
+       </span>
+       <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav Administraton</strong></span>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
     </div>
 
     <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">
-            How to use
-          </a>
-          <a class="navbar-item">
-              About Us
-          </a>
+      <div class="navbar-start">
+      </div>
+      <div class="navbar-end">
+       <div class="navbar-item">
+        <a class="button is-light" href="aboutus.htm">
+          About Us
+        </a>
+       </div>
+       <div class="navbar-item">
+        <a class="button is-light" href="howtouse.htm">
+         How to use
+        </a>
+       </div>
+        <div class="navbar-item">
+            <a class="button is-primary" href="login.php">
+              <strong>Login</strong>
+            </a>
         </div>
-
-        <div class="navbar-end">
-            <div class="navbar-item">
-                    <a class="button is-primary" href="login.php">
-                        <strong>Login</strong>
-                    </a>
-            </div>
-            </div>
-        </div>
-
-  </nav>
+       </div>
+      </div>
+   </nav>
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -100,7 +113,7 @@ include('Constants.php');?>
 
       <br />
       <div  class="card-wrapper">
-        <div class="card" style="width:100%;max-width:900px;margin:auto;">
+        <div class="card" style="width:100%;max-width:700px;margin:auto;">
           <div class="card-header">
             <p class="card-header-title">
               Register
@@ -154,7 +167,7 @@ include('Constants.php');?>
               </div>
             </div>
           </div>
-          
+
            <div class="field is-horizontal">
             <div class="field-label is-normal">
               <label class="label">Password</label>
@@ -186,16 +199,18 @@ include('Constants.php');?>
               </div>
              </div>
              <div class="field">
-               <p class="control" style="margin-top:1.5rem;">
+               <p class="control" style="">
                 <input style="width:100%;" id="button" type="submit" value="Register" name="Register" class="button is-success is-medium"/>
                </p>
              </div>
+             <div class="columns">
+              <div class="column">
+               <a href="login.php">Already a user? Sign in.</a>
+              </div>
+             </div>
            </div>
 
-
-          
-         
-                  </form>
+           </form>
           </div>
         </div>
       </div>
@@ -244,13 +259,13 @@ include('Constants.php');?>
                   $("#form")[0].reset();
               }
                   //alert(response);
-                  
+
 
                   });
-              alert("Thanks for the response");
-            //  alert("Check your registered email for verification ");      
+              alert("Thanks for the response. Check your registered email for username");
+            //  alert("Check your registered email for verification ");
             }
-          
+
         });
     });
 

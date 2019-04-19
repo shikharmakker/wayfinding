@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <?php include('Constants.php');
 $floor = $_GET['floor'];
@@ -8,7 +10,6 @@ $x = $building.$floor;
 <html>
    <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="css/index.css" type="text/css" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
@@ -18,7 +19,9 @@ $x = $building.$floor;
           font-family: 'Libre Franklin';
          }
          .content{
-          margin: 0.5vh 1vw;
+          margin-top: 5vh;
+          margin-left: 0.5vw;
+          margin-right: 0.5vw;
          }
          .column{
           padding: 0px;
@@ -31,64 +34,16 @@ $x = $building.$floor;
              background-size: 600px 600px;
              max-width: 100vw;
             }
-            @media only screen and (max-width: 350px){
-             .grid-item {
-              padding: 0.165rem;
-              opacity: 0.8;
-             }
-            }
-
-            @media only screen and (min-width: 350px){
-             .grid-item {
-              padding: 0.19rem;
-              opacity: 0.8;
-             }
-            }
-            @media only screen and (min-width: 400px){
-             .grid-item {
-              padding: 0.22rem;
-              opacity: 0.8;
-             }
-            }
-            @media only screen and (min-width: 700px){
-             .grid-item {
-              padding: 0.4rem;
-              opacity: 0.8;
-             }
-            }
-            @media only screen and (min-width: 1000px){
-             .grid-item {
-              padding: 0.25rem;
-              opacity: 0.8;
-             }
-            }
-            @media only screen and (min-width: 1100px){
-             .grid-item {
-              padding: 0.32rem;
-              opacity: 0.8;
-             }
-            }
             .fullscreen-container {
-              display: none;
-              position: fixed;
-              top: 0;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              background-color: #00000038;
-              z-index: 9999;
+             display: none;
+             position: fixed;
+             top: 0;
+             bottom: 0;
+             left: 0;
+             right: 0;
+             background-color: #29292924;
+             z-index: 9999;
             }
-
-           #popdiv {
-             background-color: white;
-             position: absolute;
-             top: 25vh;
-             left: 28vw;
-             min-width: 40vw;
-             min-height: 30vh;
-             padding: 2vh 2vw;
-           }
-
 
          #example2 {
           display: inline-block;
@@ -109,10 +64,6 @@ $x = $building.$floor;
          padding: .5rem .75rem;
          position: relative;
         }
-        .select{
-         width: 60%;
-        }
-
          .aid{
           display: inline-block;
           float: right;
@@ -190,43 +141,151 @@ $x = $building.$floor;
           height: 100%;
          }
           .fullscreen-container {
-                display: none;
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgba(90, 90, 90, 0.5);
-                z-index: 9999;
+           display: none;
+           position: fixed;
+           top: 0;
+           bottom: 0;
+           left: 0;
+           right: 0;
+           background-color: #29292924;
+           z-index: 9999;
               }
 
-             #popdiv {
-               width: 50%;
-               height: 50%;
-               background-color: white;
-               position: absolute;
-               top: 100px;
-               left: 350px;
-             }
- .full-container {
-                display: none;
-                position: fixed;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: rgba(90, 90, 90, 0.5);
-                z-index: 9999;
+              .full-container{
+               display: none;
+               position: fixed;
+               top: 0;
+               bottom: 0;
+               left: 0;
+               right: 0;
+               background-color: #29292924;
+               z-index: 9999;
+              }
+              .card-wrapper{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: calc(100vh - 10rem);
+              }
+              .card-header-title{
+               font-size: 2rem;
               }
 
-             #pop {
-               width: 50%;
-               height: 50%;
-               background-color: white;
-               position: absolute;
-               top: 100px;
-               left: 350px;
-             }
+              @media only screen and (max-width: 350px){
+               .grid-item {
+                padding: 0.165rem;
+                opacity: 0.8;
+               }
+               #popdiv, #pop {
+                 top: 10%;
+                 background-color: white;
+                 position: absolute;
+                 min-width: 40vw;
+                 min-height: 49vh;
+               }
+               .user-input-wrapper .column{
+                padding: 1vh 5vw;
+               }
+
+              }
+
+
+              @media only screen and (min-width: 350px){
+               .grid-item {
+                padding: 0.19rem;
+                opacity: 0.8;
+               }
+               #popdiv, #pop {
+                 top: 10%;
+                 background-color: white;
+                 position: absolute;
+                 min-width: 40vw;
+                 min-height: 49vh;
+               }
+               .user-input-wrapper .column{
+                padding: 1vh 5vw;
+               }
+              }
+              @media only screen and (min-width: 400px){
+               .grid-item {
+                padding: 0.22rem;
+                opacity: 0.8;
+               }
+               #popdiv, #pop {
+                 top: 10%;
+                 background-color: white;
+                 position: absolute;
+                 min-width: 40vw;
+                 min-height: 49vh;
+               }
+               .user-input-wrapper .column{
+                padding: 1vh 5vw;
+               }
+
+              }
+              @media only screen and (min-width: 700px){
+               .grid-item {
+                padding: 0.4rem;
+                opacity: 0.8;
+               }
+               #popdiv, #pop {
+                 top: 10%;
+                 background-color: white;
+                 position: absolute;
+                 min-width: 40vw;
+                 min-height: 49vh;
+               }
+               .user-input-wrapper .column{
+                padding: 1vh 5vw;
+               }
+              }
+              @media only screen and (min-width: 1000px){
+               .grid-item {
+                padding: 0.25rem;
+                opacity: 0.8;
+               }
+               #popdiv, #pop {
+                 top: 10%;
+                 background-color: white;
+                 position: absolute;
+                 min-width: 40vw;
+                 min-height: 49vh;
+               }
+               .user-input-wrapper .column{
+                padding: 1vh 5vw;
+               }
+              }
+              @media only screen and (min-width: 1100px){
+               .grid-item {
+                padding: 0.32rem;
+                opacity: 0.8;
+               }
+
+                #popdiv, #pop {
+                  top: 20%;
+                  left: 30%;
+                  background-color: white;
+                  position: fixed;
+                  min-width: 40vw;
+                  min-height: 49vh;
+                }
+                #pop{
+                 top: 10%;
+                }
+                .user-input-wrapper .column{
+                 padding: 1vh 1vw;
+                }
+                .user-input-wrapper .field-body{
+                 width: 150px;
+                }
+
+              }
+              #pop p{
+               margin-bottom: 0.5rem;
+              }
+              #pop .card-header-title{
+               margin: 0px;
+              }
       </style>
       <script>
       function myfunction(){
@@ -256,12 +315,21 @@ $x = $building.$floor;
      $(".fullscreen-container").fadeOut(200);
    });
  });
+           $(function() {
+
+   $("#bt2").click(function() {
+     $(".full-container").fadeOut(200);
+   });
+ });
 
            $(function () {
      $("#btnSub").click(function () {
      //  alert("hello");
-          var tag = document.getElementById("complaint").value;
-             var comp = document.getElementById("prob").value;
+         var tag = document.getElementById("complaint").value;
+          var comp = $("input[name='prob']:checked").val();
+          if(comp == 'Other'){
+            comp = "Other: " + document.getElementById("otherdata").value;
+          }
             // alert(tag);
              var val;
               var obj = JSON.parse(tr);
@@ -290,13 +358,13 @@ $("#form")[0].reset();
 });
      });
  });
-          
+
   var img = '<?php echo $x ;?>';
 
 
            //alert(nd);
       var nod = $.ajax({
-    type: 'POST',       
+    type: 'POST',
     url: "node.php",
     data: {map:img},
     dataType: 'json',
@@ -309,9 +377,9 @@ $("#form")[0].reset();
 }).responseText;
 
 //alert(nod);
-var a = nod.length ; 
-var tt = JSON.parse(nod); 
- 
+var a = nod.length ;
+var tt = JSON.parse(nod);
+
 
 
 
@@ -327,14 +395,14 @@ var tt = JSON.parse(nod);
           $node[$i]['Tags'] = $ro['Tags'];
           $node[$i]['Description'] = $ro['Description'];
           $node[$i]['audio'] = $ro['audio'];
-          $node[$i]['image'] = $ro['image'];  
+          $node[$i]['image'] = $ro['image'];
           $i++;
       }
       ?>
 
      <script>
 
-     
+
       <?php
       $sql = "SELECT JSON_string FROM maps_data WHERE name = '$x' and version = '0' limit 1";
       $result = mysqli_query($conn, $sql);
@@ -362,6 +430,8 @@ var tt = JSON.parse(nod);
         var src = -1,dest = -1;
          var sel = 0;
          var prev = -1;
+         var select;
+         var short;
         function clk(i){
           /*     for(var c = 0; c < tt.length; c++){
                 //alert("aa");
@@ -373,21 +443,53 @@ var tt = JSON.parse(nod);
               }
                 yellow(i);
               }*/
-         document.getElementById("description").innerHTML="";
+         //document.getElementById("description").innerHTML="";
             if(find(i,chords)!=-1){
-              $(".full-container").fadeTo(200, 1);
+              select = i;
+             //
               if(sel == 1){
                 red(prev);
                 sel = 0;
               }
-                document.getElementById("description").innerHTML="";
+           //     document.getElementById("description").innerHTML="";
                 for (var c = 0; c < obj.cords.length; c++) {
            // green(obj.cords.value);
                 if(i==obj.cords[c].value){
-                  document.getElementById("name").innerHTML=obj.cords[c].name;
-                 
-                document.getElementById("description").innerHTML=obj.cords[c].description;
-                document.getElementById("tags").innerHTML=obj.cords[c].Tags;}
+                  $(".full-container").fadeTo(200, 1);
+               // document.getElementById("n").innerHTML=obj.cords[c].name;
+
+               // document.getElementById("d").innerHTML=obj.cords[c].description;
+                //document.getElementById("t").innerHTML=obj.cords[c].Tags;
+               // document.getElementById("name").innerHTML=obj.cords[c].name;
+
+               // document.getElementById("description").innerHTML=obj.cords[c].description;
+              //  document.getElementById("tags").innerHTML=obj.cords[c].Tags;
+              var img = '<?php echo $x ;?>';
+              var test ;
+
+        var nde = $.ajax({
+         type: 'POST',
+          url: "getnode.php",
+           data: {map:img, value:i},
+
+          context: document.body,
+        global: false,
+        async:false,
+        success: function(data) {
+        //alert(data);
+        return data;
+        }
+        }).responseText;
+             // alert(nde);
+              var ob = JSON.parse(nde);
+               document.getElementById("n").innerHTML=ob.name;
+
+                document.getElementById("d").innerHTML=ob.Description;
+                document.getElementById("t").innerHTML=ob.Tags;
+                document.getElementById("ad").src = 'audio/2739SampleAudio_0.4mb.mp3';
+
+                document.getElementById("preview").src ="img/"+ob.image;
+              }
                 yellow(i);
               }
               sel = 1;
@@ -521,12 +623,13 @@ var tt = JSON.parse(nod);
            // green(obj.cords.value);
                 if(i==obj.cords[c].value){
                   document.getElementById("name").innerHTML=obj.cords[c].name;
-                 
+
                 document.getElementById("description").innerHTML=obj.cords[c].description;
                 document.getElementById("tags").innerHTML=obj.cords[c].Tags;}
                 yellow(i);
               }
            }
+
            return;
         }
 
@@ -612,6 +715,7 @@ var tt = JSON.parse(nod);
         function red(i) {
           document.getElementById(i).style.backgroundColor = "red";
         }
+        var cut;
         //SAMPLE=>{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}
         function Submit(){
          reset();
@@ -631,6 +735,8 @@ var tt = JSON.parse(nod);
             }
           }
 
+
+
          // var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
          var obj = JSON.parse(tr);
          for(var b=0;b<obj.cords.length;b++){
@@ -638,61 +744,108 @@ var tt = JSON.parse(nod);
           for(var c=0;c<obj.cords[b].connected_nodes.length;c++){
             connected_nodes[b][c] = obj.cords[b].connected_nodes[c];
           }
-
          }
-          var img = '<?php echo $x ;?>';
+         var img = '<?php echo $x ;?>';
       //   alert(src);
-          var n = $.ajax({
-         type: 'POST',       
-          url: "RunTest.php",
+        var n = $.ajax({
+         type: 'POST',
+          url: "shortest.php",
            data: {map:img, source:sr, destination:des},
-         
+
           context: document.body,
         global: false,
         async:false,
         success: function(data) {
+        //alert(data);
         return data;
         }
         }).responseText;
-       //   alert(n);
+        //  alert(n);
+          short = JSON.parse(n);
+        // alert(n);
+        for(var i = 0 ; i < short.length ; i++){
+
+          if(i==short.length-1){
+            blue(next);
+
+            return;
+          }
+          var curr = short[i].value;
+          var next = short[i+1].value;
+          make_path(curr,next);
+          blue(curr);
+          if(i==0){
+            //blue(short[0].value);
+            red(src);
+          }
+         cut = short[0].value;
+
+        }
+
+
 
          document.getElementById("example2").style.opacity = 0.8;
          console.log(src+" "+dest);
-         shortest_path();
-                   red(src);
+       //  shortest_path();
 
 
 
-         blue(dest);
         }
+        //red(src);
         var temp_bool = false
         var initial;
-        function Next() {
-          if(temp_bool==false){
-            initial = 0
-           }
-          for (var c = 0; c < obj.cords.length; c++) {
-            if(shortest_path_var[initial]==obj.cords[c].value){
-                 if(initial!=shortest_path_var.length)
-                      document.getElementById("display_next").innerHTML="From "+obj.cords[c].name+" go to "+obj.cords[c+1].name;
-            }
+        function dispred(){
+          for(var i = 0 ; i < short.length;i++){
+            red(short[i].value);
           }
-          initial++;
+        }
+
+        function Next() {
+          //var sele = select;
+          //alert(short);
+            // alert(cut);
+          for(var i = 0 ; i < short.length; i++){
+            //alert(short[i].value);
+            if(cut == short[i].value){
+              if(i == short.length - 1){
+                document.getElementById("display_next").innerHTML = short[i].nextway;
+                dispred();
+                              yellow(short[i].value);
+                break;
+              }
+              cut = short[i+1].value;
+              document.getElementById("display_next").innerHTML = short[i].nextway;
+              dispred();
+              yellow(short[i].value);
+              break;
+            }
+           // alert(short[i].nextway);
+          }
+
+
         }
         function Previous() {
-          if(temp_bool==false){
-            return;
-           }
-          for (var c = 0; c < obj.cords.length; c++) {
-            if(shortest_path_var[initial]==obj.cords[c].value){
-                 if(initial!=shortest_path_var.length)
-                      document.getElementById("display_prev").innerHTML="From "+obj.cords[c].name+" go to "+obj.cords[c-1].name;
+            for(var i = 0 ; i < short.length; i++){
+            //alert(short[i].value);
+            if(cut == short[i].value){
+              if(i == short.length - 1){
+                document.getElementById("display_next").innerHTML = short[i].prevway;
+                dispred();
+                              yellow(short[i].value);
+                break;
+              }
+              cut = short[i-1].value;
+              document.getElementById("display_next").innerHTML = short[i].prevway;
+              dispred();
+              yellow(short[i].value);
+              break;
             }
+           // alert(short[i].nextway);
           }
-          initial--;
         }
 
       </script>
+
 
    </head>
    <body>
@@ -763,91 +916,100 @@ var tt = JSON.parse(nod);
          <div class="column is-flex level-item">
           <div class="level-item">
            <div class="way">
-            <div>
-             <p>Way:</p>
-             <p id="display_name"></p>
-            </div>
+
             <div class="">
              <a class="button is-link is-rounded" id="next" type = "button" onclick="Next()">Next</a>
              <a class="button is-link is-rounded" id="previous" type = "button" onclick="Previous()">Previous</a>
              <p id="display_next"></p>
-             <p id="display_prev"></p>
+
             </div>
-            <div class="">
-             <p>Name:</p>
-             <p id="name"></p>
-            </div>
-            <div class="">
-             <p>Description:</p>
-             <p id="description"></p>
-            </div>
-             <div class="">
-             <p>Services:</p>
-             <p id="tags"></p>
-            </div>
-            
+
+            <br><br>
+
+
 
             <div class="">
              <button id="but1" class="button is-warning">Complaint</button>
                <div class="fullscreen-container">
                 <div id="popdiv">
-                 <form method="post" id="form">
-                  <div class="field is-horizontal">
-                   <div class="field-label is-normal">
-                     <label class="label">Service</label>
-                   </div>
-                   <div class="field-body">
-                     <div class="field">
-                       <div class="control">
-                        <div class="select is-fullwidth">
-                        <select name="complaint" id = "complaint" class="select">
-                        <script language="javascript" type="text/javascript">
-                         var obj = JSON.parse(tr);
-                         for(var b=0;b<obj.cords.length;b++){
-                            for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                               if(obj.cords[b].Tags[c]!="undefined")
-                              document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
-                            }
-                         }
-                         </script>
-                        </select>
+                 <div class="card" style="width:100%;max-width:600px;margin:auto;">
+                  <div class="card-header">
+                   <p class="card-header-title">
+                    Complaint Form
+                   </p>
+                  </div>
+                  <div class="card-content">
+                   <form method="post" id="form">
+                    <p>Please fill the following fields to file your complaint.</p>
+                    <div class="field is-horizontal">
+                     <div class="field-label is-normal">
+                       <label class="label">Service</label>
+                     </div>
+                     <div class="field-body">
+                       <div class="field">
+                         <div class="control">
+                          <div class="select is-fullwidth">
+                          <select name="complaint" id = "complaint" class="select">
+                          <script language="javascript" type="text/javascript">
+                           var obj = JSON.parse(tr);
+                           for(var b=0;b<obj.cords.length;b++){
+                              for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                                 if(obj.cords[b].Tags[c]!="undefined")
+                                document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                              }
+                           }
+                           </script>
+                          </select>
+                         </div>
+                        </div>
                        </div>
                       </div>
                      </div>
-                    </div>
-                   </div>
 
-                   <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                      <label class="label">Tell your Complaint</label>
-                    </div>
-                    <div class="field-body">
-                      <div class="field">
-                        <div class="control">
-                           <input type="radio" name="prob" value="Service provider unavailable" id="provider_missing" />Service provider unavailable<br />
-             <input type="radio" name="prob" value="Service is down" id="disabled" />Service is down<br />
-              <input type="radio" name="prob" value="Unserviceable" id="unserviceable" />Unserviceable<br />
-               <input type="radio" name="prob" value="Service Obsolete" id="obsolete" />Service Obsolete<br />
-                <input type="radio" name="prob" value="Other" id="other" />Other<br />
+                     <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Complaint</label>
+                      </div>
+                      <div class="field-body">
+                        <div class="field">
+                         <script type="text/javascript">
+                           function showtx() { document.getElementById('otherdata').style.display = 'block'; }
+                           function hidetx() { document.getElementById('otherdata').style.display = 'none'; }
+                         </script>
+                          <div class="control">
+                             <input type="radio" name="prob" value="Service provider unavailable" id="provider_missing" onclick="hidetx();" />Service provider unavailable<br />
+                             <input type="radio" name="prob" value="Service is down" id="disabled" onclick="hidetx();" />Service is down<br />
+                             <input type="radio" name="prob" value="Unserviceable" id="unserviceable" onclick="hidetx();" />Unserviceable<br />
+                             <input type="radio" name="prob" value="Service Obsolete" id="obsolete" onclick="hidetx();" />Service Obsolete<br />
+                             <input type="radio" name="prob" value="Other" id="other" onclick="showtx();" />Other<br />
+                             <input id="otherdata" style="display: none;" name="otherdata" class="textarea" type="textarea" placeholder="Describe your complaint here."></textarea>
+                          </div>
                         </div>
                       </div>
                     </div>
+                    <div class="columns" style="margin-top: 4vh; margin-bottom: 1vh;">
+                     <div class="column" style="margin-right: 2vw;">
+                      <p class="control">
+                        <a class="button is-success is-fullwidth is-medium" id="btnSub">
+                          Submit
+                        </a>
+                      </p>
+                     </div>
+                     <div class="column">
+                      <p class="control">
+                        <a class="button is-light is-fullwidth is-medium" id="but2">
+                          Cancel
+                        </a>
+                      </p>
+                     </div>
+                    </div>
+                   </form>
                   </div>
-                   <div class="field is-grouped is-grouped-centered">
-                     <p class="control">
-                       <a class="button is-success is-fullwidth" id="btnSub">
-                         Submit
-                       </a>
-                     </p>
-                     <p class="control">
-                       <a class="button is-light is-fullwidth" id="but2">
-                         Cancel
-                       </a>
-                     </p>
-                   </div>
-                 </form>
+                 </div>
+
                 </div>
               </div>
+
            </div>
 
            </div>
@@ -855,13 +1017,28 @@ var tt = JSON.parse(nod);
          </div>
 
 
-   <!--      <div class="full-container">
-         <div id="pop">
-           <label class="label">Name</label><p id="n"></p><br>
-            <label class="label">Description</label><p id="d"></p><br>
-            <label class="label">Services</label><p id="t"></p>
-         </div>
-       </div> -->
+         <div class="full-container">
+          <div id="pop">
+           <div class="card" style="width:100%;max-width:600px;margin:auto;">
+            <div class="card-header">
+             <p class="card-header-title">
+              Junction information
+             </p>
+            </div>
+            <div class="card-content">
+              <p>Please fill the following fields to file your complaint.</p>
+              <label class="label" style="display: inline-block;">Name</label><p style="display: inline-block;" id="n">dfvd</p><br />
+              <label class="label" style="display: inline-block;">Description</label><p id="d" style="display: inline-block;">vdcd</p><br />
+              <label class="label" style="display: inline-block;">Services</label><p id="t" style="display: inline-block;"></p><br />
+              <label class="label" style="display: inline-block;">Audio</label><p id="audio" style="display: none;"></p> <audio controls style="width: 100%; height: 5vh;" src="" id='ad'></audio><br />
+              <label class="label" style="display: inline-block;">Image</label><p id="image" style="display: none;"></p> <img src="" style="max-width: 100%; max-height:30vh;" id="preview">
+              <a class="button is-light is-fullwidth is-medium" id="bt2" style="margin-top: 4vh;">
+                OK
+              </a>
+           </div>
+          </div>
+       </div>
+      </div>
 
 
          <div class="column is-half is-flex">
@@ -914,70 +1091,82 @@ var tt = JSON.parse(nod);
         </div>
 
 
-        <div class="level-item" style="">
-         <div class="user-input-wrapper" style="min-width: 30%">
-          <div class="user-input" style="display: block;">
+        <div class="user-input-wrapper">
+         <div class="columns">
+          <div class="column"></div>
+          <div class="column">
            <div class="columns">
-              <table style="border-color: white;">
-               <tr>
-                <td style="width:12px; text-align: right;">Source</td>
-                <td style="width:100px;">
-                 <div class="select is-primary is-small" style="width:100px;">
-                 <select name="source" id = "source" class="select is-fullwidth">
-                  <script language="javascript" type="text/javascript">
-                     //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
-                    var obj = JSON.parse(tr);
-                    for(var b=0;b<obj.cords.length;b++){
-
-                       for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                      if(obj.cords[b].Tags[c]!="undefined")
-                         document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
-                       }
-
-                    }
-
-                   </script>
-                  </select>
-                 </div>
-                </td>
-           </tr>
-               <tr>
-                <td style="width:12px; text-align: right;">Destination</td>
-                <td style="width:100px;">
-                 <div class="select is-primary is-small" style="width:100px;">
-                 <select name="destination" id = "destination" class="select is-fullwidth">
-                  <script language="javascript" type="text/javascript">
-                     //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
-                    var obj = JSON.parse(tr);
-                   for(var b=0;b<obj.cords.length;b++){
-
-                       for(var c =0; c< obj.cords[b].Tags.length ; c++){
-                      if(obj.cords[b].Tags[c]!="undefined")
-                         document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
-                       }
-
-                    }
-                  </script>
-                  </select>
-                 </div>
-                </td>
-               </tr>
-              </table>
-              <div class="column">
-               <div class="level-item">
-                <a class="button is-success is-large" id = "submit" type = "button" onclick = "Submit()" style="margin-top: 2vh; margin-left: 2vw;">Submit</a>
+            <div class="column">
+             <div class="field is-horizontal is-expanded">
+               <div class="field-label is-normal" style="margin-right: 1vw">
+                 <label class="label">Source</label>
                </div>
-              </div>
+               <div class="field-body">
+                 <div class="field">
+                   <div class="control">
+                     <div class="select is-fullwidth">
+                      <select name="source" id = "source" class="select is-fullwidth">
+                       <script language="javascript" type="text/javascript">
+                           //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
+                          var obj = JSON.parse(tr);
+                          for(var b=0;b<obj.cords.length;b++){
 
+                             for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                            if(obj.cords[b].Tags[c]!="undefined")
+                               document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                             }
 
+                          }
+
+                         </script>
+                        </select>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+            </div>
+            <div class="column">
+             <div class="field is-horizontal">
+               <div class="field-label is-normal" style="margin-right: 1vw">
+                 <label class="label">Destination</label>
+               </div>
+               <div class="field-body">
+                 <div class="field is-expanded">
+                   <div class="control">
+                     <div class="select is-fullwidth">
+                      <select name="destination" id = "destination" class="select is-fullwidth">
+                       <script language="javascript" type="text/javascript">
+                          //var tr = '{"cords":[{"value":5626,"connected_nodes":[4726],"Tags":["entry"]},{"value":3226,"connected_nodes":[4726,3229,2226],"Tags":[]},{"value":3229,"connected_nodes":[3226],"Tags":["stairs","help desk"]},{"value":2226,"connected_nodes":[3226,2240],"Tags":[]},{"value":2240,"connected_nodes":[2226],"Tags":[]},{"value":4726,"connected_nodes":[3226,5626,4750],"Tags":[]},{"value":4750,"connected_nodes":[4726],"Tags":["gents washroom","ladies washroom"]}]}'
+                         var obj = JSON.parse(tr);
+                        for(var b=0;b<obj.cords.length;b++){
+
+                            for(var c =0; c< obj.cords[b].Tags.length ; c++){
+                           if(obj.cords[b].Tags[c]!="undefined")
+                              document.write("<option>"+obj.cords[b].Tags[c]+"</option>");
+                            }
+
+                         }
+                       </script>
+                       </select>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+            </div>
+            <div class="column">
+             <div class="level-item">
+              <a class="button is-success is-normal is-fullwidth" id = "submit" type = "button" onclick = "Submit()" style="">Submit</a>
+             </div>
+            </div>
            </div>
+
+          </div>
+          <div class="column"></div>
          </div>
         </div>
-
-
-
-         </div>
-        </div>
+       </div>
 
           <!--
         <div class="aid">
@@ -1007,3 +1196,5 @@ var tt = JSON.parse(nod);
        </div>
    </body>
 </html>
+user.php
+Displaying user.php.

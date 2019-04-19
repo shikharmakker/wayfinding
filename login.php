@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
 		<head>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link href="css/index.css" type="text/css" rel="stylesheet">
-			<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-			<link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	  <link href="css/index.css" type="text/css" rel="stylesheet">
+	  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+	  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
    <title>LOGIN</title>
 			<style>
+				body{
+								max-height: 100vh;
+								font-family: 'Libre Franklin', sans-serif;
+							}
+
 			.card-wrapper{
 					display: flex;
 	    justify-content: center;
 	    align-items: center;
-	    min-height: calc(100vh - 5rem);
+	    min-height: calc(100vh - 10rem);
 			}
 			.card-header-title{
-    font-size: 2rem
+    font-size: 2rem;
+			}
+			.columns a{
+				color: #666;
+			}
+			.columns a:hover{
+				color: #000;
 			}
 		</style>
 		</head>
@@ -70,42 +81,78 @@ if(isset($_GET["session_expired"])) {
 
 <div class="body-content">
 	<nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-	<div class="navbar-brand">
-			<a class="navbar-item" href="">
-				<span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span>
-			</a>
+		<div class="navbar-brand" href="user-landing.php">
+				<a class="navbar-item" href="">
+					<span class="icon is-normal">
+						<i class="fas fa-2x	 fa-home" href="user-landing.php"></i>
+					</span>
+					<span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav Administration</strong></span>
 
-			<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-			</a>
-	</div>
-
-	<div id="navbarBasicExample" class="navbar-menu">
-			<div class="navbar-start">
-				<a class="navbar-item">
-					How to use
+				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
 				</a>
-				<a class="navbar-item">
-						About Us
-				</a>
-			</div>
+		</div>
 
-			<div class="navbar-end">
+		<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+				</div>
+
+
+				<div class="navbar-end">
+
 					<div class="navbar-item">
-									<a class="button is-primary" href="register.html">
-											<strong>Sign up</strong>
-									</a>
+						<a class="button is-light" href="aboutus.htm">
+								About Us
+						</a>
 					</div>
+					<div class="navbar-item">
+						<a class="button is-light" href="howtouse.htm">
+							How to use
+						</a>
 					</div>
-			</div>
+						<div class="navbar-item">
+										<a class="button is-primary" href="register.php">
+												<strong>Sign up</strong>
+										</a>
+						</div>
+					</div>
+				</div>
+	</nav>
 
-</nav>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+	// Get all "navbar-burger" elements
+	const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+	// Check if there are any navbar burgers
+	if ($navbarBurgers.length > 0) {
+
+			// Add a click event on each of them
+			$navbarBurgers.forEach( el => {
+					el.addEventListener('click', () => {
+
+							// Get the target from the "data-target" attribute
+							const target = el.dataset.target;
+							const $target = document.getElementById(target);
+
+							// Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+							el.classList.toggle('is-active');
+							$target.classList.toggle('is-active');
+
+					});
+			});
+	}
+
+});
+
+</script>
 
 		<br />
 		<div  class="card-wrapper">
-			<div class="card" style="width:100%;max-width:500px;margin:auto;">
+			<div class="card" style="width:100%;max-width:500px;margin:auto 0.5vw;">
 				<div class="card-header">
 					<p class="card-header-title">
 						Login
@@ -114,7 +161,7 @@ if(isset($_GET["session_expired"])) {
 				<div class="card-content">
 					<form   method="post" enctype="multipart/form-data" autocomplete="off" onsubmit="return Verify()" name="myform">
 							<div class="field">
-								Username:
+								<label><strong>Username</strong></label>
 								<p class="control has-icons-left has-icons-right">
 										<input class="input" type="text" placeholder="Enter your username here" name="username" required >
 										<span class="icon is-small is-left">
@@ -126,7 +173,7 @@ if(isset($_GET["session_expired"])) {
 								</p>
 						</div>
 						<div class="field">
-							Password:
+							<label><strong>Password</strong></label>
 								<p class="control has-icons-left">
 										<input class="input" type="password" placeholder="Enter your password here" name="password" required>
 										<span class="icon is-small is-left">
@@ -139,10 +186,19 @@ if(isset($_GET["session_expired"])) {
 						<?php } ?>
 						<div class="field">
 								<p class="control" style="margin-top:1.5rem;">
-									<strong><input style="width:100%;" id="button" type="submit" value="Login" name="login" class="button is-success"/></strong>
+									<strong><input  style="margin-top: 4vh;" id="button" type="submit" value="Login" name="login" class="button is-success is-medium is-fullwidth"/></strong>
 								</p>
-								 <center>  <a href="forget.php">Forget Password ?</a></center>
 						</div>
+						<div class="columns">
+							<div class="column" style="margin-right: 3rem;">
+								<a href="forget.php">Forgot Password?</a>
+							</div>
+							<div class="column" style="">
+								<a href="register.html">New? Create an account.</a>
+							</div>
+
+						</div>
+
 
 								</form>
 				</div>

@@ -80,16 +80,16 @@ function way($a,$q){
             return "stay";
           }
           if(($q-$a) > 0){
-            $str = "go east to ".getname($q);
+            $str = "Go east to ".getname($q);
           }
           else if(($q-$a) > -60 && ($q-$a)<0){
-            $str = "go west to ".getname($q);
+            $str = "Go west to ".getname($q);
           }
           else if(($q-$a)>=100){
-            $str = "go south to ".getname($q);
+            $str = "Go south to ".getname($q);
           }
           else{
-            $str = "go north to ".getname($q);
+            $str = "Go north to ".getname($q);
           }
           return $str;
          
@@ -117,6 +117,98 @@ function slope($p , $t ){
 
 }
 
+ function sl($a,$b){
+    $ax = mod($a);
+    $ay = div($a);
+    $bx = mod($b);
+    $by = div($b);
+    $slope = @(($by - $ay)/($bx - $ax));
+    return $slope;
+  }
+
+
+ function dirn($para,$p,$t,$n){
+    $px = mod($p);
+    $py = div($p);
+    $tx = mod($t);
+    $ty = div($t);
+    $nx = mod($n);
+    $ny = div($n);
+    $slp = sl($p,$t);
+    $sln = sl($t,$n);
+    //if($slp)
+   if($p == NULL && $para == 1){
+      if($ny - $ty == 0){
+        $dist = round(abs(($nx - $tx)*0.46));
+      }
+      else{
+        $dist = round(abs(($ny - $ty)*0.392));
+      }
+      return "Move $dist m Straight";
+    }
+    if($n == NULL && $para == 1){
+      return "You have reached your Destination";
+    }
+    if($p ==  NULL && $para == 0){
+      if($ny - $ty == 0){
+        $dist = round(abs(($nx - $tx)*0.46));
+      }
+      else{
+        $dist = round(abs(($ny - $ty)*0.392));
+      }
+      return "Move $dist m Straight";
+    }
+    if($n ==  NULL && $para == 0){
+      return "You have reached to the Source";
+    }
+    if($slp == $sln){
+      if(($ny - $ty) == 0){
+        $dist = round(abs(($nx - $tx)*0.46));
+      }
+      else{
+        $dist = round(abs(($ny - $ty)*0.392));
+      }
+      return "Move $dist m Straight";
+    }
+    else if(($tx - $px )> 0){
+      $dist = round(abs(($ny - $ty)*0.392));
+      if(($ny - $ty) > 0){
+        return "Turn to your Right and Move $dist m Striaght";
+      }
+      else if(($ny - $ty) < 0){
+        return "Turn to your Left and Move $dist m Striaght";
+      }
+    }
+    else if(($tx - $px )< 0){
+      $dist = round(abs(($ny - $ty)*0.392));
+      if(($ny - $ty) > 0){
+        return "Turn to your Left and Move $dist m Striaght";
+      }
+      else if(($ny - $ty) < 0){
+        return "Turn to your Right and Move $dist m Striaght";
+      }
+    }
+    else if(($ty-$py)>0){
+      $dist = round(abs(($nx - $tx)*0.46));
+      if(($nx - $tx) > 0){
+        return "Turn to your Left and Move $dist m Striaght";
+      }
+      else if(($nx - $tx) < 0){
+        return "Turn to your Right and Move $dist m Striaght";
+      }
+    }
+    else if(($ty-$py)<0){
+      $dist = round(abs(($nx - $tx)*0.46));
+      if(($nx - $tx) > 0){
+        return "Turn to your Right and Move $dist m Striaght";
+      }
+      else if(($nx - $tx) < 0){
+        return "Turn to your Left and Move $dist m Striaght";
+      }
+    }
+  }
+  //echo dirn(2930,3930,3955);
+
 function runTest() {
   $g = new Graph();
   global $c;
@@ -133,27 +225,25 @@ function runTest() {
     
   }
 
-  
+ 
 
 
   list($distances, $prev) = $g->paths_from($src);
   
   $path = $g->paths_to($prev, $dest);
-  $nex = NULL ;
+  
   
   $t = array();
   for($q = 0; $q < count($path); $q++){
     $pr = NULL;
+    $nex = NULL ;
             $tem = $path[$q];
-            if($q < count($path)-1)
+            if($q < count($path) - 1)
             $nex = $path[$q+1];
+            if($q > 0)
+            $pr = $path[$q-1];
             
-            if($q>0){
-            $pr = $path[$q-1];}
-            
-             //echo gettype($pr);
-            $rnex = way($tem,$nex);
-            $rprev = way($tem,$pr);
+          
             for($b = 0; $b < count($chords);$b++){
             if($tem == $chords[$b]['value']){
             //  t[q] = obj.cords[b].description;
@@ -161,8 +251,9 @@ function runTest() {
               $t[$q]['description'] = $c[$b]['description'];
               $t[$q]['name'] = $c[$b]['name'];
               $t[$q]['Tags'] = $c[$b]['Tags'];
-              $t[$q]['prevway'] = $rprev;
-              $t[$q]['nextway'] = $rnex;
+              $t[$q]['prevway'] = dirn(0, $nex,$tem,$pr);
+              $t[$q]['nextway'] = dirn(1, $pr,$tem,$nex);
+             // $t[$q]['nxt'] = dirn($pr,$tem,$nex);
               $t[$q]['x'] = mod($tem);
               $t[$q]['y'] = div($tem);
             //  $t[$q]['nextslope'] = slope($tem,$nex);
@@ -172,6 +263,7 @@ function runTest() {
             }
           } 
         }
+      //  echo gettype($t[0]['value']);
   
   print_r(json_encode($t));
   
@@ -179,38 +271,3 @@ function runTest() {
 
 
 runTest();
-
-
-
-
-
-
-/*foreach ($c as $key => $value) {
-  # code...
-  $tag = $value['Tags'];
-  $ta = implode($tag);
-  //   $string = $src_t;
-  
-    if (strstr($ta,$src_t))
-    {  
-          $src = $value['value'];
-       // echo $value['name'];
-    }
-    if(strstr($ta,$dest_t))
-    {
-        $dest = $value['value'];
-    }
-   
-}
-
-
-
-$chords = [];
-$connected_nodes = [];
-foreach ($c as $key => $value) {
-      $chords[$key]['value'] = $value['value'];
-    //  $nodes[$key]['connected_nodes'] = $value['connected_nodes'];
-      foreach ($value['connected_nodes'] as $kt => $vt) {
-            $connected_nodes[$key][$kt] = $value['connected_nodes'][$kt];
-      }
-}*/

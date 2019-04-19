@@ -2,15 +2,16 @@
 <html>
 <head>
   <title></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link href="css/index.css" type="text/css" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
   <title>Welcome!</title>
   <style>
        body{
         max-height: 100vh;
+        font-family: 'Libre Franklin', sans-serif;
        }
        section{
         height:7rem;
@@ -47,7 +48,7 @@
       }
 
       #popdiv1 {
-       min-height: 60%;
+       min-height: 65%;
        background-color: white;
        position: absolute;
        justify-content: center;
@@ -57,7 +58,7 @@
        }
 
       #popdiv2 {
-       min-height: 50%;
+       min-height: 55%;
        min-width: 40%;
        background-color: white;
        position: absolute;
@@ -78,6 +79,12 @@
         max-height: 40vh;
         max-width: 200%;
         margin: 10px;
+    }
+    .del a{
+     color: #444;
+    }
+    .del a:hover{
+     color: red;
     }
 
  </style>
@@ -129,42 +136,74 @@ $first = $row['firstname'];
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   <div class="body-content">
-     <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-     <div class="navbar-brand">
-       <a class="navbar-item" href="">
-        <span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span>
-       </a>
+   <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand" href="user-landing.php">
+      <a class="navbar-item" href="">
+       <span class="icon is-normal">
+        <i class="fas fa-2x  fa-home" href="user-landing.php"></i>
+       </span>
+       <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav Administration</strong></span>
 
-       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-         <span aria-hidden="true"></span>
-         <span aria-hidden="true"></span>
-         <span aria-hidden="true"></span>
-       </a>
-     </div>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
 
-     <div id="navbarBasicExample" class="navbar-menu">
-       <div class="navbar-start">
-        <a class="navbar-item">
-         How to use
-        </a>
-        <a class="navbar-item">
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+      </div>
+
+
+      <div class="navbar-end">
+
+       <div class="navbar-item">
+        <a class="button is-light" href="aboutus.htm">
           About Us
         </a>
        </div>
-
-       <div class="navbar-end">
-         <div class="navbar-item">
-           <div class="buttons">
-             <a class="button is-light" href="logout.php">
-               Logout<span style="display:inline-block; width:0.2rem;"></span>
-               <i class="fas fa-sign-out-alt"></i>
-             </a>
-           </div>
-         </div>
+       <div class="navbar-item">
+        <a class="button is-light" href="howtouse.htm">
+         How to use
+        </a>
        </div>
-     </div>
+         <a class="navbar-item" href="logout.php">
+           Logout<span style="display:inline-block; width:0.2rem;"></span>
+           <i class="fas fa-sign-out-alt"></i>
+         </a>
+       </div>
+      </div>
    </nav>
 
+ <script>
+ document.addEventListener('DOMContentLoaded', () => {
+
+   // Get all "navbar-burger" elements
+   const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+   // Check if there are any navbar burgers
+   if ($navbarBurgers.length > 0) {
+
+     // Add a click event on each of them
+     $navbarBurgers.forEach( el => {
+       el.addEventListener('click', () => {
+
+         // Get the target from the "data-target" attribute
+         const target = el.dataset.target;
+         const $target = document.getElementById(target);
+
+         // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+         el.classList.toggle('is-active');
+         $target.classList.toggle('is-active');
+
+       });
+     });
+   }
+
+ });
+
+ </script>
    <section class="hero is-primary">
      <div class="hero-body">
        <div class="container">
@@ -192,13 +231,13 @@ $first = $row['firstname'];
                      <th style="border: 1px solid black;width:25%">Building</th>
                      <th style="border: 1px solid black;width:20%">Floor</th>
                      <th style="border: 1px solid black;width:20%">Map Versions</th>
-                     <th style="border: 1px solid black;width:15%">Delete</th>
+                     <th style="border: 1px solid black;width:15%">Delete Map</th>
                       </tr>
                       <?php while ($ty = mysqli_fetch_array($query)){ ?>
                       <tr align="center" style="border: 1px solid black; height: 3em">
                       <td style="border: 1px solid black;"><?php echo $ty[1]?></td>
                       <td style="border: 1px solid black;"><?php echo $ty[2]?></td>
-                   
+
                       <td style="border: 1px solid black;">
                        <div class="level-item">
                         <div class="fullscreen-container" id="<?php echo($ty[1].$ty[2].'0')?>">
@@ -215,7 +254,7 @@ $first = $row['firstname'];
                              <a href="upversion.php?img<?php echo($ty[1].$ty[2])?>&version=0" class="button is-success" style="width: 60%;">Update</a><br>
                             </div>
                             <div class="level-item">
-                             <button onclick='$("#<?php echo($ty[1].$ty[2].'0')?>").fadeOut(200)' class="button is-dark">Cancel</button>
+                             <button onclick='$("#<?php echo($ty[1].$ty[2].'0')?>").fadeOut(200)' class="button is-light">Cancel</button>
                             </div>
                            </div>
                           </div>
@@ -269,7 +308,7 @@ $first = $row['firstname'];
                         <button  onClick='$("#<?php echo($ty[1].$ty[2].'1')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Previous</button>
                         <button  onClick='$("#<?php echo($ty[1].$ty[2].'2')?>").fadeTo(200, 1)' class="but1 button is-rounded is-small">Older</button>
                       </td>
-                      <td style="border: 1px solid black;"><a href='delete.php?id=<?php echo($ty[1].$ty[2]) ?>'>Delete Map</a></td>
+                      <td style="border: 1px solid black;" class="del"><a href='delete.php?id=<?php echo($ty[1].$ty[2]) ?>'>Delete Map</a></td>
                       </tr>
                       <?php } ?>
              </table>
@@ -336,23 +375,20 @@ $first = $row['firstname'];
                         </div>
                       </div>
 
-
-                      <br />
-
                       <div class="level-item">
                        <div id="image-holder"></div>
                       </div>
                        <div class="level-item">
                         <div class="field" style="width: 100%;">
-                          <p class="control" style="margin-top:1.5rem;">
-                           <strong><input id="button" type="submit" value="Upload" name="submit_image" class="button is-success is-fullwidth"/></strong>
+                          <p class="control">
+                           <strong><input id="button" type="submit" value="Upload" name="submit_image" class="button is-success is-fullwidth" style="margin-top:4vh;"/></strong>
                           </p>
                         </div>
                        </div>
                        <div class="level-item">
                         <div class="field">
-                          <p class="control" style="margin-top:1.5rem;">
-                           <button id="but-cancel" class="button is-dark is-small">Cancel</button>
+                          <p class="control">
+                           <button id="but-cancel" class="button is-light is-small">Cancel</button>
                           </p>
                         </div>
                        </div>

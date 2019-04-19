@@ -37,8 +37,8 @@ foreach ($c as $key => $value) {
 		$ct++; 
 	}
 }
-$t = array('cords'=>$tag);
-$j = json_encode($t);
+//$t = array('cords'=>$tag);
+$j = json_encode($tag);
 print_r($j);
 
 ?>

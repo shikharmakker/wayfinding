@@ -11,7 +11,7 @@ $hell = 0;
   foreach ($buildings as $key => $value) {
       if($value['building']==$row['building_name']){
         $len = count($buildings[$key]['floor']);
-        $buildings[$key]['floor'][$len] = $row['floor']; 
+        $buildings[$key]['floor'][$len] = $row['floor'];
         $hell = 1;
         break;
       }
@@ -20,7 +20,7 @@ $hell = 0;
     continue;
   }
   $buildings[$i]['building'] = $row['building_name'];
-  $buildings[$i]['floor'][] = $row['floor'];  
+  $buildings[$i]['floor'][] = $row['floor'];
   $i++;
 }
 $r = json_encode($buildings);
@@ -32,20 +32,21 @@ $r = json_encode($buildings);
 <!DOCTYPE html>
 <html>
  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <link href="css/index.css" type="text/css" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|PT+Serif" rel="stylesheet">
   <title></title>
   <style>
    body{
-    font-family: 'Montserrat', sans-serif;
+    max-height: 100vh;
+    font-family: 'Libre Franklin', sans-serif;
    }
   .card-wrapper{
     display: flex;
     justify-content: center;
-    min-height: calc(100vh - 3rem);
+    min-height: calc(100vh - 10rem);
   }
   .card-header-title{
    font-size: 2rem;
@@ -81,10 +82,12 @@ $r = json_encode($buildings);
 
  <body>
   <nav class="navbar has-shadow is-light is-transparent" role="navigation" aria-label="main navigation">
-   <div class="navbar-brand">
+   <div class="navbar-brand" href="user-landing.php">
      <a class="navbar-item" href="">
-      <span id="home" style="font-size: 1.5rem;"><strong>InNav</strong></span>
-     </a>
+      <span class="icon is-normal">
+       <i class="fas fa-2x   fa-home" href="user-landing.php"></i>
+      </span>
+      <span id="home" style="font-size: 1.5rem; font-family: 'PT Serif', serif; margin-left: 1vw;"><strong>InNav</strong></span>
 
      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
        <span aria-hidden="true"></span>
@@ -95,97 +98,128 @@ $r = json_encode($buildings);
 
    <div id="navbarBasicExample" class="navbar-menu">
      <div class="navbar-start">
-      <a class="navbar-item">
-       How to use
-      </a>
-      <a class="navbar-item">
-        About Us
-      </a>
      </div>
+
 
      <div class="navbar-end">
-       <div class="navbar-item">
-           <a class="button is-primary">
-             <strong>Back to menu</strong>
-           </a>
-       </div>
-
-       </div>
+      <div class="navbar-item">
+       <a class="button is-light" href="aboutus.htm">
+         About Us
+       </a>
+      </div>
+      <div class="navbar-item">
+       <a class="button is-light" href="howtouse.htm">
+        How to use
+       </a>
+      </div>
+     </div>
      </div>
   </nav>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
 
-<script type="text/javascript">
-  var ob;
-  var floors = []
-  //alert(count);
-  var tr = '<?php echo $r ;?>';
-  //alert(tr);
-  var obj = JSON.parse(tr); 
-  //var obj = JSON.parse(tr);
- // alert(obj);
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+
+      // Add a click event on each of them
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+
+          // Get the target from the "data-target" attribute
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+
+          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+
+        });
+      });
+    }
+
+  });
+
+  </script>
+  <script type="text/javascript">
+    var ob;
+    var floors = []
+    //alert(count);
+    var tr = '<?php echo $r ;?>';
+    //alert(tr);
+    var obj = JSON.parse(tr);
+    //var obj = JSON.parse(tr);
+   // alert(obj);
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
   <div  class="card-wrapper">
-			<div class="card" style="width:100%;max-width:500px;margin:auto;">
-				<div class="card-header">
+      <div class="card" style="width:100%;max-width:500px;margin:auto;">
+        <div class="card-header">
      <div class="level-item">
       <p class="card-header-title">
- 						Navigate
- 					</p>
+            Navigate
+          </p>
      </div>
-				</div>
-    <div class="card-content" style="padding: 1vh 2vw;">
+        </div>
+    <div class="card-content">
      <div class="level-item">
       <form method="GET" enctype="multipart/form-data" style="width: 100%;" action="user.php">
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <label class="label">Building</label>
-        </div>
+       <div class="field is-horizontal">
+         <div class="field-label is-normal">
+           <label class="label">Building</label>
+         </div>
+         <div class="field-body">
+           <div class="field">
+             <div class="control">
+               <div class="select is-fullwidth">
+                <select id="building" name="building">
+                 <option value="">-- select one -- </option>
+                 <script language="javascript" type="text/javascript">
+                 for(var b=0;b<=obj.length;b++){
+                      var c = obj[b].building;
+                     document.write("<option id = 'x' value=\""+c+"\">"+obj[b].building+"</option>");
 
-        <div class="select is-fullwidth is-multiple">
-         <select id="building" name="building">
-          <option value="">-- select one -- </option>
-          <script language="javascript" type="text/javascript">
-          for(var b=0;b<=obj.length;b++){
-               var c = obj[b].building;
-              document.write("<option id = 'x' value=\""+c+"\">"+obj[b].building+"</option>");
-             
-          }
-        </script>
-</select>
-        </div>
-      </div>
-
-      <div class="field is-horizontal">
-        <div class="field-label">
-          <label class="label">Floor</label>
-        </div>
-        <div class="select is-fullwidth is-multiple" style="width: 79.5%;">
-         <select id="floor" name="floor">
-<option value="">-- select one -- </option>
-</select>
-        </div>
-      </div>
-
-       <div class="level-item">
-        <div class="field" style="width: 100%;">
-          <div class="control" style="margin-top:0.5rem;">
-           <div class="level">
-            <div class="level-item">
-              <button>Submit</button>
-            </div>
+                 }
+               </script>
+               </select>
+               </div>
+             </div>
            </div>
-
-          </div>
-        </div>
+         </div>
        </div>
+       <div class="field is-horizontal">
+         <div class="field-label is-normal">
+           <label class="label">Floor</label>
+         </div>
+         <div class="field-body">
+           <div class="field">
+             <div class="control">
+               <div class="select is-fullwidth">
+                <select id="floor" name="floor">
+                 <option value="">-- select one -- </option>
+                </select>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+
+      <div class="field is-horizontal">
+        <div class="select is-fullwidth is-multiple" style="width: 79.5%;">
+        </div>
+      </div>
+      <div class="control">
+        <button class="button is-success is-fullwidth is-medium"  style="margin-top: 4vh;">Navigate</button>
+      </div>
       </form>
      </div>
     </div>
-			</div>
-		</div>
+      </div>
+    </div>
  </body>
 </html>
 <script type="text/javascript">
@@ -201,11 +235,11 @@ $r = json_encode($buildings);
             var a = floors[j];
              $("#floor").append("<option selected>"+a+"</option>");
          }
-        }   
-      }        
+        }
+      }
     });
-   
-   
+
+
 
 
 });

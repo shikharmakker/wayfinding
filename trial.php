@@ -314,6 +314,9 @@ $user = $_SESSION["username"];
          for(var b= 0; b<obj.cords.length;b++){
             for(var i = 0; i < connected[b].length;i++){
               connected_nodes[b][i] = connected[b][i];
+              
+            }
+            for(var i = 0 ; i < obj.cords[b].Tags.length;i++){
               Tag_strings[b][i] = obj.cords[b].Tags[i];
             }
             name_string[b] = obj.cords[b].name;
@@ -725,39 +728,39 @@ $user = $_SESSION["username"];
           // alert( $("#json").html());
          }
 
-         function Create_JSON(){
-           finalJSON = '{"cords":[';
-           for (var count = 0; count < cords.length; count++) {
-             str = '{"value":';
-             str += cords[count] + ',"connected_nodes":['
-             str1 = '';
-             for (var c = 0; c < connected_nodes[count].length; c++) {
-               str1 += connected_nodes[count][c] + ',';
-             }
-             str1 = str1.substring(0,str1.length-1);
-             str += str1;
-             str += '],"Tags":[';
-             str2 = '';
-             for (var y = 0; y < Tag_strings[count].length; y++) {
-               str2 += '"' + Tag_strings[count][y] + '",';
-             }
-             str2 = str2.substring(0,str2.length-1);
-             str += str2;
-             str += '],"name":"';
-             if (name_string[count] != '') {
-               str += name_string[count];
-             }
-             str += '","description":"';
-             if (description[count] != '') {
-               str += description[count];
-             }
-             str += '"}';
-             finalJSON += str + ',';
-            }
-           finalJSON = finalJSON.substring(0,finalJSON.length - 1);
-           finalJSON += ']}' ;
-           //alert(finalJSON);
-         }
+        function Create_JSON(){
+  finalJSON = '{"cords":[';
+  for (var count = 0; count < cords.length; count++) {
+    str = '{"value":';
+    str += cords[count] + ',"connected_nodes":['
+    str1 = '';
+    for (var c = 0; c < connected_nodes[count].length; c++) {
+      str1 += connected_nodes[count][c] + ',';
+    }
+    str1 = str1.substring(0,str1.length-1);
+    str += str1;
+    str += '],"Tags":[';
+    str2 = '';
+    for (var y = 0; y < Tag_strings[count].length; y++) {
+      str2 += '"' + Tag_strings[count][y] + '",';
+    }
+    str2 = str2.substring(0,str2.length-1);
+    str += str2;
+    str += '],"name":"';
+    if (name_string[count] != '') {
+      str += name_string[count];
+    }
+    str += '","description":"';
+    if (description[count] != '') {
+      str += description[count];
+    }
+    str += '"}';
+    finalJSON += str + ',';
+  }
+  finalJSON = finalJSON.substring(0,finalJSON.length - 1);
+  finalJSON += ']}' ;
+  //alert(finalJSON);
+}
          var aler = 0;
          function Cancel_tag(){
           filled = 0;
@@ -789,7 +792,7 @@ map:img,
 val:v
 },
 function(response,status){ // Required Callback Function
-alert("*----Received Data----*nnResponse : " + response+"nnStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
+//alert("*----Received Data----*nnResponse : " + response+"nnStatus : " + status);//"response" receives - whatever written in echo of above PHP script.
 $("#form")[0].reset();
 });
 
@@ -845,11 +848,11 @@ $("#form")[0].reset();
 
 
 
-           if(document.getElementById('Description_input').value=="" || document.getElementById('Name_input').value =="" || document.getElementById('Tag_input').value==""){
+         /*  if(document.getElementById('Description_input').value=="" || document.getElementById('Name_input').value =="" || document.getElementById('Tag_input').value==""){
              alert('please fill the details for the junction');
              prob = 1;
              return;
-           }
+           }*/
            filled = 1;
            Submit_tag();
            Submit_name();
@@ -881,10 +884,10 @@ $("#form")[0].reset();
            }
            aler = 0;
            var arr = input.split(',');
- for(var i = 0 ; i < arr.length ; i++){
-           Tag_strings[tag_index].push(arr[i]);
-}
-
+         for(var i = 0 ; i < arr.length ; i++){
+           Tag_strings[tag_index].push(arr[i].trim());
+        }
+      
            document.getElementById('Tag_input').value = "";
 
 
@@ -918,7 +921,7 @@ $("#form")[0].reset();
          function Submit_description(){
            var input = document.getElementById('Description_input').value;
            if(input == ""){
-             alert("Please enter a description");
+            // alert("Please enter a description");
              unselect(tag_index);
              return;
            }
@@ -1088,8 +1091,14 @@ $("#form")[0].reset();
     <script type="text/javascript">
          $(function() {
    $("#but1").click(function() {
-
+    if(filled==1){
+    //  alert(filled);
      $(".fullscreen-container").fadeTo(200, 1);
+      filled = 0;
+    }
+    else{
+      alert("Please complete Annotation before submitting");
+    }
    
    });
    $("#but2").click(function() {
@@ -1274,14 +1283,7 @@ $pass = $row['password'];
 
 ?>
 <script type="text/javascript">
-      $(function() {
-   $("#but1").click(function() {
-     $(".fullscreen-container").fadeTo(200, 1);
-   });
-   $("#but2").click(function() {
-     $(".fullscreen-container").fadeOut(200);
-   });
- });
+   
  function myFunction() {
   var t =  '<?php echo $pass ;?>';
 var nat = prompt("Confirm your Password");
