@@ -486,7 +486,7 @@ var tt = JSON.parse(nod);
 
                 document.getElementById("d").innerHTML=ob.Description;
                 document.getElementById("t").innerHTML=ob.Tags;
-                document.getElementById("ad").src = 'audio/2739SampleAudio_0.4mb.mp3';
+                document.getElementById("ad").src = "audio/"+ob.audio;
 
                 document.getElementById("preview").src ="img/"+ob.image;
               }
@@ -1026,12 +1026,11 @@ var tt = JSON.parse(nod);
              </p>
             </div>
             <div class="card-content">
-              <p>Please fill the following fields to file your complaint.</p>
-              <label class="label" style="display: inline-block;">Name</label><p style="display: inline-block;" id="n">dfvd</p><br />
-              <label class="label" style="display: inline-block;">Description</label><p id="d" style="display: inline-block;">vdcd</p><br />
-              <label class="label" style="display: inline-block;">Services</label><p id="t" style="display: inline-block;"></p><br />
-              <label class="label" style="display: inline-block;">Audio</label><p id="audio" style="display: none;"></p> <audio controls style="width: 100%; height: 5vh;" src="" id='ad'></audio><br />
-              <label class="label" style="display: inline-block;">Image</label><p id="image" style="display: none;"></p> <img src="" style="max-width: 100%; max-height:30vh;" id="preview">
+              <label class="label" style="display: inline-block;">Name: </label><p style="display: inline-block;" id="n"></p><br />
+              <label class="label" style="display: inline-block;">Description: </label><p id="d" style="display: inline-block;"></p><br />
+              <label class="label" style="display: inline-block;">Services: </label><p id="t" style="display: inline-block;"></p><br />
+              <label class="label" style="display: inline-block;">Audio Landmark: </label><p id="audio" style="display: none;"></p> <audio controls style="width: 100%; height: 5vh;" src="" id='ad'></audio><br />
+              <label class="label" style="display: inline-block;">Image Landmark: </label><p id="image" style="display: none;"></p> <img src="" style="max-width: 100%; max-height:30vh;" id="preview">
               <a class="button is-light is-fullwidth is-medium" id="bt2" style="margin-top: 4vh;">
                 OK
               </a>
